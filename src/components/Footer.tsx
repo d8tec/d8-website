@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const nav = [
-  { href: "/services", label: "Services" },
+  { href: "/services", label: "About Us" },
   { href: "/projects", label: "Projects" },
   { href: "/careers", label: "Careers" },
   { href: "/contact", label: "Contact" },
@@ -16,7 +16,7 @@ export function Footer() {
           <div className="flex flex-col gap-3">
             <p className="font-heading text-2xl font-semibold tracking-tight text-d8-text-primary">D8</p>
             <p className="max-w-xs font-body text-sm leading-relaxed text-d8-text-secondary">
-              Full-spectrum technology. R&D, hardware, software, and AI — one team, end to end.
+              R&D, hardware, software, and AI.
             </p>
           </div>
 
@@ -40,10 +40,10 @@ export function Footer() {
             © {new Date().getFullYear()} D8. All rights reserved.
           </p>
           <a
-            href="mailto:nalfaro@d8tec.com"
+            href="mailto:contacto@d8tec.com"
             className="font-mono text-xs text-d8-text-secondary transition-colors hover:text-d8-text-primary"
           >
-            nalfaro@d8tec.com
+            contacto@d8tec.com
           </a>
         </div>
       </div>

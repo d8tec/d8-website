@@ -23,11 +23,11 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "D8 — Full-Spectrum Technology",
+  title: "D8 | Engineering and Development",
   description:
-    "D8 is a full-spectrum technology company. R&D, hardware/software integration, web and app development, AI and data solutions.",
+    "D8 is an engineering and development company. R&D, hardware/software integration, web and app development, AI and data solutions.",
   openGraph: {
-    title: "D8 — Full-Spectrum Technology",
+    title: "D8 | Engineering and Development",
     description:
       "R&D, hardware/software integration, web and app development, AI and data solutions.",
     siteName: "D8",

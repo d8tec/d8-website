@@ -22,8 +22,8 @@ const principles = [
   },
   {
     tag: "04",
-    name: "Students welcome, mediocrity isn't",
-    desc: "We don't care about years of experience. We care about how you think, how you learn, and how you handle being wrong. A sharp student who ships beats a senior who coasts every time.",
+    name: "Credentials optional. Mediocrity isn't.",
+    desc: "We don't care about degrees or years of experience. Self-taught, still in school, switching fields — all welcome. We care about how you think, how you learn, and how you handle being wrong. Someone who ships beats someone who coasts, every time.",
   },
 ];
 
@@ -180,7 +180,7 @@ export function CareersContent() {
                 Get in touch
               </p>
               <h2 className="font-heading text-2xl font-semibold leading-tight tracking-tight text-d8-text-primary">
-                No open roles right now. Tell us about yourself anyway.
+                No open roles right now. There&apos;s always a problem worth solving. Tell us about yourself.
               </h2>
               <p className="font-body text-sm leading-relaxed text-d8-text-secondary">
                 We hire when we find the right person, not when a slot opens.
@@ -316,7 +316,7 @@ export function CareersContent() {
                 )}
                 {status === "error" && (
                   <p role="alert" className="font-body text-sm text-red-400">
-                    Something went wrong. Email us directly at nalfaro@d8tec.com.
+                    Something went wrong. Email us directly at contacto@d8tec.com.
                   </p>
                 )}
               </div>

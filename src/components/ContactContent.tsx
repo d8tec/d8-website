@@ -54,8 +54,16 @@ export function ContactContent() {
               variants={item}
               className="font-heading text-4xl font-semibold leading-tight tracking-tight text-d8-text-primary sm:text-5xl"
             >
-              Get in touch.
+              Get to know the D8 Standards.
             </motion.h1>
+            <motion.div variants={item} className="flex flex-col gap-2 pt-2">
+              <p className="max-w-xl font-body text-sm leading-relaxed text-d8-text-secondary">
+                D8 takes its name from Deuteronomy 8. A reminder that when we build something real, and when it works, the ability to do it came from somewhere greater than ourselves. We don&apos;t take that lightly.
+              </p>
+              <p className="max-w-xl font-body text-sm leading-relaxed text-d8-text-dim italic">
+                &ldquo;Remember the Lord your God, for it is he who gives you the ability to produce wealth.&rdquo; (Deuteronomy 8:18)
+              </p>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -152,6 +160,7 @@ export function ContactContent() {
                 </div>
               ))}
             </motion.div>
+
           </motion.div>
         </div>
       </section>
