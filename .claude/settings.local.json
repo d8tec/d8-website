@@ -8,7 +8,8 @@
       "Bash(grep -v '\\\\.sample$')",
       "Bash(git remote *)",
       "Bash(git fetch *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "mcp__playwright__browser_navigate"
     ]
   }
 }
