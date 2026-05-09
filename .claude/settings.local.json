@@ -5,7 +5,10 @@
       "Bash(npm run *)",
       "Skill(impeccable)",
       "Bash(node *)",
-      "Bash(grep -v '\\\\.sample$')"
+      "Bash(grep -v '\\\\.sample$')",
+      "Bash(git remote *)",
+      "Bash(git fetch *)",
+      "Bash(git push *)"
     ]
   }
 }
