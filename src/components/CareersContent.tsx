@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
@@ -15,6 +15,17 @@ type FormValues = {
 
 type Principle = { tag: string; name: string; desc: string };
 
+const ALLOWED_TYPES = new Set([
+  "application/pdf",
+  "image/jpeg",
+  "image/png",
+  "image/gif",
+  "image/webp",
+  "application/zip",
+  "application/x-zip-compressed",
+]);
+const MAX_FILE_BYTES = 4 * 1024 * 1024;
+
 export function CareersContent() {
   const t = useTranslations("careers");
   const tForm = useTranslations("careers.form");
@@ -23,6 +34,9 @@ export function CareersContent() {
 
   const shouldReduceMotion = useReducedMotion();
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [file, setFile] = useState<File | null>(null);
+  const [fileError, setFileError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const {
     register,
@@ -59,17 +73,47 @@ export function CareersContent() {
     },
   };
 
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const f = e.target.files?.[0] ?? null;
+    setFileError(null);
+    if (!f) { setFile(null); return; }
+    if (f.size > MAX_FILE_BYTES) {
+      setFileError(tForm("fields.fileTooBig"));
+      setFile(null);
+      e.target.value = "";
+      return;
+    }
+    if (!ALLOWED_TYPES.has(f.type)) {
+      setFileError(tForm("fields.fileWrongType"));
+      setFile(null);
+      e.target.value = "";
+      return;
+    }
+    setFile(f);
+  }
+
+  function clearFile() {
+    setFile(null);
+    setFileError(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  }
+
   async function onSubmit(data: FormValues) {
     setStatus("sending");
     try {
-      const res = await fetch("/api/careers", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      const fd = new FormData();
+      fd.append("name", data.name);
+      fd.append("email", data.email);
+      fd.append("area", data.area);
+      fd.append("intro", data.intro);
+      if (data.link) fd.append("link", data.link);
+      if (file) fd.append("file", file);
+
+      const res = await fetch("/api/careers", { method: "POST", body: fd });
       if (!res.ok) throw new Error();
       setStatus("sent");
       reset();
+      clearFile();
     } catch {
       setStatus("error");
     }
@@ -280,6 +324,54 @@ export function CareersContent() {
                   {...register("link")}
                   className="rounded-sm border border-d8-border bg-d8-surface px-4 py-3 font-body text-sm text-d8-text-primary placeholder:text-d8-text-dim focus:border-d8-purple focus:outline-none focus:ring-1 focus:ring-d8-purple transition-colors"
                 />
+              </div>
+
+              {/* File attachment */}
+              <div className="flex flex-col gap-1.5">
+                <span className="font-mono text-[11px] uppercase tracking-wider text-d8-text-dim">
+                  {tForm("fields.file")}{" "}
+                  <span className="normal-case tracking-normal opacity-60">
+                    {tForm("fields.fileOptional")}
+                  </span>
+                </span>
+                <input
+                  ref={fileInputRef}
+                  id="file-upload"
+                  type="file"
+                  accept=".pdf,.jpg,.jpeg,.png,.gif,.webp,.zip"
+                  onChange={handleFileChange}
+                  className="sr-only"
+                />
+                <label
+                  htmlFor="file-upload"
+                  className={`flex cursor-pointer items-center gap-3 rounded-sm border px-4 py-3 font-body text-sm transition-colors ${
+                    fileError
+                      ? "border-red-500/60 text-d8-text-secondary"
+                      : "border-d8-border text-d8-text-secondary hover:border-d8-purple hover:text-d8-text-primary"
+                  }`}
+                >
+                  <svg className="h-4 w-4 shrink-0 text-d8-text-dim" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M2 10.5V13h12v-2.5M8 2v8M5 5l3-3 3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span className="truncate">
+                    {file ? file.name : tForm("fields.fileHint")}
+                  </span>
+                  {file && (
+                    <button
+                      type="button"
+                      onClick={(e) => { e.preventDefault(); clearFile(); }}
+                      aria-label="Remove file"
+                      className="ml-auto shrink-0 text-d8-text-dim transition-colors hover:text-d8-text-primary"
+                    >
+                      <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                        <path d="M12 4L4 12M4 4l8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                      </svg>
+                    </button>
+                  )}
+                </label>
+                {fileError && (
+                  <p role="alert" className="font-mono text-[11px] text-red-400">{fileError}</p>
+                )}
               </div>
 
               {/* Submit */}

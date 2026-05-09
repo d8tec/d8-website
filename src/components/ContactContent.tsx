@@ -1,8 +1,16 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { useForm } from "react-hook-form";
+import { motion, AnimatePresence, useReducedMotion, type Variants } from "framer-motion";
+
+type ContactFormValues = {
+  name: string;
+  email: string;
+  message: string;
+};
 
 const socials = [
   { name: "LinkedIn", handle: "@d8tec", href: "https://linkedin.com/company/d8tec" },
@@ -11,7 +19,63 @@ const socials = [
 
 export function ContactContent() {
   const t = useTranslations("contact");
+  const tForm = useTranslations("contact.form");
   const shouldReduceMotion = useReducedMotion();
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const nameInputRef = useRef<HTMLInputElement | null>(null);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<ContactFormValues>();
+
+  useEffect(() => {
+    if (!modalOpen) return;
+    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") closeModal(); };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [modalOpen]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    document.body.style.overflow = modalOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [modalOpen]);
+
+  useEffect(() => {
+    if (modalOpen) setTimeout(() => nameInputRef.current?.focus(), 50);
+  }, [modalOpen]);
+
+  function openModal() {
+    setStatus("idle");
+    reset();
+    setModalOpen(true);
+  }
+
+  function closeModal() {
+    setModalOpen(false);
+    setStatus("idle");
+    reset();
+  }
+
+  async function onSubmit(data: ContactFormValues) {
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error();
+      setStatus("sent");
+      reset();
+    } catch {
+      setStatus("error");
+    }
+  }
 
   const fade: Variants = {
     hidden: {},
@@ -27,17 +91,14 @@ export function ContactContent() {
     },
   };
 
+  const { ref: nameRHFRef, ...nameProps } = register("name", { required: true });
+
   return (
     <>
       {/* Page header */}
       <section className="px-6 pt-40 pb-16">
         <div className="mx-auto max-w-7xl">
-          <motion.div
-            variants={fade}
-            initial="hidden"
-            animate="show"
-            className="flex flex-col gap-5"
-          >
+          <motion.div variants={fade} initial="hidden" animate="show" className="flex flex-col gap-5">
             <motion.span
               variants={item}
               className="font-mono text-xs uppercase tracking-widest text-d8-purple-light"
@@ -71,7 +132,7 @@ export function ContactContent() {
             animate="show"
             className="divide-y divide-d8-border border-b border-d8-border"
           >
-            {/* Email */}
+            {/* Email — opens modal */}
             <motion.div
               variants={item}
               className="-mx-4 flex flex-col gap-1 px-4 py-10 transition-colors hover:bg-d8-bg md:-mx-6 md:px-6"
@@ -79,12 +140,13 @@ export function ContactContent() {
               <span className="font-mono text-xs uppercase tracking-wider text-d8-text-dim">
                 {t("rows.emailLabel")}
               </span>
-              <a
-                href="mailto:contacto@d8tec.com"
-                className="font-heading text-2xl font-semibold tracking-tight text-d8-text-primary transition-colors hover:text-d8-purple-light sm:text-3xl"
+              <button
+                type="button"
+                onClick={openModal}
+                className="text-left font-heading text-2xl font-semibold tracking-tight text-d8-text-primary transition-colors hover:text-d8-purple-light sm:text-3xl"
               >
                 contacto@d8tec.com
-              </a>
+              </button>
               <span className="mt-1 font-body text-xs text-d8-text-dim">
                 {t("rows.responseTime")}
               </span>
@@ -157,6 +219,155 @@ export function ContactContent() {
           </motion.div>
         </div>
       </section>
+
+      {/* Contact modal */}
+      <AnimatePresence>
+        {modalOpen && (
+          <motion.div
+            key="contact-modal-overlay"
+            className="fixed inset-0 z-50 flex items-center justify-center px-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.2 }}
+            onClick={closeModal}
+          >
+            <div className="absolute inset-0 bg-black/70" aria-hidden="true" />
+
+            <motion.div
+              className="relative w-full max-w-lg"
+              initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.25, ease: "easeOut" as const }}
+              onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="contact-modal-title"
+            >
+              <div className="rounded-sm border border-d8-border bg-d8-surface p-8 shadow-2xl">
+                {/* Modal header */}
+                <div className="mb-6 flex items-start justify-between gap-4">
+                  <h2
+                    id="contact-modal-title"
+                    className="font-heading text-xl font-semibold tracking-tight text-d8-text-primary"
+                  >
+                    {tForm("heading")}
+                  </h2>
+                  <button
+                    type="button"
+                    onClick={closeModal}
+                    aria-label="Close"
+                    className="mt-0.5 shrink-0 text-d8-text-dim transition-colors hover:text-d8-text-primary"
+                  >
+                    <svg className="h-5 w-5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                      <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Form */}
+                <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-4">
+                  {/* Name + Email */}
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="flex flex-col gap-1.5">
+                      <label htmlFor="contact-name" className="font-mono text-[11px] uppercase tracking-wider text-d8-text-dim">
+                        {tForm("fields.name")}
+                      </label>
+                      <input
+                        id="contact-name"
+                        type="text"
+                        autoComplete="name"
+                        aria-required="true"
+                        placeholder={tForm("fields.namePlaceholder")}
+                        {...nameProps}
+                        ref={(el) => {
+                          nameRHFRef(el);
+                          nameInputRef.current = el;
+                        }}
+                        className={`rounded-sm border bg-d8-bg px-4 py-3 font-body text-sm text-d8-text-primary placeholder:text-d8-text-dim focus:outline-none focus:ring-1 focus:ring-d8-purple transition-colors ${
+                          errors.name ? "border-red-500/60" : "border-d8-border focus:border-d8-purple"
+                        }`}
+                      />
+                      {errors.name && (
+                        <p role="alert" className="font-mono text-[11px] text-red-400">Required</p>
+                      )}
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <label htmlFor="contact-email" className="font-mono text-[11px] uppercase tracking-wider text-d8-text-dim">
+                        {tForm("fields.email")}
+                      </label>
+                      <input
+                        id="contact-email"
+                        type="email"
+                        autoComplete="email"
+                        aria-required="true"
+                        placeholder="you@example.com"
+                        {...register("email", { required: true, pattern: /^\S+@\S+\.\S+$/ })}
+                        className={`rounded-sm border bg-d8-bg px-4 py-3 font-body text-sm text-d8-text-primary placeholder:text-d8-text-dim focus:outline-none focus:ring-1 focus:ring-d8-purple transition-colors ${
+                          errors.email ? "border-red-500/60" : "border-d8-border focus:border-d8-purple"
+                        }`}
+                      />
+                      {errors.email && (
+                        <p role="alert" className="font-mono text-[11px] text-red-400">
+                          {errors.email.type === "pattern" ? "Valid email required" : "Required"}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Message */}
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="contact-message" className="font-mono text-[11px] uppercase tracking-wider text-d8-text-dim">
+                      {tForm("fields.message")}
+                    </label>
+                    <textarea
+                      id="contact-message"
+                      rows={4}
+                      aria-required="true"
+                      placeholder={tForm("fields.messagePlaceholder")}
+                      {...register("message", { required: true, minLength: 10 })}
+                      className={`resize-none rounded-sm border bg-d8-bg px-4 py-3 font-body text-sm leading-relaxed text-d8-text-primary placeholder:text-d8-text-dim focus:outline-none focus:ring-1 focus:ring-d8-purple transition-colors ${
+                        errors.message ? "border-red-500/60" : "border-d8-border focus:border-d8-purple"
+                      }`}
+                    />
+                    {errors.message && (
+                      <p role="alert" className="font-mono text-[11px] text-red-400">
+                        {errors.message.type === "minLength" ? "At least 10 characters" : "Required"}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Submit */}
+                  <div className="flex items-center gap-4 pt-1">
+                    <button
+                      type="submit"
+                      disabled={status === "sending" || status === "sent"}
+                      className="rounded-sm bg-d8-purple px-6 py-3 font-body text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+                    >
+                      {status === "sending"
+                        ? tForm("sending")
+                        : status === "sent"
+                        ? tForm("sent")
+                        : tForm("submit")}
+                    </button>
+                    {status === "sent" && (
+                      <p role="status" className="font-body text-sm text-d8-purple-light">
+                        {tForm("successMsg")}
+                      </p>
+                    )}
+                    {status === "error" && (
+                      <p role="alert" className="font-body text-sm text-red-400">
+                        {tForm("errorMsg")}
+                      </p>
+                    )}
+                  </div>
+                </form>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

@@ -176,7 +176,12 @@
         "introPlaceholder": "Tell us what you're working on, what problems interest you, and what you'd want to build at D8.",
         "link": "Link to your work",
         "linkOptional": "— optional",
-        "linkPlaceholder": "GitHub, LinkedIn, portfolio, anything"
+        "linkPlaceholder": "GitHub, LinkedIn, portfolio, anything",
+        "file": "Or attach a file",
+        "fileOptional": "— optional",
+        "fileHint": "PDF, image, or ZIP · max 4 MB",
+        "fileTooBig": "File exceeds 4 MB limit",
+        "fileWrongType": "Only PDF, image, or ZIP accepted"
       },
       "submit": "Send",
       "sending": "Sending…",
@@ -198,6 +203,21 @@
       "locationValue": "San José, Costa Rica",
       "hoursLabel": "Hours",
       "hoursValue": "Mon–Fri, 8am–6pm CST"
+    },
+    "form": {
+      "heading": "Let us know your regards",
+      "fields": {
+        "name": "Name",
+        "namePlaceholder": "Your name",
+        "email": "Email",
+        "message": "Message",
+        "messagePlaceholder": "Tell us what's on your mind."
+      },
+      "submit": "Send",
+      "sending": "Sending…",
+      "sent": "Sent",
+      "successMsg": "Got it. We'll be in touch.",
+      "errorMsg": "Something went wrong. Email us directly at contacto@d8tec.com."
     }
   },
   "cta": {
