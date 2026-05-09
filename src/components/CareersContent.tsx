@@ -1,40 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-
-const principles = [
-  {
-    tag: "01",
-    name: "Ownership over permission",
-    desc: "Everyone at D8 owns something real. Not a ticket queue — a problem. You define the approach, you make it work, you see it deployed. If you need someone to tell you what to do next, this isn't the place.",
-  },
-  {
-    tag: "02",
-    name: "Depth over breadth",
-    desc: "We go as deep as the problem requires. We don't stop at 'working' — we stop at 'correct, robust, and fast'. Curiosity isn't a nice-to-have, it's the job.",
-  },
-  {
-    tag: "03",
-    name: "No handoffs",
-    desc: "Hardware talks to firmware. Firmware talks to the cloud. The cloud talks to the UI. You'll understand the full stack, even the parts that aren't yours. That's how you build things that actually work.",
-  },
-  {
-    tag: "04",
-    name: "Credentials optional. Mediocrity isn't.",
-    desc: "We don't care about degrees or years of experience. Self-taught, still in school, switching fields — all welcome. We care about how you think, how you learn, and how you handle being wrong. Someone who ships beats someone who coasts, every time.",
-  },
-];
-
-const areas = [
-  "Embedded & Firmware",
-  "Full-Stack Development",
-  "ML & AI",
-  "Hardware / PCB Design",
-  "R&D / Prototyping",
-  "Other",
-];
 
 type FormValues = {
   name: string;
@@ -44,7 +13,14 @@ type FormValues = {
   link: string;
 };
 
+type Principle = { tag: string; name: string; desc: string };
+
 export function CareersContent() {
+  const t = useTranslations("careers");
+  const tForm = useTranslations("careers.form");
+  const principles = t.raw("principles") as Principle[];
+  const areas = tForm.raw("areas") as string[];
+
   const shouldReduceMotion = useReducedMotion();
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
@@ -114,23 +90,21 @@ export function CareersContent() {
               variants={headerItem}
               className="font-mono text-xs uppercase tracking-widest text-d8-purple-light"
             >
-              Careers
+              {t("overline")}
             </motion.span>
             <motion.h1
               variants={headerItem}
               className="font-heading text-4xl font-semibold leading-tight tracking-tight text-d8-text-primary text-balance sm:text-5xl"
             >
-              We&apos;re building hard things.
+              {t("heading1")}
               <br />
-              We want people who want that.
+              {t("heading2")}
             </motion.h1>
             <motion.p
               variants={headerItem}
               className="max-w-2xl font-body text-base leading-relaxed text-d8-text-secondary"
             >
-              D8 is a small team with a wide scope — hardware, software, AI, and the
-              R&D that connects them. We don&apos;t have career ladders or quarterly OKRs.
-              We have problems that need solving and the autonomy to solve them.
+              {t("body")}
             </motion.p>
           </motion.div>
         </div>
@@ -140,7 +114,7 @@ export function CareersContent() {
       <section className="border-t border-d8-border bg-d8-surface px-6 py-16">
         <div className="mx-auto max-w-7xl">
           <p className="mb-8 font-mono text-xs uppercase tracking-widest text-d8-text-dim">
-            How we work
+            {t("howWeWork")}
           </p>
           <motion.div
             variants={containerVariants}
@@ -177,19 +151,16 @@ export function CareersContent() {
             {/* Left: context */}
             <div className="flex flex-col gap-4">
               <p className="font-mono text-xs uppercase tracking-widest text-d8-text-dim">
-                Get in touch
+                {tForm("overline")}
               </p>
               <h2 className="font-heading text-2xl font-semibold leading-tight tracking-tight text-d8-text-primary">
-                No open roles right now. There&apos;s always a problem worth solving. Tell us about yourself.
+                {tForm("heading")}
               </h2>
               <p className="font-body text-sm leading-relaxed text-d8-text-secondary">
-                We hire when we find the right person, not when a slot opens.
-                If you build things and want harder problems, send us a note.
-                We read everything.
+                {tForm("body1")}
               </p>
               <p className="font-body text-sm leading-relaxed text-d8-text-secondary">
-                Students and recent grads: especially welcome. Show us something
-                you&apos;ve made — even if it&apos;s rough.
+                {tForm("body2")}
               </p>
             </div>
 
@@ -199,14 +170,14 @@ export function CareersContent() {
               <div className="grid gap-5 sm:grid-cols-2">
                 <div className="flex flex-col gap-1.5">
                   <label htmlFor="name" className="font-mono text-[11px] uppercase tracking-wider text-d8-text-dim">
-                    Name
+                    {tForm("fields.name")}
                   </label>
                   <input
                     id="name"
                     type="text"
                     autoComplete="name"
                     aria-required="true"
-                    placeholder="Your name"
+                    placeholder={tForm("fields.namePlaceholder")}
                     {...register("name", { required: true })}
                     className={`rounded-sm border bg-d8-surface px-4 py-3 font-body text-sm text-d8-text-primary placeholder:text-d8-text-dim focus:outline-none focus:ring-1 focus:ring-d8-purple transition-colors ${
                       errors.name ? "border-red-500/60" : "border-d8-border focus:border-d8-purple"
@@ -216,7 +187,7 @@ export function CareersContent() {
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <label htmlFor="email" className="font-mono text-[11px] uppercase tracking-wider text-d8-text-dim">
-                    Email
+                    {tForm("fields.email")}
                   </label>
                   <input
                     id="email"
@@ -229,14 +200,18 @@ export function CareersContent() {
                       errors.email ? "border-red-500/60" : "border-d8-border focus:border-d8-purple"
                     }`}
                   />
-                  {errors.email && <p role="alert" className="font-mono text-[11px] text-red-400">{errors.email.type === "pattern" ? "Valid email required" : "Required"}</p>}
+                  {errors.email && (
+                    <p role="alert" className="font-mono text-[11px] text-red-400">
+                      {errors.email.type === "pattern" ? "Valid email required" : "Required"}
+                    </p>
+                  )}
                 </div>
               </div>
 
               {/* Area */}
               <div className="flex flex-col gap-1.5">
                 <label htmlFor="area" className="font-mono text-[11px] uppercase tracking-wider text-d8-text-dim">
-                  What you do
+                  {tForm("fields.area")}
                 </label>
                 <div className="relative">
                   <select
@@ -247,7 +222,9 @@ export function CareersContent() {
                       errors.area ? "border-red-500/60" : "border-d8-border focus:border-d8-purple"
                     }`}
                   >
-                    <option value="" className="text-d8-text-dim">Select an area</option>
+                    <option value="" className="text-d8-text-dim">
+                      {tForm("fields.areaPlaceholder")}
+                    </option>
                     {areas.map((a) => (
                       <option key={a} value={a}>{a}</option>
                     ))}
@@ -269,31 +246,37 @@ export function CareersContent() {
               {/* Intro */}
               <div className="flex flex-col gap-1.5">
                 <label htmlFor="intro" className="font-mono text-[11px] uppercase tracking-wider text-d8-text-dim">
-                  Brief intro
+                  {tForm("fields.intro")}
                 </label>
                 <textarea
                   id="intro"
                   rows={4}
                   aria-required="true"
-                  placeholder="Tell us what you're working on, what problems interest you, and what you'd want to build at D8."
+                  placeholder={tForm("fields.introPlaceholder")}
                   {...register("intro", { required: true, minLength: 20 })}
                   className={`resize-none rounded-sm border bg-d8-surface px-4 py-3 font-body text-sm leading-relaxed text-d8-text-primary placeholder:text-d8-text-dim focus:outline-none focus:ring-1 focus:ring-d8-purple transition-colors ${
                     errors.intro ? "border-red-500/60" : "border-d8-border focus:border-d8-purple"
                   }`}
                 />
-                {errors.intro && <p role="alert" className="font-mono text-[11px] text-red-400">{errors.intro.type === "minLength" ? "At least 20 characters" : "Required"}</p>}
+                {errors.intro && (
+                  <p role="alert" className="font-mono text-[11px] text-red-400">
+                    {errors.intro.type === "minLength" ? "At least 20 characters" : "Required"}
+                  </p>
+                )}
               </div>
 
               {/* Link */}
               <div className="flex flex-col gap-1.5">
                 <label htmlFor="link" className="font-mono text-[11px] uppercase tracking-wider text-d8-text-dim">
-                  Link to your work{" "}
-                  <span className="normal-case tracking-normal text-d8-text-dim opacity-60">— optional</span>
+                  {tForm("fields.link")}{" "}
+                  <span className="normal-case tracking-normal text-d8-text-dim opacity-60">
+                    {tForm("fields.linkOptional")}
+                  </span>
                 </label>
                 <input
                   id="link"
                   type="url"
-                  placeholder="GitHub, LinkedIn, portfolio, anything"
+                  placeholder={tForm("fields.linkPlaceholder")}
                   {...register("link")}
                   className="rounded-sm border border-d8-border bg-d8-surface px-4 py-3 font-body text-sm text-d8-text-primary placeholder:text-d8-text-dim focus:border-d8-purple focus:outline-none focus:ring-1 focus:ring-d8-purple transition-colors"
                 />
@@ -306,17 +289,21 @@ export function CareersContent() {
                   disabled={status === "sending" || status === "sent"}
                   className="rounded-sm bg-d8-purple px-6 py-3 font-body text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  {status === "sending" ? "Sending…" : status === "sent" ? "Sent" : "Send"}
+                  {status === "sending"
+                    ? tForm("sending")
+                    : status === "sent"
+                    ? tForm("sent")
+                    : tForm("submit")}
                 </button>
 
                 {status === "sent" && (
                   <p role="status" className="font-body text-sm text-d8-purple-light">
-                    Got it. We&apos;ll be in touch.
+                    {tForm("successMsg")}
                   </p>
                 )}
                 {status === "error" && (
                   <p role="alert" className="font-body text-sm text-red-400">
-                    Something went wrong. Email us directly at contacto@d8tec.com.
+                    {tForm("errorMsg")}
                   </p>
                 )}
               </div>

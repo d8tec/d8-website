@@ -1,0 +1,213 @@
+{
+  "nav": {
+    "aboutUs": "About Us",
+    "projects": "Projects",
+    "careers": "Careers",
+    "contact": "Contact",
+    "cta": "Get in touch"
+  },
+  "hero": {
+    "badge": "Engineering Solutions",
+    "heading1": "We build what others",
+    "heading2": "can't scope.",
+    "body": "D8 works across R&D, embedded systems, web and app development, and AI — end to end, from concept to deployment. We take on hard problems and ship things that work.",
+    "cta1": "Start a project",
+    "cta2": "About us",
+    "services": [
+      {
+        "tag": "01",
+        "title": "R&D",
+        "description": "We go first. When a problem is undefined or the technology to solve it doesn't yet exist, we build the evidence that makes the next decision possible. D8 takes on ambiguous work and delivers something you can build on.",
+        "capabilities": [
+          "Feasibility studies and technology selection",
+          "Embedded and mechanical prototyping",
+          "Field validation and test instrumentation",
+          "Research-to-production handoff"
+        ]
+      },
+      {
+        "tag": "02",
+        "title": "Hardware & Software",
+        "description": "Most vendors do one side. D8 does both, in one team, without the integration tax. From PCB to cloud dashboard, we own the full hardware-software stack and eliminate the gaps between layers.",
+        "capabilities": [
+          "Firmware development for ESP32, STM32, and RTOS environments",
+          "PCB design, board bringup, and manufacturing handoff",
+          "Cloud connectivity, device management, and real-time data",
+          "Full-stack dashboards and operational interfaces"
+        ]
+      },
+      {
+        "tag": "03",
+        "title": "Web & App",
+        "description": "Platforms that operate, not just display. Scheduling, billing, multi-tenant data, the systems that run a business day to day. Built to scale and maintained by a team that understands the architecture.",
+        "capabilities": [
+          "Web applications and multi-tenant SaaS platforms",
+          "Role-based access, billing, and operational workflows",
+          "API design, integrations, and service architecture",
+          "Mobile applications and progressive web apps"
+        ]
+      },
+      {
+        "tag": "04",
+        "title": "AI & Data",
+        "description": "Not a wrapper around an existing model. Real inference pipelines, edge deployment, and data systems built for the questions you actually need to answer. We train, deploy, and keep models useful over time.",
+        "capabilities": [
+          "Model training, fine-tuning, and performance evaluation",
+          "Edge inference on low-power hardware (Raspberry Pi, ESP32)",
+          "Data pipelines, ETL processes, and warehouse design",
+          "Decision dashboards and automated reporting"
+        ]
+      }
+    ]
+  },
+  "about": {
+    "overline": "About D8",
+    "heading": "We don't reinvent the wheel. We combine the ones already spinning to move something that never could before.",
+    "body1": "D8 is a product engineering startup. We scan industries where existing solutions are fragmented, overpriced, or simply missing — and we build what should exist. Our own products and client work are held to the same standard: if it ships from D8, it works.",
+    "body2": "We operate across R&D, hardware and embedded systems, web and app development, and AI — in one team, without the handoffs or coordination overhead of managing multiple vendors. Most projects touch more than one domain. That's by design.",
+    "body3": "The name is the philosophy: D8 is Day 8. After the seven days of creation, Day 8 is when humans start building on what already exists — not reinventing, but synthesizing and advancing. That's how we work.",
+    "selectedWork": "Selected work",
+    "viewAll": "View all projects →"
+  },
+  "featuredProjects": [
+    {
+      "title": "Industrial sensor gateway",
+      "description": "Wireless sensor network aggregating data from 40+ nodes, with real-time dashboard and OTA firmware updates."
+    },
+    {
+      "title": "AI-powered quality inspection",
+      "description": "On-device inference pipeline running on Raspberry Pi 5. Sub-100ms latency per frame, zero cloud dependency."
+    },
+    {
+      "title": "SaaS operations platform",
+      "description": "Multi-tenant platform handling scheduling, reporting, and billing for a 200-person field operations team."
+    }
+  ],
+  "industries": {
+    "overline": "Industries",
+    "heading": "The full engineering cycle.",
+    "body": "From modeling to prototyping — across six industries where existing solutions are fragmented, overpriced, or simply missing.",
+    "process": [
+      { "num": "01", "name": "Model", "desc": "Feasibility, architecture, and system planning before anything is built." },
+      { "num": "02", "name": "Design", "desc": "Schematics, UX, hardware layouts, and detailed technical specification." },
+      { "num": "03", "name": "Create", "desc": "Firmware, software, PCBs — the production-quality artifact." },
+      { "num": "04", "name": "Prototype", "desc": "Field validation, iteration, and the handoff to deployment." }
+    ],
+    "industries": [
+      {
+        "tag": "01",
+        "name": "Industrial IoT",
+        "stages": [true, true, true, true],
+        "description": "Sensor networks, edge firmware, real-time data pipelines, and the operational dashboards that make them useful. D8 takes industrial IoT from first datasheet to deployed, field-proven system."
+      },
+      {
+        "tag": "02",
+        "name": "Manufacturing & QC",
+        "stages": [true, true, true, true],
+        "description": "On-device vision systems and quality inspection pipelines that run at manufacturing speed. Sub-100ms inference, no cloud dependency — designed for the line, not the server room."
+      },
+      {
+        "tag": "03",
+        "name": "Property Technology",
+        "stages": [false, true, true, false],
+        "description": "Resident platforms, condo administration tools, and building management software. Designed for the person who runs the building, not just the person who commissioned the software."
+      },
+      {
+        "tag": "04",
+        "name": "Personal Services",
+        "stages": [false, true, true, false],
+        "description": "Booking, scheduling, and service management platforms for independent operators. Designed to replace spreadsheets and group chats with tools people actually use."
+      },
+      {
+        "tag": "05",
+        "name": "Field Operations",
+        "stages": [false, true, true, false],
+        "description": "Operations platforms for companies that coordinate people and assets in the field: scheduling, dispatch, billing, and the reporting that keeps management informed."
+      },
+      {
+        "tag": "06",
+        "name": "R&D & Deep Tech",
+        "stages": [true, true, true, true],
+        "description": "Feasibility work, novel systems, and first-of-kind builds. When the problem is undefined or the technology doesn't yet exist, D8 builds the evidence that makes the next decision possible."
+      }
+    ]
+  },
+  "careers": {
+    "overline": "Careers",
+    "heading1": "We're building hard things.",
+    "heading2": "We want people who want that.",
+    "body": "D8 is a small team with a wide scope — hardware, software, AI, and the R&D that connects them. We don't have career ladders or quarterly OKRs. We have problems that need solving and the autonomy to solve them.",
+    "howWeWork": "How we work",
+    "principles": [
+      {
+        "tag": "01",
+        "name": "Ownership over permission",
+        "desc": "Everyone at D8 owns something real. Not a ticket queue — a problem. You define the approach, you make it work, you see it deployed. If you need someone to tell you what to do next, this isn't the place."
+      },
+      {
+        "tag": "02",
+        "name": "Depth over breadth",
+        "desc": "We go as deep as the problem requires. We don't stop at 'working' — we stop at 'correct, robust, and fast'. Curiosity isn't a nice-to-have, it's the job."
+      },
+      {
+        "tag": "03",
+        "name": "No handoffs",
+        "desc": "Hardware talks to firmware. Firmware talks to the cloud. The cloud talks to the UI. You'll understand the full stack, even the parts that aren't yours. That's how you build things that actually work."
+      },
+      {
+        "tag": "04",
+        "name": "Credentials optional. Mediocrity isn't.",
+        "desc": "We don't care about degrees or years of experience. Self-taught, still in school, switching fields — all welcome. We care about how you think, how you learn, and how you handle being wrong. Someone who ships beats someone who coasts, every time."
+      }
+    ],
+    "form": {
+      "overline": "Get in touch",
+      "heading": "No open roles right now. There's always a problem worth solving. Tell us about yourself.",
+      "body1": "We hire when we find the right person, not when a slot opens. If you build things and want harder problems, send us a note. We read everything.",
+      "body2": "Students and recent grads: especially welcome. Show us something you've made — even if it's rough.",
+      "areas": ["Embedded & Firmware", "Full-Stack Development", "ML & AI", "Hardware / PCB Design", "R&D / Prototyping", "Other"],
+      "fields": {
+        "name": "Name",
+        "namePlaceholder": "Your name",
+        "email": "Email",
+        "area": "What you do",
+        "areaPlaceholder": "Select an area",
+        "intro": "Brief intro",
+        "introPlaceholder": "Tell us what you're working on, what problems interest you, and what you'd want to build at D8.",
+        "link": "Link to your work",
+        "linkOptional": "— optional",
+        "linkPlaceholder": "GitHub, LinkedIn, portfolio, anything"
+      },
+      "submit": "Send",
+      "sending": "Sending…",
+      "sent": "Sent",
+      "successMsg": "Got it. We'll be in touch.",
+      "errorMsg": "Something went wrong. Email us directly at contacto@d8tec.com."
+    }
+  },
+  "contact": {
+    "overline": "Contact",
+    "heading": "Get to know the D8 Standards.",
+    "foundationBody": "D8 takes its name from Deuteronomy 8. A reminder that when we build something real, and when it works, the ability to do it came from somewhere greater than ourselves. We don't take that lightly.",
+    "foundationVerse": "“Remember the Lord your God, for it is he who gives you the ability to produce wealth.” (Deuteronomy 8:18)",
+    "rows": {
+      "emailLabel": "Email",
+      "responseTime": "We respond within one business day.",
+      "phoneLabel": "Phone",
+      "locationLabel": "Location",
+      "locationValue": "San José, Costa Rica",
+      "hoursLabel": "Hours",
+      "hoursValue": "Mon–Fri, 8am–6pm CST"
+    }
+  },
+  "cta": {
+    "overline": "Work with us",
+    "heading": "Have something to build?",
+    "body": "We work with companies who need a technical partner — not just a vendor. If you have a hard problem, we're interested.",
+    "cta": "Get in touch"
+  },
+  "footer": {
+    "tagline": "R&D, hardware, software, and AI. No handoffs, no shortcuts.",
+    "copyright": "All rights reserved."
+  }
+}

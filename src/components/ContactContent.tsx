@@ -1,22 +1,16 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 
 const socials = [
-  {
-    name: "LinkedIn",
-    handle: "@d8tec",
-    href: "https://linkedin.com/company/d8tec",
-  },
-  {
-    name: "Instagram",
-    handle: "@d8tec",
-    href: "https://instagram.com/d8tec",
-  },
+  { name: "LinkedIn", handle: "@d8tec", href: "https://linkedin.com/company/d8tec" },
+  { name: "Instagram", handle: "@d8tec", href: "https://instagram.com/d8tec" },
 ];
 
 export function ContactContent() {
+  const t = useTranslations("contact");
   const shouldReduceMotion = useReducedMotion();
 
   const fade: Variants = {
@@ -48,20 +42,20 @@ export function ContactContent() {
               variants={item}
               className="font-mono text-xs uppercase tracking-widest text-d8-purple-light"
             >
-              Contact
+              {t("overline")}
             </motion.span>
             <motion.h1
               variants={item}
               className="font-heading text-4xl font-semibold leading-tight tracking-tight text-d8-text-primary sm:text-5xl"
             >
-              Get to know the D8 Standards.
+              {t("heading")}
             </motion.h1>
             <motion.div variants={item} className="flex flex-col gap-2 pt-2">
               <p className="max-w-xl font-body text-sm leading-relaxed text-d8-text-secondary">
-                D8 takes its name from Deuteronomy 8. A reminder that when we build something real, and when it works, the ability to do it came from somewhere greater than ourselves. We don&apos;t take that lightly.
+                {t("foundationBody")}
               </p>
               <p className="max-w-xl font-body text-sm leading-relaxed text-d8-text-dim italic">
-                &ldquo;Remember the Lord your God, for it is he who gives you the ability to produce wealth.&rdquo; (Deuteronomy 8:18)
+                {t("foundationVerse")}
               </p>
             </motion.div>
           </motion.div>
@@ -83,7 +77,7 @@ export function ContactContent() {
               className="-mx-4 flex flex-col gap-1 px-4 py-10 transition-colors hover:bg-d8-bg md:-mx-6 md:px-6"
             >
               <span className="font-mono text-xs uppercase tracking-wider text-d8-text-dim">
-                Email
+                {t("rows.emailLabel")}
               </span>
               <a
                 href="mailto:contacto@d8tec.com"
@@ -92,7 +86,7 @@ export function ContactContent() {
                 contacto@d8tec.com
               </a>
               <span className="mt-1 font-body text-xs text-d8-text-dim">
-                We respond within one business day.
+                {t("rows.responseTime")}
               </span>
             </motion.div>
 
@@ -104,7 +98,7 @@ export function ContactContent() {
               {["+506 6048-1496", "+506 7275-3532"].map((number) => (
                 <div key={number} className="flex flex-col gap-1">
                   <span className="font-mono text-xs uppercase tracking-wider text-d8-text-dim">
-                    Phone
+                    {t("rows.phoneLabel")}
                   </span>
                   <a
                     href={`tel:${number.replace(/\s|-/g, "")}`}
@@ -123,18 +117,18 @@ export function ContactContent() {
             >
               <div className="flex flex-col gap-1">
                 <span className="font-mono text-xs uppercase tracking-wider text-d8-text-dim">
-                  Location
+                  {t("rows.locationLabel")}
                 </span>
                 <span className="font-heading text-2xl font-semibold tracking-tight text-d8-text-primary sm:text-3xl">
-                  San José, Costa Rica
+                  {t("rows.locationValue")}
                 </span>
               </div>
               <div className="flex flex-col gap-1">
                 <span className="font-mono text-xs uppercase tracking-wider text-d8-text-dim">
-                  Hours
+                  {t("rows.hoursLabel")}
                 </span>
                 <span className="font-heading text-2xl font-semibold tracking-tight text-d8-text-primary sm:text-3xl">
-                  Mon–Fri, 8am–6pm CST
+                  {t("rows.hoursValue")}
                 </span>
               </div>
             </motion.div>
@@ -160,7 +154,6 @@ export function ContactContent() {
                 </div>
               ))}
             </motion.div>
-
           </motion.div>
         </div>
       </section>

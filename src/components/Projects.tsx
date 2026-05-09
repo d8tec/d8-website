@@ -1,30 +1,21 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/navigation";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 
-const projects = [
-  {
-    title: "Industrial sensor gateway",
-    tags: ["ESP32", "MQTT", "React"],
-    description:
-      "Wireless sensor network aggregating data from 40+ nodes, with real-time dashboard and OTA firmware updates.",
-  },
-  {
-    title: "AI-powered quality inspection",
-    tags: ["Computer vision", "Edge ML", "FastAPI"],
-    description:
-      "On-device inference pipeline running on Raspberry Pi 5. Sub-100ms latency per frame, zero cloud dependency.",
-  },
-  {
-    title: "SaaS operations platform",
-    tags: ["Next.js", "TypeScript", "PostgreSQL"],
-    description:
-      "Multi-tenant platform handling scheduling, reporting, and billing for a 200-person field operations team.",
-  },
+type FeaturedProject = { title: string; description: string };
+
+const tags = [
+  ["ESP32", "MQTT", "React"],
+  ["Computer vision", "Edge ML", "FastAPI"],
+  ["Next.js", "TypeScript", "PostgreSQL"],
 ];
 
 export function Projects() {
+  const t = useTranslations();
+  const projects = t.raw("featuredProjects") as FeaturedProject[];
+  const tAbout = useTranslations("about");
   const shouldReduceMotion = useReducedMotion();
 
   const containerVariants: Variants = {
@@ -46,13 +37,13 @@ export function Projects() {
       <div className="mx-auto max-w-7xl">
         <div className="mb-16 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <h2 className="font-heading text-3xl font-semibold text-d8-text-primary tracking-tight">
-            Selected work
+            {tAbout("selectedWork")}
           </h2>
           <Link
             href="/projects"
             className="py-2 -my-2 font-body text-sm text-d8-text-secondary underline-offset-4 hover:text-d8-purple hover:underline"
           >
-            View all projects →
+            {tAbout("viewAll")}
           </Link>
         </div>
 
@@ -63,7 +54,7 @@ export function Projects() {
           viewport={{ once: true, margin: "-80px" }}
           className="flex flex-col divide-y divide-d8-border border-y border-d8-border"
         >
-          {projects.map(({ title, tags, description }) => (
+          {projects.map(({ title, description }, i) => (
             <motion.div
               key={title}
               variants={itemVariants}
@@ -78,11 +69,8 @@ export function Projects() {
                 </p>
               </div>
               <div className="flex flex-wrap gap-2 md:w-56 md:flex-col md:items-end md:gap-1.5">
-                {tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="font-mono text-xs text-d8-text-secondary"
-                  >
+                {tags[i]?.map((tag) => (
+                  <span key={tag} className="font-mono text-xs text-d8-text-secondary">
                     {tag}
                   </span>
                 ))}

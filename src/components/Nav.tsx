@@ -1,19 +1,26 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
+import { Link, usePathname } from "@/navigation";
 import { useState } from "react";
 
-const links = [
-  { href: "/services", label: "About Us" },
-  { href: "/projects", label: "Projects" },
-  { href: "/careers", label: "Careers" },
-  { href: "/contact", label: "Contact" },
-];
-
 export function Nav() {
-  const [open, setOpen] = useState(false);
+  const t = useTranslations("nav");
+  const locale = useLocale();
   const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+
+  const otherLocale = locale === "en" ? "es" : "en";
+  const otherFlag = locale === "en" ? "🇨🇷" : "🇺🇸";
+  const otherCode = otherLocale.toUpperCase();
+
+  const links = [
+    { href: "/services", label: t("aboutUs") },
+    { href: "/projects", label: t("projects") },
+    { href: "/careers", label: t("careers") },
+    { href: "/contact", label: t("contact") },
+  ];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-d8-border bg-d8-bg/90 backdrop-blur-sm">
@@ -41,12 +48,26 @@ export function Nav() {
           ))}
         </ul>
 
-        <Link
-          href="/contact"
-          className="hidden rounded-sm bg-d8-purple px-4 py-2 font-body text-sm font-medium text-white transition-opacity hover:opacity-90 md:block"
-        >
-          Get in touch
-        </Link>
+        <div className="hidden items-center gap-4 md:flex">
+          {/* Locale switcher */}
+          <Link
+            href={pathname}
+            locale={otherLocale}
+            className="flex items-center gap-1 font-mono text-xs text-d8-text-secondary transition-colors hover:text-d8-text-primary"
+            aria-label={`Switch to ${otherCode}`}
+          >
+            <span aria-hidden="true">{otherFlag}</span>
+            <span>{otherCode}</span>
+          </Link>
+
+          {/* CTA */}
+          <Link
+            href="/contact"
+            className="rounded-sm bg-d8-purple px-4 py-2 font-body text-sm font-medium text-white transition-opacity hover:opacity-90"
+          >
+            {t("cta")}
+          </Link>
+        </div>
 
         {/* Mobile toggle */}
         <button
@@ -87,6 +108,16 @@ export function Nav() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link
+                href={pathname}
+                locale={otherLocale}
+                className="flex items-center gap-1.5 font-mono text-xs text-d8-text-secondary transition-colors hover:text-d8-text-primary"
+              >
+                <span aria-hidden="true">{otherFlag}</span>
+                <span>{otherCode}</span>
+              </Link>
+            </li>
           </ul>
         </div>
       )}

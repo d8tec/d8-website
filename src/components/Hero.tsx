@@ -1,60 +1,19 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/navigation";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 
-const services = [
-  {
-    tag: "01",
-    title: "R&D",
-    description:
-      "We go first. When a problem is undefined or the technology to solve it doesn't yet exist, we build the evidence that makes the next decision possible. D8 takes on ambiguous work and delivers something you can build on.",
-    capabilities: [
-      "Feasibility studies and technology selection",
-      "Embedded and mechanical prototyping",
-      "Field validation and test instrumentation",
-      "Research-to-production handoff",
-    ],
-  },
-  {
-    tag: "02",
-    title: "Hardware & Software",
-    description:
-      "Most vendors do one side. D8 does both, in one team, without the integration tax. From PCB to cloud dashboard, we own the full hardware-software stack and eliminate the gaps between layers.",
-    capabilities: [
-      "Firmware development for ESP32, STM32, and RTOS environments",
-      "PCB design, board bringup, and manufacturing handoff",
-      "Cloud connectivity, device management, and real-time data",
-      "Full-stack dashboards and operational interfaces",
-    ],
-  },
-  {
-    tag: "03",
-    title: "Web & App",
-    description:
-      "Platforms that operate, not just display. Scheduling, billing, multi-tenant data, the systems that run a business day to day. Built to scale and maintained by a team that understands the architecture.",
-    capabilities: [
-      "Web applications and multi-tenant SaaS platforms",
-      "Role-based access, billing, and operational workflows",
-      "API design, integrations, and service architecture",
-      "Mobile applications and progressive web apps",
-    ],
-  },
-  {
-    tag: "04",
-    title: "AI & Data",
-    description:
-      "Not a wrapper around an existing model. Real inference pipelines, edge deployment, and data systems built for the questions you actually need to answer. We train, deploy, and keep models useful over time.",
-    capabilities: [
-      "Model training, fine-tuning, and performance evaluation",
-      "Edge inference on low-power hardware (Raspberry Pi, ESP32)",
-      "Data pipelines, ETL processes, and warehouse design",
-      "Decision dashboards and automated reporting",
-    ],
-  },
-];
+type Service = {
+  tag: string;
+  title: string;
+  description: string;
+  capabilities: string[];
+};
 
 export function Hero() {
+  const t = useTranslations("hero");
+  const services = t.raw("services") as Service[];
   const shouldReduceMotion = useReducedMotion();
 
   const fade: Variants = {
@@ -91,7 +50,6 @@ export function Hero() {
 
   return (
     <section className="relative flex flex-col items-center overflow-hidden px-6 pt-40 pb-32">
-      {/* Purple glow behind heading */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[640px] bg-purple-glow" />
 
       <div className="relative z-10 mx-auto w-full max-w-4xl text-center">
@@ -104,7 +62,7 @@ export function Hero() {
         >
           <span className="h-1.5 w-1.5 rounded-full bg-d8-purple" />
           <span className="font-mono text-xs tracking-widest uppercase text-d8-purple-light">
-            Engineering Solutions
+            {t("badge")}
           </span>
         </motion.div>
 
@@ -115,8 +73,8 @@ export function Hero() {
           variants={fade}
           className="font-heading text-5xl font-semibold leading-tight tracking-tight text-d8-text-primary text-balance sm:text-6xl lg:text-7xl"
         >
-          We build what others{" "}
-          <span className="text-d8-purple">can&apos;t scope.</span>
+          {t("heading1")}{" "}
+          <span className="text-d8-purple">{t("heading2")}</span>
         </motion.h1>
 
         <motion.p
@@ -126,9 +84,7 @@ export function Hero() {
           variants={fade}
           className="mx-auto mt-6 max-w-2xl font-body text-lg leading-relaxed text-d8-text-secondary text-balance"
         >
-          D8 works across R&D, embedded systems, web and app development, and AI
-          — end to end, from concept to deployment. We take on hard problems and
-          ship things that work.
+          {t("body")}
         </motion.p>
 
         <motion.div
@@ -142,18 +98,17 @@ export function Hero() {
             href="/contact"
             className="rounded-sm bg-d8-purple px-6 py-3 font-body text-sm font-medium text-white transition-opacity hover:opacity-90"
           >
-            Start a project
+            {t("cta1")}
           </Link>
           <Link
             href="/services"
             className="rounded-sm border border-d8-border px-6 py-3 font-body text-sm text-d8-text-secondary transition-colors hover:border-d8-text-dim hover:text-d8-text-primary"
           >
-            About us
+            {t("cta2")}
           </Link>
         </motion.div>
       </div>
 
-      {/* Always-visible services panel */}
       <motion.div
         variants={panelContainer}
         initial="hidden"
@@ -196,7 +151,6 @@ export function Hero() {
         </div>
       </motion.div>
 
-      {/* Bottom fade */}
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-d8-bg to-transparent" />
     </section>
   );

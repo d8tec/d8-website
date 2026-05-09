@@ -1,76 +1,20 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 
-const processStages = [
-  {
-    num: "01",
-    name: "Model",
-    desc: "Feasibility, architecture, and system planning before anything is built.",
-  },
-  {
-    num: "02",
-    name: "Design",
-    desc: "Schematics, UX, hardware layouts, and detailed technical specification.",
-  },
-  {
-    num: "03",
-    name: "Create",
-    desc: "Firmware, software, PCBs — the production-quality artifact.",
-  },
-  {
-    num: "04",
-    name: "Prototype",
-    desc: "Field validation, iteration, and the handoff to deployment.",
-  },
-];
-
-const industries = [
-  {
-    tag: "01",
-    name: "Industrial IoT",
-    stages: [true, true, true, true],
-    description:
-      "Sensor networks, edge firmware, real-time data pipelines, and the operational dashboards that make them useful. D8 takes industrial IoT from first datasheet to deployed, field-proven system.",
-  },
-  {
-    tag: "02",
-    name: "Manufacturing & QC",
-    stages: [true, true, true, true],
-    description:
-      "On-device vision systems and quality inspection pipelines that run at manufacturing speed. Sub-100ms inference, no cloud dependency — designed for the line, not the server room.",
-  },
-  {
-    tag: "03",
-    name: "Property Technology",
-    stages: [false, true, true, false],
-    description:
-      "Resident platforms, condo administration tools, and building management software. Designed for the person who runs the building, not just the person who commissioned the software.",
-  },
-  {
-    tag: "04",
-    name: "Personal Services",
-    stages: [false, true, true, false],
-    description:
-      "Booking, scheduling, and service management platforms for independent operators. Designed to replace spreadsheets and group chats with tools people actually use.",
-  },
-  {
-    tag: "05",
-    name: "Field Operations",
-    stages: [false, true, true, false],
-    description:
-      "Operations platforms for companies that coordinate people and assets in the field: scheduling, dispatch, billing, and the reporting that keeps management informed.",
-  },
-  {
-    tag: "06",
-    name: "R&D & Deep Tech",
-    stages: [true, true, true, true],
-    description:
-      "Feasibility work, novel systems, and first-of-kind builds. When the problem is undefined or the technology doesn't yet exist, D8 builds the evidence that makes the next decision possible.",
-  },
-];
+type ProcessStage = { num: string; name: string; desc: string };
+type Industry = {
+  tag: string;
+  name: string;
+  stages: boolean[];
+  description: string;
+};
 
 export function ProjectsContent() {
+  const t = useTranslations("industries");
+  const processStages = t.raw("process") as ProcessStage[];
+  const industries = t.raw("industries") as Industry[];
   const shouldReduceMotion = useReducedMotion();
 
   const headerFade: Variants = {
@@ -116,20 +60,19 @@ export function ProjectsContent() {
               variants={headerItem}
               className="font-mono text-xs uppercase tracking-widest text-d8-purple-light"
             >
-              Industries
+              {t("overline")}
             </motion.span>
             <motion.h1
               variants={headerItem}
               className="font-heading text-4xl font-semibold leading-tight tracking-tight text-d8-text-primary text-balance sm:text-5xl"
             >
-              The full engineering cycle.
+              {t("heading")}
             </motion.h1>
             <motion.p
               variants={headerItem}
               className="max-w-2xl font-body text-base leading-relaxed text-d8-text-secondary"
             >
-              From modeling to prototyping — across six industries where existing
-              solutions are fragmented, overpriced, or simply missing.
+              {t("body")}
             </motion.p>
           </motion.div>
         </div>
@@ -176,13 +119,10 @@ export function ProjectsContent() {
                 <span className="mt-[0.3rem] font-mono text-sm font-semibold text-d8-purple-light md:mt-[0.55rem]">
                   {tag}
                 </span>
-
                 <h2 className="font-heading text-2xl font-semibold leading-tight tracking-tight text-d8-text-primary transition-colors duration-200 group-hover:text-d8-purple-light md:text-3xl lg:text-4xl">
                   {name}
                 </h2>
-
                 <div className="col-span-2 pl-[4.5rem] md:col-auto md:pl-0">
-                  {/* Process stage tags */}
                   <div className="mb-5 flex flex-wrap gap-x-5 gap-y-2">
                     {processStages.map(({ num, name: stageName }, i) => {
                       const active = stages[i];
@@ -204,7 +144,6 @@ export function ProjectsContent() {
                       );
                     })}
                   </div>
-
                   <p className="font-body text-sm leading-relaxed text-d8-text-secondary">
                     {description}
                   </p>

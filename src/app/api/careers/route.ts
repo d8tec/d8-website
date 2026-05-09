@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
   }
 
-  const to = process.env.CAREERS_EMAIL ?? "nalfaro@d8tec.com";
+  const to = process.env.CAREERS_EMAIL ?? "contacto@d8tec.com";
 
   const { error } = await resend.emails.send({
     from: "D8 Careers <careers@d8tec.com>",

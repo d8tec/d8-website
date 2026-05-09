@@ -1,13 +1,17 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/navigation";
 
-const nav = [
-  { href: "/services", label: "About Us" },
-  { href: "/projects", label: "Projects" },
-  { href: "/careers", label: "Careers" },
-  { href: "/contact", label: "Contact" },
-];
+export async function Footer() {
+  const tNav = await getTranslations("nav");
+  const tFooter = await getTranslations("footer");
 
-export function Footer() {
+  const nav = [
+    { href: "/services", label: tNav("aboutUs") },
+    { href: "/projects", label: tNav("projects") },
+    { href: "/careers", label: tNav("careers") },
+    { href: "/contact", label: tNav("contact") },
+  ];
+
   return (
     <footer className="border-t border-d8-border bg-d8-bg">
       <div className="mx-auto max-w-7xl px-6 py-16">
@@ -16,7 +20,7 @@ export function Footer() {
           <div className="flex flex-col gap-3">
             <p className="font-heading text-2xl font-semibold tracking-tight text-d8-text-primary">D8</p>
             <p className="max-w-xs font-body text-sm leading-relaxed text-d8-text-secondary">
-              R&D, hardware, software, and AI.
+              {tFooter("tagline")}
             </p>
           </div>
 
@@ -37,7 +41,7 @@ export function Footer() {
 
         <div className="mt-12 border-t border-d8-border pt-6 flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
           <p className="font-body text-xs text-d8-text-secondary">
-            © {new Date().getFullYear()} D8. All rights reserved.
+            © {new Date().getFullYear()} D8. {tFooter("copyright")}
           </p>
           <a
             href="mailto:contacto@d8tec.com"
