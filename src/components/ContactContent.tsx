@@ -9,6 +9,7 @@ import { motion, AnimatePresence, useReducedMotion, type Variants } from "framer
 type ContactFormValues = {
   name: string;
   email: string;
+  phone: string;
   message: string;
 };
 
@@ -67,7 +68,7 @@ export function ContactContent() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, phone: data.phone || undefined }),
       });
       if (!res.ok) throw new Error();
       setStatus("sent");
@@ -314,6 +315,22 @@ export function ContactContent() {
                         </p>
                       )}
                     </div>
+                  </div>
+
+                  {/* Phone */}
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="contact-phone" className="font-mono text-[11px] uppercase tracking-wider text-d8-text-dim">
+                      {tForm("fields.phone")}{" "}
+                      <span className="normal-case tracking-normal opacity-60">{tForm("fields.phoneOptional")}</span>
+                    </label>
+                    <input
+                      id="contact-phone"
+                      type="tel"
+                      autoComplete="tel"
+                      placeholder={tForm("fields.phonePlaceholder")}
+                      {...register("phone")}
+                      className="rounded-sm border border-d8-border bg-d8-bg px-4 py-3 font-body text-sm text-d8-text-primary placeholder:text-d8-text-dim focus:border-d8-purple focus:outline-none focus:ring-1 focus:ring-d8-purple transition-colors"
+                    />
                   </div>
 
                   {/* Message */}

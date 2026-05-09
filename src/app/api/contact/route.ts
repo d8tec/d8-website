@@ -3,7 +3,7 @@ import { Resend } from "resend";
 
 export async function POST(req: NextRequest) {
   const resend = new Resend(process.env.RESEND_API_KEY);
-  const { name, email, message } = await req.json();
+  const { name, email, phone, message } = await req.json();
 
   if (!name || !email || !message) {
     return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
@@ -11,12 +11,18 @@ export async function POST(req: NextRequest) {
 
   const to = process.env.CONTACT_EMAIL ?? "contacto@d8tec.com";
 
+  const senderBlock = [
+    `— ${name}`,
+    email,
+    phone || null,
+  ].filter((l): l is string => l !== null).join("\n");
+
   const { error } = await resend.emails.send({
-    from: "D8 Contact <contacto@d8tec.com>",
+    from: "D8 Contact <contact@d8tec.com>",
     to,
     replyTo: email,
     subject: `New message — ${name}`,
-    text: [`Name: ${name}`, `Email: ${email}`, ``, `Message:`, message].join("\n"),
+    text: [message, ``, senderBlock].join("\n"),
   });
 
   if (error) {

@@ -36,7 +36,9 @@ export function CareersContent() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [file, setFile] = useState<File | null>(null);
   const [fileError, setFileError] = useState<string | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const dragCounter = useRef(0);
 
   const {
     register,
@@ -73,29 +75,62 @@ export function CareersContent() {
     },
   };
 
-  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const f = e.target.files?.[0] ?? null;
+  function formatBytes(bytes: number): string {
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
+    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  }
+
+  function validateAndSetFile(f: File) {
     setFileError(null);
-    if (!f) { setFile(null); return; }
     if (f.size > MAX_FILE_BYTES) {
       setFileError(tForm("fields.fileTooBig"));
       setFile(null);
-      e.target.value = "";
+      if (fileInputRef.current) fileInputRef.current.value = "";
       return;
     }
     if (!ALLOWED_TYPES.has(f.type)) {
       setFileError(tForm("fields.fileWrongType"));
       setFile(null);
-      e.target.value = "";
+      if (fileInputRef.current) fileInputRef.current.value = "";
       return;
     }
     setFile(f);
+  }
+
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const f = e.target.files?.[0] ?? null;
+    if (f) validateAndSetFile(f);
+    else setFile(null);
   }
 
   function clearFile() {
     setFile(null);
     setFileError(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
+  }
+
+  function handleDragEnter(e: React.DragEvent) {
+    e.preventDefault();
+    dragCounter.current++;
+    setIsDragging(true);
+  }
+
+  function handleDragLeave(e: React.DragEvent) {
+    e.preventDefault();
+    dragCounter.current--;
+    if (dragCounter.current === 0) setIsDragging(false);
+  }
+
+  function handleDragOver(e: React.DragEvent) {
+    e.preventDefault();
+  }
+
+  function handleDrop(e: React.DragEvent) {
+    e.preventDefault();
+    dragCounter.current = 0;
+    setIsDragging(false);
+    const f = e.dataTransfer.files[0];
+    if (f) validateAndSetFile(f);
   }
 
   async function onSubmit(data: FormValues) {
@@ -326,7 +361,7 @@ export function CareersContent() {
                 />
               </div>
 
-              {/* File attachment */}
+              {/* File attachment — drag & drop zone */}
               <div className="flex flex-col gap-1.5">
                 <span className="font-mono text-[11px] uppercase tracking-wider text-d8-text-dim">
                   {tForm("fields.file")}{" "}
@@ -344,29 +379,60 @@ export function CareersContent() {
                 />
                 <label
                   htmlFor="file-upload"
-                  className={`flex cursor-pointer items-center gap-3 rounded-sm border px-4 py-3 font-body text-sm transition-colors ${
-                    fileError
-                      ? "border-red-500/60 text-d8-text-secondary"
-                      : "border-d8-border text-d8-text-secondary hover:border-d8-purple hover:text-d8-text-primary"
+                  onDragEnter={handleDragEnter}
+                  onDragLeave={handleDragLeave}
+                  onDragOver={handleDragOver}
+                  onDrop={handleDrop}
+                  className={`flex min-h-[5.5rem] cursor-pointer flex-col items-center justify-center gap-2 rounded-sm border-2 border-dashed px-4 py-5 text-center transition-colors duration-150 ${
+                    isDragging
+                      ? "border-d8-purple bg-d8-purple/[0.06]"
+                      : fileError
+                      ? "border-red-500/60"
+                      : file
+                      ? "border-d8-purple/40"
+                      : "border-d8-border hover:border-d8-purple/60"
                   }`}
                 >
-                  <svg className="h-4 w-4 shrink-0 text-d8-text-dim" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                    <path d="M2 10.5V13h12v-2.5M8 2v8M5 5l3-3 3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  <span className="truncate">
-                    {file ? file.name : tForm("fields.fileHint")}
-                  </span>
-                  {file && (
-                    <button
-                      type="button"
-                      onClick={(e) => { e.preventDefault(); clearFile(); }}
-                      aria-label="Remove file"
-                      className="ml-auto shrink-0 text-d8-text-dim transition-colors hover:text-d8-text-primary"
-                    >
-                      <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                        <path d="M12 4L4 12M4 4l8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  {isDragging ? (
+                    <>
+                      <svg className="h-5 w-5 text-d8-purple-light" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <path d="M10 3v10M6 9l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M3 15h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                       </svg>
-                    </button>
+                      <span className="font-body text-sm text-d8-purple-light">{tForm("fields.fileDrop")}</span>
+                    </>
+                  ) : file ? (
+                    <div className="flex w-full items-center gap-3 text-left">
+                      <svg className="h-4 w-4 shrink-0 text-green-400" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                        <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.2" />
+                        <path d="M5 8l2.5 2.5L11 5.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+                        <span className="truncate font-body text-sm text-d8-text-primary">{file.name}</span>
+                        <span className="font-mono text-[10px] text-d8-text-dim">{formatBytes(file.size)}</span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={(e) => { e.preventDefault(); clearFile(); }}
+                        aria-label="Remove file"
+                        className="shrink-0 text-d8-text-dim transition-colors hover:text-d8-text-primary"
+                      >
+                        <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                          <path d="M12 4L4 12M4 4l8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                        </svg>
+                      </button>
+                    </div>
+                  ) : (
+                    <>
+                      <svg className="h-5 w-5 text-d8-text-dim" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <path d="M10 13V4M7 7l3-3 3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M3 15h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                      </svg>
+                      <div>
+                        <span className="font-body text-sm text-d8-text-secondary">{tForm("fields.fileBrowse")}</span>
+                        <span className="mt-0.5 block font-mono text-[10px] text-d8-text-dim">{tForm("fields.fileHint")}</span>
+                      </div>
+                    </>
                   )}
                 </label>
                 {fileError && (
@@ -381,11 +447,19 @@ export function CareersContent() {
                   disabled={status === "sending" || status === "sent"}
                   className="rounded-sm bg-d8-purple px-6 py-3 font-body text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  {status === "sending"
-                    ? tForm("sending")
-                    : status === "sent"
-                    ? tForm("sent")
-                    : tForm("submit")}
+                  {status === "sending" ? (
+                    <span className="flex items-center gap-2">
+                      <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      </svg>
+                      {tForm("sending")}
+                    </span>
+                  ) : status === "sent" ? (
+                    tForm("sent")
+                  ) : (
+                    tForm("submit")
+                  )}
                 </button>
 
                 {status === "sent" && (

@@ -180,6 +180,8 @@
         "file": "O adjuntar archivo",
         "fileOptional": "— opcional",
         "fileHint": "PDF, imagen o ZIP · máx 4 MB",
+        "fileBrowse": "Haz clic o arrastra y suelta",
+        "fileDrop": "Suelta para adjuntar",
         "fileTooBig": "El archivo supera el límite de 4 MB",
         "fileWrongType": "Solo se aceptan PDF, imagen o ZIP"
       },
@@ -210,6 +212,9 @@
         "name": "Nombre",
         "namePlaceholder": "Tu nombre",
         "email": "Correo",
+        "phone": "Teléfono",
+        "phoneOptional": "— opcional",
+        "phonePlaceholder": "+506 0000-0000",
         "message": "Mensaje",
         "messagePlaceholder": "Cuéntanos qué tienes en mente."
       },
