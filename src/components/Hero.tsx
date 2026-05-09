@@ -90,9 +90,9 @@ export function Hero() {
   };
 
   return (
-    <section className="relative flex flex-col items-center overflow-hidden px-6 pt-28 pb-24">
-      {/* Subtle glow behind heading */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[480px] bg-purple-glow" />
+    <section className="relative flex flex-col items-center overflow-hidden px-6 pt-40 pb-32">
+      {/* Purple glow behind heading */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[640px] bg-purple-glow" />
 
       <div className="relative z-10 mx-auto w-full max-w-4xl text-center">
         <motion.div
@@ -158,22 +158,22 @@ export function Hero() {
         variants={panelContainer}
         initial="hidden"
         animate="show"
-        className="relative z-10 mt-16 w-full max-w-6xl text-left"
+        className="relative z-10 mt-20 w-full max-w-7xl text-left"
       >
         <div className="divide-y divide-d8-border border-y border-d8-border">
           {services.map(({ tag, title, description, capabilities }) => (
             <motion.div
               key={tag}
               variants={panelItem}
-              className="group -mx-4 grid cursor-default grid-cols-[2.5rem_1fr] gap-x-6 gap-y-6 px-4 py-10 transition-colors duration-200 hover:bg-d8-surface md:-mx-6 md:grid-cols-[2.5rem_2fr_3fr] md:items-start md:gap-x-12 md:gap-y-0 md:px-6"
+              className="group -mx-4 grid cursor-default grid-cols-[3rem_1fr] gap-x-6 gap-y-6 px-4 py-12 transition-colors duration-200 hover:bg-d8-surface md:-mx-6 md:grid-cols-[3rem_2fr_3fr] md:items-start md:gap-x-14 md:gap-y-0 md:px-6"
             >
-              <span className="mt-[0.4rem] font-mono text-xs text-d8-purple-light md:mt-[0.65rem]">
+              <span className="mt-[0.3rem] font-mono text-sm font-semibold text-d8-purple-light md:mt-[0.55rem]">
                 {tag}
               </span>
-              <h2 className="font-heading text-2xl font-semibold leading-none tracking-tight text-d8-text-primary transition-colors duration-200 group-hover:text-d8-purple-light md:text-3xl lg:text-4xl">
+              <h2 className="font-heading text-2xl font-semibold leading-none tracking-tight text-d8-text-primary transition-colors duration-200 group-hover:text-d8-purple-light md:text-3xl lg:text-5xl">
                 {title}
               </h2>
-              <div className="col-span-2 pl-[4rem] md:col-auto md:pl-0">
+              <div className="col-span-2 pl-[4.5rem] md:col-auto md:pl-0">
                 <p className="font-body text-sm leading-relaxed text-d8-text-secondary">
                   {description}
                 </p>

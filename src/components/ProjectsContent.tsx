@@ -104,13 +104,13 @@ export function ProjectsContent() {
   return (
     <>
       {/* Page header */}
-      <section className="px-6 pb-16 pt-32">
-        <div className="mx-auto max-w-6xl">
+      <section className="px-6 pb-20 pt-40">
+        <div className="mx-auto max-w-7xl">
           <motion.div
             variants={headerFade}
             initial="hidden"
             animate="show"
-            className="flex flex-col gap-5"
+            className="flex flex-col gap-5 max-w-4xl"
           >
             <motion.span
               variants={headerItem}
@@ -136,8 +136,8 @@ export function ProjectsContent() {
       </section>
 
       {/* Process key */}
-      <section className="border-t border-d8-border px-6 py-12">
-        <div className="mx-auto max-w-6xl">
+      <section className="border-t border-d8-border bg-d8-surface px-6 py-16">
+        <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-0 md:divide-x md:divide-d8-border">
             {processStages.map(({ num, name, desc }, i) => (
               <div
@@ -158,8 +158,8 @@ export function ProjectsContent() {
       </section>
 
       {/* Industry rows */}
-      <section className="px-6 pb-24">
-        <div className="mx-auto max-w-6xl">
+      <section className="px-6 pb-32 pt-12">
+        <div className="mx-auto max-w-7xl">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -171,9 +171,9 @@ export function ProjectsContent() {
               <motion.div
                 key={tag}
                 variants={itemVariants}
-                className="group -mx-4 grid cursor-default grid-cols-[2.5rem_1fr] gap-x-6 gap-y-6 px-4 py-12 transition-colors duration-200 hover:bg-d8-surface md:-mx-6 md:grid-cols-[2.5rem_2fr_3fr] md:items-start md:gap-x-12 md:gap-y-0 md:px-6"
+                className="group -mx-4 grid cursor-default grid-cols-[3rem_1fr] gap-x-6 gap-y-6 px-4 py-12 transition-colors duration-200 hover:bg-d8-surface md:-mx-6 md:grid-cols-[3rem_2fr_3fr] md:items-start md:gap-x-14 md:gap-y-0 md:px-6"
               >
-                <span className="mt-[0.4rem] font-mono text-xs text-d8-purple-light md:mt-[0.65rem]">
+                <span className="mt-[0.3rem] font-mono text-sm font-semibold text-d8-purple-light md:mt-[0.55rem]">
                   {tag}
                 </span>
 
@@ -181,7 +181,7 @@ export function ProjectsContent() {
                   {name}
                 </h2>
 
-                <div className="col-span-2 pl-[4rem] md:col-auto md:pl-0">
+                <div className="col-span-2 pl-[4.5rem] md:col-auto md:pl-0">
                   {/* Process stage tags */}
                   <div className="mb-5 flex flex-wrap gap-x-5 gap-y-2">
                     {processStages.map(({ num, name: stageName }, i) => {
@@ -189,7 +189,7 @@ export function ProjectsContent() {
                       return (
                         <span
                           key={num}
-                          className={`inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider transition-colors ${
+                          className={`inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider transition-colors ${
                             active ? "text-d8-purple-light" : "text-d8-text-dim"
                           }`}
                         >

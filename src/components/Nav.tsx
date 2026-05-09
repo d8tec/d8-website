@@ -17,7 +17,7 @@ export function Nav() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-d8-border bg-d8-bg/90 backdrop-blur-sm">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link
           href="/"
           className="font-heading text-xl font-semibold tracking-tight text-d8-text-primary"
@@ -43,7 +43,7 @@ export function Nav() {
 
         <Link
           href="/contact"
-          className="hidden rounded-sm border border-d8-border px-4 py-2 font-body text-sm text-d8-text-secondary transition-colors hover:border-d8-purple hover:text-d8-purple md:block"
+          className="hidden rounded-sm bg-d8-purple px-4 py-2 font-body text-sm font-medium text-white transition-opacity hover:opacity-90 md:block"
         >
           Get in touch
         </Link>

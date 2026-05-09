@@ -10,16 +10,18 @@ const nav = [
 export function Footer() {
   return (
     <footer className="border-t border-d8-border bg-d8-bg">
-      <div className="mx-auto max-w-6xl px-6 py-12">
-        <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
-          <div>
-            <p className="font-heading text-lg font-semibold text-d8-text-primary">D8</p>
-            <p className="mt-1 font-body text-sm text-d8-text-secondary">
-              Full-spectrum technology.
+      <div className="mx-auto max-w-7xl px-6 py-16">
+        <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
+          {/* Brand block */}
+          <div className="flex flex-col gap-3">
+            <p className="font-heading text-2xl font-semibold tracking-tight text-d8-text-primary">D8</p>
+            <p className="max-w-xs font-body text-sm leading-relaxed text-d8-text-secondary">
+              Full-spectrum technology. R&D, hardware, software, and AI — one team, end to end.
             </p>
           </div>
 
-          <ul className="flex flex-wrap gap-6">
+          {/* Nav links */}
+          <ul className="flex flex-wrap gap-x-10 gap-y-3">
             {nav.map(({ href, label }) => (
               <li key={href}>
                 <Link
@@ -33,7 +35,7 @@ export function Footer() {
           </ul>
         </div>
 
-        <div className="mt-10 border-t border-d8-border pt-6 flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
+        <div className="mt-12 border-t border-d8-border pt-6 flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
           <p className="font-body text-xs text-d8-text-secondary">
             © {new Date().getFullYear()} D8. All rights reserved.
           </p>

@@ -16,16 +16,16 @@ export default function AboutPage() {
       <Nav />
       <main id="main-content">
         {/* Philosophy + who we are */}
-        <section className="px-6 pt-32 pb-20 border-b border-d8-border">
-          <div className="mx-auto max-w-6xl">
+        <section className="px-6 pt-40 pb-28 border-b border-d8-border">
+          <div className="mx-auto max-w-7xl">
             <div className="max-w-4xl">
               <span className="font-mono text-xs uppercase tracking-widest text-d8-purple-light">
                 About D8
               </span>
-              <p className="mt-6 font-heading text-2xl font-semibold leading-snug tracking-tight text-d8-text-primary text-balance md:text-3xl lg:text-4xl">
+              <h1 className="mt-6 font-heading text-2xl font-semibold leading-snug tracking-tight text-d8-text-primary text-balance md:text-3xl lg:text-4xl">
                 We don&apos;t reinvent the wheel. We combine the ones already
                 spinning to move something that never could before.
-              </p>
+              </h1>
               <div className="mt-10 flex flex-col gap-4 max-w-2xl">
                 <p className="font-body text-sm leading-relaxed text-d8-text-secondary">
                   D8 is a product engineering startup. We scan industries where

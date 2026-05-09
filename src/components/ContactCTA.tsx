@@ -8,7 +8,7 @@ export function ContactCTA() {
 
   return (
     <section className="border-t border-d8-border py-24 px-6">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-7xl">
         <motion.div
           initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}

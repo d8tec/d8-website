@@ -42,8 +42,8 @@ export function Projects() {
   };
 
   return (
-    <section className="border-t border-d8-border py-24 px-6">
-      <div className="mx-auto max-w-6xl">
+    <section className="border-t border-d8-border bg-d8-surface py-28 px-6">
+      <div className="mx-auto max-w-7xl">
         <div className="mb-16 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <h2 className="font-heading text-3xl font-semibold text-d8-text-primary tracking-tight">
             Selected work

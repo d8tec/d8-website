@@ -102,8 +102,8 @@ export function CareersContent() {
   return (
     <>
       {/* Page header */}
-      <section className="px-6 pb-16 pt-32">
-        <div className="mx-auto max-w-6xl">
+      <section className="px-6 pb-20 pt-40">
+        <div className="mx-auto max-w-7xl">
           <motion.div
             variants={headerFade}
             initial="hidden"
@@ -137,8 +137,8 @@ export function CareersContent() {
       </section>
 
       {/* Principles */}
-      <section className="px-6 pb-16">
-        <div className="mx-auto max-w-6xl">
+      <section className="border-t border-d8-border bg-d8-surface px-6 py-16">
+        <div className="mx-auto max-w-7xl">
           <p className="mb-8 font-mono text-xs uppercase tracking-widest text-d8-text-dim">
             How we work
           </p>
@@ -153,15 +153,15 @@ export function CareersContent() {
               <motion.div
                 key={tag}
                 variants={itemVariants}
-                className="group -mx-4 grid cursor-default grid-cols-[2.5rem_1fr] gap-x-6 gap-y-3 px-4 py-8 transition-colors duration-200 hover:bg-d8-surface md:-mx-6 md:grid-cols-[2.5rem_2fr_3fr] md:items-start md:gap-x-12 md:gap-y-0 md:px-6"
+                className="group -mx-4 grid cursor-default grid-cols-[3rem_1fr] gap-x-6 gap-y-3 px-4 py-8 transition-colors duration-200 hover:bg-d8-bg md:-mx-6 md:grid-cols-[3rem_2fr_3fr] md:items-start md:gap-x-14 md:gap-y-0 md:px-6"
               >
-                <span className="mt-[0.3rem] font-mono text-xs text-d8-purple-light md:mt-[0.5rem]">
+                <span className="mt-[0.25rem] font-mono text-sm font-semibold text-d8-purple-light md:mt-[0.45rem]">
                   {tag}
                 </span>
                 <h2 className="font-heading text-lg font-semibold leading-tight tracking-tight text-d8-text-primary transition-colors duration-200 group-hover:text-d8-purple-light md:text-xl">
                   {name}
                 </h2>
-                <p className="col-span-2 pl-[4rem] font-body text-sm leading-relaxed text-d8-text-secondary md:col-auto md:pl-0">
+                <p className="col-span-2 pl-[4.5rem] font-body text-sm leading-relaxed text-d8-text-secondary md:col-auto md:pl-0">
                   {desc}
                 </p>
               </motion.div>
@@ -171,8 +171,8 @@ export function CareersContent() {
       </section>
 
       {/* Application form */}
-      <section className="border-t border-d8-border px-6 pb-24 pt-16">
-        <div className="mx-auto max-w-6xl">
+      <section className="border-t border-d8-border px-6 pb-32 pt-20">
+        <div className="mx-auto max-w-7xl">
           <div className="grid gap-12 md:grid-cols-[2fr_3fr] md:gap-16">
             {/* Left: context */}
             <div className="flex flex-col gap-4">
@@ -205,12 +205,14 @@ export function CareersContent() {
                     id="name"
                     type="text"
                     autoComplete="name"
+                    aria-required="true"
                     placeholder="Your name"
                     {...register("name", { required: true })}
                     className={`rounded-sm border bg-d8-surface px-4 py-3 font-body text-sm text-d8-text-primary placeholder:text-d8-text-dim focus:outline-none focus:ring-1 focus:ring-d8-purple transition-colors ${
                       errors.name ? "border-red-500/60" : "border-d8-border focus:border-d8-purple"
                     }`}
                   />
+                  {errors.name && <p role="alert" className="font-mono text-[11px] text-red-400">Required</p>}
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <label htmlFor="email" className="font-mono text-[11px] uppercase tracking-wider text-d8-text-dim">
@@ -220,12 +222,14 @@ export function CareersContent() {
                     id="email"
                     type="email"
                     autoComplete="email"
+                    aria-required="true"
                     placeholder="you@example.com"
                     {...register("email", { required: true, pattern: /^\S+@\S+\.\S+$/ })}
                     className={`rounded-sm border bg-d8-surface px-4 py-3 font-body text-sm text-d8-text-primary placeholder:text-d8-text-dim focus:outline-none focus:ring-1 focus:ring-d8-purple transition-colors ${
                       errors.email ? "border-red-500/60" : "border-d8-border focus:border-d8-purple"
                     }`}
                   />
+                  {errors.email && <p role="alert" className="font-mono text-[11px] text-red-400">{errors.email.type === "pattern" ? "Valid email required" : "Required"}</p>}
                 </div>
               </div>
 
@@ -234,18 +238,32 @@ export function CareersContent() {
                 <label htmlFor="area" className="font-mono text-[11px] uppercase tracking-wider text-d8-text-dim">
                   What you do
                 </label>
-                <select
-                  id="area"
-                  {...register("area", { required: true })}
-                  className={`rounded-sm border bg-d8-surface px-4 py-3 font-body text-sm text-d8-text-primary focus:outline-none focus:ring-1 focus:ring-d8-purple transition-colors appearance-none ${
-                    errors.area ? "border-red-500/60" : "border-d8-border focus:border-d8-purple"
-                  }`}
-                >
-                  <option value="" className="text-d8-text-dim">Select an area</option>
-                  {areas.map((a) => (
-                    <option key={a} value={a}>{a}</option>
-                  ))}
-                </select>
+                <div className="relative">
+                  <select
+                    id="area"
+                    aria-required="true"
+                    {...register("area", { required: true })}
+                    className={`w-full appearance-none rounded-sm border bg-d8-surface px-4 py-3 pr-10 font-body text-sm text-d8-text-primary focus:outline-none focus:ring-1 focus:ring-d8-purple transition-colors ${
+                      errors.area ? "border-red-500/60" : "border-d8-border focus:border-d8-purple"
+                    }`}
+                  >
+                    <option value="" className="text-d8-text-dim">Select an area</option>
+                    {areas.map((a) => (
+                      <option key={a} value={a}>{a}</option>
+                    ))}
+                  </select>
+                  <svg
+                    className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-d8-text-dim"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+                {errors.area && (
+                  <p role="alert" className="font-mono text-[11px] text-red-400">Required</p>
+                )}
               </div>
 
               {/* Intro */}
@@ -256,12 +274,14 @@ export function CareersContent() {
                 <textarea
                   id="intro"
                   rows={4}
+                  aria-required="true"
                   placeholder="Tell us what you're working on, what problems interest you, and what you'd want to build at D8."
                   {...register("intro", { required: true, minLength: 20 })}
                   className={`resize-none rounded-sm border bg-d8-surface px-4 py-3 font-body text-sm leading-relaxed text-d8-text-primary placeholder:text-d8-text-dim focus:outline-none focus:ring-1 focus:ring-d8-purple transition-colors ${
                     errors.intro ? "border-red-500/60" : "border-d8-border focus:border-d8-purple"
                   }`}
                 />
+                {errors.intro && <p role="alert" className="font-mono text-[11px] text-red-400">{errors.intro.type === "minLength" ? "At least 20 characters" : "Required"}</p>}
               </div>
 
               {/* Link */}
@@ -290,12 +310,12 @@ export function CareersContent() {
                 </button>
 
                 {status === "sent" && (
-                  <p className="font-body text-sm text-d8-purple-light">
+                  <p role="status" className="font-body text-sm text-d8-purple-light">
                     Got it. We&apos;ll be in touch.
                   </p>
                 )}
                 {status === "error" && (
-                  <p className="font-body text-sm text-red-400">
+                  <p role="alert" className="font-body text-sm text-red-400">
                     Something went wrong. Email us directly at nalfaro@d8tec.com.
                   </p>
                 )}
