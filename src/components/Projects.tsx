@@ -1,0 +1,96 @@
+"use client";
+
+import Link from "next/link";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
+
+const projects = [
+  {
+    title: "Industrial sensor gateway",
+    tags: ["ESP32", "MQTT", "React"],
+    description:
+      "Wireless sensor network aggregating data from 40+ nodes, with real-time dashboard and OTA firmware updates.",
+  },
+  {
+    title: "AI-powered quality inspection",
+    tags: ["Computer vision", "Edge ML", "FastAPI"],
+    description:
+      "On-device inference pipeline running on Raspberry Pi 5. Sub-100ms latency per frame, zero cloud dependency.",
+  },
+  {
+    title: "SaaS operations platform",
+    tags: ["Next.js", "TypeScript", "PostgreSQL"],
+    description:
+      "Multi-tenant platform handling scheduling, reporting, and billing for a 200-person field operations team.",
+  },
+];
+
+export function Projects() {
+  const shouldReduceMotion = useReducedMotion();
+
+  const containerVariants: Variants = {
+    hidden: {},
+    show: { transition: { staggerChildren: shouldReduceMotion ? 0 : 0.1 } },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: shouldReduceMotion ? 0 : 0.45, ease: "easeOut" as const },
+    },
+  };
+
+  return (
+    <section className="border-t border-d8-border py-24 px-6">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-16 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <h2 className="font-heading text-3xl font-semibold text-d8-text-primary tracking-tight">
+            Selected work
+          </h2>
+          <Link
+            href="/projects"
+            className="py-2 -my-2 font-body text-sm text-d8-text-secondary underline-offset-4 hover:text-d8-purple hover:underline"
+          >
+            View all projects →
+          </Link>
+        </div>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          className="flex flex-col divide-y divide-d8-border border-y border-d8-border"
+        >
+          {projects.map(({ title, tags, description }) => (
+            <motion.div
+              key={title}
+              variants={itemVariants}
+              className="group flex flex-col gap-3 py-8 transition-colors hover:bg-d8-surface md:flex-row md:items-start md:gap-12 md:px-4"
+            >
+              <div className="flex-1">
+                <h3 className="font-heading text-lg font-semibold text-d8-text-primary">
+                  {title}
+                </h3>
+                <p className="mt-2 font-body text-sm leading-relaxed text-d8-text-secondary">
+                  {description}
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2 md:w-56 md:flex-col md:items-end md:gap-1.5">
+                {tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="font-mono text-xs text-d8-text-secondary"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
