@@ -28,7 +28,7 @@ export function ContactCTA() {
             {t("body")}
           </p>
           <Link
-            href="/contact"
+            href="/contact?open=1"
             className="mt-2 rounded-sm bg-d8-purple px-8 py-3 font-body text-sm font-medium text-white transition-opacity hover:opacity-90"
           >
             {t("cta")}

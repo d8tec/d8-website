@@ -35,6 +35,16 @@ export function ContactContent() {
   } = useForm<ContactFormValues>();
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("open") === "1") {
+      openModal();
+      const url = new URL(window.location.href);
+      url.searchParams.delete("open");
+      window.history.replaceState({}, "", url.toString());
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
     if (!modalOpen) return;
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") closeModal(); };
     window.addEventListener("keydown", handler);

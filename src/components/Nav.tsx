@@ -62,7 +62,7 @@ export function Nav() {
 
           {/* CTA */}
           <Link
-            href="/contact"
+            href="/contact?open=1"
             className="rounded-sm bg-d8-purple px-4 py-2 font-body text-sm font-medium text-white transition-opacity hover:opacity-90"
           >
             {t("cta")}
