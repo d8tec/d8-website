@@ -10,7 +10,7 @@
     "badge": "Soluciones de Ingeniería",
     "heading1": "Construimos lo que otros",
     "heading2": "no logran dimensionar.",
-    "body": "D8 opera en R&D, sistemas embebidos, desarrollo web y app, e IA — de punta a punta, del concepto al despliegue. Tomamos los problemas difíciles y entregamos soluciones que funcionan.",
+    "body": "D8 opera en R&D, sistemas embebidos, desarrollo web y app, e IA, de punta a punta, del concepto al despliegue. Tomamos los problemas difíciles y entregamos soluciones que funcionan.",
     "cta1": "Iniciar un proyecto",
     "cta2": "Nosotros",
     "services": [
@@ -63,9 +63,9 @@
   "about": {
     "overline": "Sobre D8",
     "heading": "No reinventamos la rueda. Combinamos las que ya giran para mover algo que nunca pudo antes.",
-    "body1": "D8 es una startup de ingeniería de producto. Escaneamos industrias donde las soluciones existentes están fragmentadas, son costosas o simplemente no existen — y construimos lo que debería existir. Nuestros productos propios y el trabajo para clientes se mantienen al mismo estándar: si sale de D8, funciona.",
-    "body2": "Operamos en R&D, hardware y sistemas embebidos, desarrollo web y app, e IA — en un solo equipo, sin las transferencias ni la fricción de coordinar múltiples proveedores. La mayoría de los proyectos toca más de un dominio. Eso es por diseño.",
-    "body3": "El nombre es la filosofía: D8 es el Día 8. Después de los siete días de la creación, el Día 8 es cuando los humanos comienzan a construir sobre lo que ya existe — no reinventando, sino sintetizando y avanzando. Así es como trabajamos.",
+    "body1": "D8 es una startup de ingeniería de producto. Escaneamos industrias donde las soluciones existentes están fragmentadas, son costosas o simplemente no existen. Construimos lo que debería existir. Nuestros productos propios y el trabajo para clientes se mantienen al mismo estándar: si sale de D8, funciona.",
+    "body2": "Operamos en R&D, hardware y sistemas embebidos, desarrollo web y app, e IA, en un solo equipo, sin las transferencias ni la fricción de coordinar múltiples proveedores. La mayoría de los proyectos toca más de un dominio. Eso es por diseño.",
+    "body3": "El nombre es la filosofía: D8 es el Día 8. Después de los siete días de la creación, el Día 8 es cuando los humanos comienzan a construir sobre lo que ya existe: no reinventando, sino sintetizando y avanzando. Así es como trabajamos.",
     "selectedWork": "Trabajo seleccionado",
     "viewAll": "Ver todos los proyectos →"
   },
@@ -86,11 +86,11 @@
   "industries": {
     "overline": "Industrias",
     "heading": "El ciclo completo de ingeniería.",
-    "body": "Del modelado al prototipado — en seis industrias donde las soluciones existentes están fragmentadas, son costosas o simplemente no existen.",
+    "body": "Del modelado al prototipado, en seis industrias donde las soluciones existentes están fragmentadas, son costosas o simplemente no existen.",
     "process": [
       { "num": "01", "name": "Modelo", "desc": "Factibilidad, arquitectura y planificación del sistema antes de construir nada." },
       { "num": "02", "name": "Diseño", "desc": "Esquemáticos, UX, distribución de hardware y especificación técnica detallada." },
-      { "num": "03", "name": "Crear", "desc": "Firmware, software, PCBs — el artefacto de calidad de producción." },
+      { "num": "03", "name": "Crear", "desc": "Firmware, software, PCBs: el artefacto de calidad de producción." },
       { "num": "04", "name": "Prototipo", "desc": "Validación en campo, iteración y transferencia al despliegue." }
     ],
     "industries": [
@@ -104,7 +104,7 @@
         "tag": "02",
         "name": "Manufactura y Control de Calidad",
         "stages": [true, true, true, true],
-        "description": "Sistemas de visión en el dispositivo y pipelines de inspección de calidad que corren a velocidad de manufactura. Inferencia en menos de 100ms, sin dependencia de la nube — diseñados para la línea, no para el cuarto de servidores."
+        "description": "Sistemas de visión en el dispositivo y pipelines de inspección de calidad que corren a velocidad de manufactura. Inferencia en menos de 100ms, sin dependencia de la nube, diseñados para la línea, no para el cuarto de servidores."
       },
       {
         "tag": "03",
@@ -136,18 +136,18 @@
     "overline": "Únete",
     "heading1": "Construimos cosas difíciles.",
     "heading2": "Queremos personas que quieran eso.",
-    "body": "D8 es un equipo pequeño con un alcance amplio — hardware, software, IA y el R&D que los conecta. No tenemos escaleras corporativas ni OKRs trimestrales. Tenemos problemas que resolver y la autonomía para resolverlos.",
+    "body": "D8 es un equipo pequeño con un alcance amplio: hardware, software, IA y el R&D que los conecta. No tenemos escaleras corporativas ni OKRs trimestrales. Tenemos problemas que resolver y la autonomía para resolverlos.",
     "howWeWork": "Cómo trabajamos",
     "principles": [
       {
         "tag": "01",
         "name": "Responsabilidad sobre permiso",
-        "desc": "Todos en D8 son dueños de algo real. No una cola de tickets — un problema. Tú defines el enfoque, lo haces funcionar y ves el despliegue. Si necesitas que alguien te diga qué hacer después, este no es el lugar."
+        "desc": "Todos en D8 son dueños de algo real. No una cola de tickets: un problema. Tú defines el enfoque, lo haces funcionar y ves el despliegue. Si necesitas que alguien te diga qué hacer después, este no es el lugar."
       },
       {
         "tag": "02",
         "name": "Profundidad sobre amplitud",
-        "desc": "Vamos tan profundo como el problema lo requiere. No nos detenemos en 'funciona' — nos detenemos en 'correcto, robusto y rápido'. La curiosidad no es un plus, es el trabajo."
+        "desc": "Vamos tan profundo como el problema lo requiere. No nos detenemos en 'funciona'; nos detenemos en 'correcto, robusto y rápido'. La curiosidad no es un plus, es el trabajo."
       },
       {
         "tag": "03",
@@ -157,14 +157,14 @@
       {
         "tag": "04",
         "name": "Credenciales opcionales. Mediocridad no.",
-        "desc": "No nos importan los títulos ni los años de experiencia. Autodidacta, en la universidad, cambiando de carrera — bienvenido. Nos importa cómo piensas, cómo aprendes y cómo manejas estar equivocado. Quien entrega supera al que descansa, siempre."
+        "desc": "No nos importan los títulos ni los años de experiencia. Autodidacta, en la universidad, cambiando de carrera, bienvenido. Nos importa cómo piensas, cómo aprendes y cómo manejas estar equivocado. Quien entrega supera al que descansa, siempre."
       }
     ],
     "form": {
       "overline": "Contáctanos",
       "heading": "No hay roles abiertos por ahora. Siempre hay un problema que vale la pena resolver. Cuéntanos de ti.",
       "body1": "Contratamos cuando encontramos a la persona correcta, no cuando hay un puesto vacío. Si construyes cosas y quieres problemas más difíciles, escríbenos. Leemos todo.",
-      "body2": "Estudiantes y recién graduados: especialmente bienvenidos. Muéstranos algo que hayas hecho — aunque esté en bruto.",
+      "body2": "Estudiantes y recién graduados: especialmente bienvenidos. Muéstranos algo que hayas hecho, aunque esté en bruto.",
       "areas": ["Embebido y Firmware", "Desarrollo Full-Stack", "ML e IA", "Hardware / Diseño de PCB", "R&D / Prototipado", "Otro"],
       "fields": {
         "name": "Nombre",

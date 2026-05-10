@@ -10,7 +10,7 @@
     "badge": "Engineering Solutions",
     "heading1": "We build what others",
     "heading2": "can't scope.",
-    "body": "D8 works across R&D, embedded systems, web and app development, and AI — end to end, from concept to deployment. We take on hard problems and ship things that work.",
+    "body": "D8 works across R&D, embedded systems, web and app development, and AI, end to end, from concept to deployment. We take on hard problems and ship things that work.",
     "cta1": "Start a project",
     "cta2": "About us",
     "services": [
@@ -63,9 +63,9 @@
   "about": {
     "overline": "About D8",
     "heading": "We don't reinvent the wheel. We combine the ones already spinning to move something that never could before.",
-    "body1": "D8 is a product engineering startup. We scan industries where existing solutions are fragmented, overpriced, or simply missing — and we build what should exist. Our own products and client work are held to the same standard: if it ships from D8, it works.",
-    "body2": "We operate across R&D, hardware and embedded systems, web and app development, and AI — in one team, without the handoffs or coordination overhead of managing multiple vendors. Most projects touch more than one domain. That's by design.",
-    "body3": "The name is the philosophy: D8 is Day 8. After the seven days of creation, Day 8 is when humans start building on what already exists — not reinventing, but synthesizing and advancing. That's how we work.",
+    "body1": "D8 is a product engineering startup. We scan industries where existing solutions are fragmented, overpriced, or simply missing. We build what should exist. Our own products and client work are held to the same standard: if it ships from D8, it works.",
+    "body2": "We operate across R&D, hardware and embedded systems, web and app development, and AI, in one team, without the handoffs or coordination overhead of managing multiple vendors. Most projects touch more than one domain. That's by design.",
+    "body3": "The name is the philosophy: D8 is Day 8. After the seven days of creation, Day 8 is when humans start building on what already exists: not reinventing, but synthesizing and advancing. That's how we work.",
     "selectedWork": "Selected work",
     "viewAll": "View all projects →"
   },
@@ -86,11 +86,11 @@
   "industries": {
     "overline": "Industries",
     "heading": "The full engineering cycle.",
-    "body": "From modeling to prototyping — across six industries where existing solutions are fragmented, overpriced, or simply missing.",
+    "body": "From modeling to prototyping, across six industries where existing solutions are fragmented, overpriced, or simply missing.",
     "process": [
       { "num": "01", "name": "Model", "desc": "Feasibility, architecture, and system planning before anything is built." },
       { "num": "02", "name": "Design", "desc": "Schematics, UX, hardware layouts, and detailed technical specification." },
-      { "num": "03", "name": "Create", "desc": "Firmware, software, PCBs — the production-quality artifact." },
+      { "num": "03", "name": "Create", "desc": "Firmware, software, PCBs: the production-quality artifact." },
       { "num": "04", "name": "Prototype", "desc": "Field validation, iteration, and the handoff to deployment." }
     ],
     "industries": [
@@ -104,7 +104,7 @@
         "tag": "02",
         "name": "Manufacturing & QC",
         "stages": [true, true, true, true],
-        "description": "On-device vision systems and quality inspection pipelines that run at manufacturing speed. Sub-100ms inference, no cloud dependency — designed for the line, not the server room."
+        "description": "On-device vision systems and quality inspection pipelines that run at manufacturing speed. Sub-100ms inference, no cloud dependency, designed for the line, not the server room."
       },
       {
         "tag": "03",
@@ -136,18 +136,18 @@
     "overline": "Careers",
     "heading1": "We're building hard things.",
     "heading2": "We want people who want that.",
-    "body": "D8 is a small team with a wide scope — hardware, software, AI, and the R&D that connects them. We don't have career ladders or quarterly OKRs. We have problems that need solving and the autonomy to solve them.",
+    "body": "D8 is a small team with a wide scope: hardware, software, AI, and the R&D that connects them. We don't have career ladders or quarterly OKRs. We have problems that need solving and the autonomy to solve them.",
     "howWeWork": "How we work",
     "principles": [
       {
         "tag": "01",
         "name": "Ownership over permission",
-        "desc": "Everyone at D8 owns something real. Not a ticket queue — a problem. You define the approach, you make it work, you see it deployed. If you need someone to tell you what to do next, this isn't the place."
+        "desc": "Everyone at D8 owns something real. Not a ticket queue: a problem. You define the approach, you make it work, you see it deployed. If you need someone to tell you what to do next, this isn't the place."
       },
       {
         "tag": "02",
         "name": "Depth over breadth",
-        "desc": "We go as deep as the problem requires. We don't stop at 'working' — we stop at 'correct, robust, and fast'. Curiosity isn't a nice-to-have, it's the job."
+        "desc": "We go as deep as the problem requires. We don't stop at 'working'; we stop at 'correct, robust, and fast'. Curiosity isn't a nice-to-have, it's the job."
       },
       {
         "tag": "03",
@@ -157,14 +157,14 @@
       {
         "tag": "04",
         "name": "Credentials optional. Mediocrity isn't.",
-        "desc": "We don't care about degrees or years of experience. Self-taught, still in school, switching fields — all welcome. We care about how you think, how you learn, and how you handle being wrong. Someone who ships beats someone who coasts, every time."
+        "desc": "We don't care about degrees or years of experience. Self-taught, still in school, switching fields, all welcome. We care about how you think, how you learn, and how you handle being wrong. Someone who ships beats someone who coasts, every time."
       }
     ],
     "form": {
       "overline": "Get in touch",
       "heading": "No open roles right now. There's always a problem worth solving. Tell us about yourself.",
       "body1": "We hire when we find the right person, not when a slot opens. If you build things and want harder problems, send us a note. We read everything.",
-      "body2": "Students and recent grads: especially welcome. Show us something you've made — even if it's rough.",
+      "body2": "Students and recent grads: especially welcome. Show us something you've made, even if it's rough.",
       "areas": ["Embedded & Firmware", "Full-Stack Development", "ML & AI", "Hardware / PCB Design", "R&D / Prototyping", "Other"],
       "fields": {
         "name": "Name",
@@ -228,7 +228,7 @@
   "cta": {
     "overline": "Work with us",
     "heading": "Have something to build?",
-    "body": "We work with companies who need a technical partner — not just a vendor. If you have a hard problem, we're interested.",
+    "body": "We work with companies who need a technical partner, not just a vendor. If you have a hard problem, we're interested.",
     "cta": "Get in touch"
   },
   "footer": {
