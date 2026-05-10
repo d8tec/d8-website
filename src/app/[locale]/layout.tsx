@@ -41,6 +41,14 @@ export function generateMetadata({
         ? "R&D, integración hardware/software, desarrollo web y app, IA y soluciones de datos."
         : "R&D, hardware/software integration, web and app development, AI and data solutions.",
       siteName: "D8",
+      images: [
+        {
+          url: `/api/og?locale=${locale}`,
+          width: 1200,
+          height: 630,
+          alt: isEs ? "D8 | Ingeniería y Desarrollo" : "D8 | Engineering and Development",
+        },
+      ],
     },
   };
 }

@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
+import { NextRequest } from "next/server";
 
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
+export const runtime = "edge";
 
 async function getFont(): Promise<ArrayBuffer | null> {
   try {
@@ -18,14 +18,11 @@ async function getFont(): Promise<ArrayBuffer | null> {
   }
 }
 
-export default async function Image({
-  params,
-}: {
-  params: { locale: string };
-}) {
-  const isEs = params?.locale === "es";
-  const fontData = await getFont();
+export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const isEs = searchParams.get("locale") === "es";
 
+  const fontData = await getFont();
   const fonts: {
     name: string;
     data: ArrayBuffer;
@@ -34,7 +31,6 @@ export default async function Image({
   }[] = fontData
     ? [{ name: "Space Grotesk", data: fontData, weight: 700, style: "normal" }]
     : [];
-
   const fontFamily = fontData ? "Space Grotesk" : "system-ui, sans-serif";
 
   return new ImageResponse(
@@ -46,17 +42,11 @@ export default async function Image({
           display: "flex",
           flexDirection: "column",
           backgroundColor: "#080808",
-          position: "relative",
         }}
       >
         {/* Purple top accent */}
         <div
-          style={{
-            width: "100%",
-            height: 4,
-            backgroundColor: "#9900ff",
-            flexShrink: 0,
-          }}
+          style={{ width: "100%", height: 4, backgroundColor: "#9900ff", flexShrink: 0 }}
         />
 
         {/* Content */}
@@ -72,9 +62,7 @@ export default async function Image({
         >
           {/* Domain — top right */}
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
-            <div
-              style={{ fontSize: 18, color: "#555555", letterSpacing: "0.08em" }}
-            >
+            <div style={{ fontSize: 18, color: "#555555", letterSpacing: "0.08em" }}>
               d8tec.com
             </div>
           </div>
@@ -104,31 +92,12 @@ export default async function Image({
             >
               {isEs ? "Desarrollo." : "Development."}
             </div>
-            <div
-              style={{ fontSize: 18, color: "#555555", letterSpacing: "0.06em" }}
-            >
+            <div style={{ fontSize: 18, color: "#555555", letterSpacing: "0.06em" }}>
               {isEs
                 ? "R&D  ·  HARDWARE / SOFTWARE  ·  WEB & APP  ·  IA"
                 : "R&D  ·  HARDWARE / SOFTWARE  ·  WEB & APP  ·  AI"}
             </div>
           </div>
-        </div>
-
-        {/* D8 watermark */}
-        <div
-          style={{
-            position: "absolute",
-            right: 52,
-            bottom: 16,
-            fontSize: 280,
-            fontWeight: 700,
-            color: "#1e1e1e",
-            lineHeight: 1,
-            fontFamily,
-            letterSpacing: "-0.05em",
-          }}
-        >
-          D8
         </div>
       </div>
     ),
