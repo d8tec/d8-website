@@ -36,6 +36,8 @@ export function generateMetadata({
       ? "D8 es una empresa de ingeniería y desarrollo. R&D, integración hardware/software, desarrollo web y app, IA y soluciones de datos."
       : "D8 is an engineering and development company. R&D, hardware/software integration, web and app development, AI and data solutions.",
     openGraph: {
+      type: "website",
+      url: `/${locale}`,
       title: isEs ? "D8 | Ingeniería y Desarrollo" : "D8 | Engineering and Development",
       description: isEs
         ? "R&D, integración hardware/software, desarrollo web y app, IA y soluciones de datos."
