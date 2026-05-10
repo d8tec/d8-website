@@ -45,7 +45,7 @@ export function generateMetadata({
       siteName: "D8",
       images: [
         {
-          url: `/api/og?locale=${locale}`,
+          url: "/og-image.png",
           width: 1200,
           height: 630,
           alt: isEs ? "D8 | Ingeniería y Desarrollo" : "D8 | Engineering and Development",
