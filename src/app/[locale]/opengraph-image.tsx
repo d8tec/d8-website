@@ -11,7 +11,8 @@ async function getFont(): Promise<ArrayBuffer | null> {
     ).then((r) => r.text());
     const match = css.match(/url\((.+?\.woff2)\)/);
     if (!match?.[1]) return null;
-    return fetch(match[1]).then((r) => r.arrayBuffer());
+    const fontRes = await fetch(match[1]);
+    return fontRes.arrayBuffer();
   } catch {
     return null;
   }
@@ -22,7 +23,7 @@ export default async function Image({
 }: {
   params: { locale: string };
 }) {
-  const isEs = params.locale === "es";
+  const isEs = params?.locale === "es";
   const fontData = await getFont();
 
   const fonts: {
@@ -49,7 +50,14 @@ export default async function Image({
         }}
       >
         {/* Purple top accent */}
-        <div style={{ width: "100%", height: 4, backgroundColor: "#9900ff" }} />
+        <div
+          style={{
+            width: "100%",
+            height: 4,
+            backgroundColor: "#9900ff",
+            flexShrink: 0,
+          }}
+        />
 
         {/* Content */}
         <div
@@ -57,31 +65,22 @@ export default async function Image({
             flex: 1,
             display: "flex",
             flexDirection: "column",
+            justifyContent: "space-between",
             padding: "64px 80px",
             fontFamily,
           }}
         >
           {/* Domain — top right */}
-          <div
-            style={{
-              fontSize: 18,
-              color: "#555555",
-              letterSpacing: "0.08em",
-              marginBottom: "auto",
-              alignSelf: "flex-end",
-            }}
-          >
-            d8tec.com
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <div
+              style={{ fontSize: 18, color: "#555555", letterSpacing: "0.08em" }}
+            >
+              d8tec.com
+            </div>
           </div>
 
-          {/* Headline */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              marginTop: "auto",
-            }}
-          >
+          {/* Headline + tags */}
+          <div style={{ display: "flex", flexDirection: "column" }}>
             <div
               style={{
                 fontSize: 96,
@@ -106,16 +105,11 @@ export default async function Image({
               {isEs ? "Desarrollo." : "Development."}
             </div>
             <div
-              style={{
-                fontSize: 18,
-                color: "#555555",
-                letterSpacing: "0.06em",
-                textTransform: "uppercase",
-              }}
+              style={{ fontSize: 18, color: "#555555", letterSpacing: "0.06em" }}
             >
               {isEs
-                ? "R&D  ·  Hardware / Software  ·  Web & App  ·  IA"
-                : "R&D  ·  Hardware / Software  ·  Web & App  ·  AI"}
+                ? "R&D  ·  HARDWARE / SOFTWARE  ·  WEB & APP  ·  IA"
+                : "R&D  ·  HARDWARE / SOFTWARE  ·  WEB & APP  ·  AI"}
             </div>
           </div>
         </div>
@@ -138,10 +132,6 @@ export default async function Image({
         </div>
       </div>
     ),
-    {
-      width: 1200,
-      height: 630,
-      fonts,
-    }
+    { width: 1200, height: 630, fonts }
   );
 }
