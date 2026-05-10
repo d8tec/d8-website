@@ -50,7 +50,7 @@ Email, hosting, and form delivery in production.
 | R14 | Careers form drag-and-drop file upload (4 MB, PDF/image/ZIP) | ✅ |
 | R15 | Contact modal auto-open via `?open=1` query param and `d8:open-contact` event | ✅ |
 | R16 | `RESEND_API_KEY` + `CAREERS_EMAIL` env vars active on Vercel | ✅ |
-| R17 | Set `CONTACT_EMAIL` env var explicitly on Vercel (currently using hardcoded fallback) | ⏳ |
+| R17 | Set `CONTACT_EMAIL` env var explicitly on Vercel (currently using hardcoded fallback) | ✅ |
 
 ---
 
@@ -60,7 +60,7 @@ Quality pass before active outreach.
 
 | ID | Objective | Status |
 |---|---|---|
-| R18 | `og:image` — create asset and wire into locale layout metadata | ⏳ |
+| R18 | `og:image` — create asset and wire into locale layout metadata | ✅ |
 | R19 | Real LinkedIn and Instagram URLs (currently placeholders) | ⏳ |
 | R20 | Visual design iteration — style pass post-deploy | ⏳ |
 | R21 | Resolve em dashes in About Us body copy (pending explicit decision) | ⏳ |
