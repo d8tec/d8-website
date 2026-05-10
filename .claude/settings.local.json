@@ -9,7 +9,9 @@
       "Bash(git remote *)",
       "Bash(git fetch *)",
       "Bash(git push *)",
-      "mcp__playwright__browser_navigate"
+      "mcp__playwright__browser_navigate",
+      "Bash(Get-Item BACKLOG.md, HANDOFF.md, INVENTARIO.md)",
+      "Bash(Select-Object Name, LastWriteTime, Length)"
     ]
   }
 }
