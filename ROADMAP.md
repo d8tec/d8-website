@@ -64,8 +64,8 @@ Quality pass before active outreach.
 | R19 | Real LinkedIn and Instagram URLs (currently placeholders) | ⏳ |
 | R20 | Visual design iteration — style pass post-deploy | ⏳ |
 | R21 | Resolve em dashes in About Us body copy (pending explicit decision) | ✅ |
-| R22 | Monitor hero service titles at `lg:text-5xl` on 1024–1280px ("Hardware & Software" wrap risk) | ⏳ |
-| R23 | Hero glow feel on very tall viewports — evaluate and adjust if needed | ⏳ |
+| R22 | Monitor hero service titles at `lg:text-5xl` on 1024–1280px ("Hardware & Software" wrap risk) | ✅ |
+| R23 | Hero glow feel on very tall viewports — evaluate and adjust if needed | ✅ |
 
 ---
 
