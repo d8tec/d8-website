@@ -52,6 +52,9 @@ export function generateMetadata({
         },
       ],
     },
+    other: {
+      "og:logo": "https://d8tec.com/icon.svg",
+    },
   };
 }
 
