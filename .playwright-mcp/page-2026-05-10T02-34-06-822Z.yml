@@ -1,0 +1,125 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - navigation [ref=e4]:
+      - link "D8" [ref=e5] [cursor=pointer]:
+        - /url: /en
+      - list [ref=e6]:
+        - listitem [ref=e7]:
+          - link "About Us" [ref=e8] [cursor=pointer]:
+            - /url: /en/services
+        - listitem [ref=e9]:
+          - link "Projects" [ref=e10] [cursor=pointer]:
+            - /url: /en/projects
+        - listitem [ref=e11]:
+          - link "Careers" [ref=e12] [cursor=pointer]:
+            - /url: /en/careers
+        - listitem [ref=e13]:
+          - link "Contact" [ref=e14] [cursor=pointer]:
+            - /url: /en/contact
+      - generic [ref=e15]:
+        - link "Switch to ES" [ref=e16] [cursor=pointer]:
+          - /url: /es
+          - generic [ref=e17]: 🇨🇷
+          - generic [ref=e18]: ES
+        - link "Get in touch" [ref=e19] [cursor=pointer]:
+          - /url: /en/contact?open=1
+  - main [ref=e20]:
+    - generic [ref=e21]:
+      - generic [ref=e22]:
+        - generic [ref=e25]: Engineering Solutions
+        - heading "We build what others can't scope." [level=1] [ref=e26]
+        - paragraph [ref=e27]: D8 works across R&D, embedded systems, web and app development, and AI, end to end, from concept to deployment. We take on hard problems and ship things that work.
+        - generic [ref=e28]:
+          - link "Start a project" [ref=e29] [cursor=pointer]:
+            - /url: /en/contact
+          - link "About us" [ref=e30] [cursor=pointer]:
+            - /url: /en/services
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - generic [ref=e34]: "01"
+          - heading "R&D" [level=2] [ref=e35]
+          - generic [ref=e36]:
+            - paragraph [ref=e37]: We go first. When a problem is undefined or the technology to solve it doesn't yet exist, we build the evidence that makes the next decision possible. D8 takes on ambiguous work and delivers something you can build on.
+            - list [ref=e38]:
+              - listitem [ref=e39]:
+                - generic [ref=e41]: Feasibility studies and technology selection
+              - listitem [ref=e42]:
+                - generic [ref=e44]: Embedded and mechanical prototyping
+              - listitem [ref=e45]:
+                - generic [ref=e47]: Field validation and test instrumentation
+              - listitem [ref=e48]:
+                - generic [ref=e50]: Research-to-production handoff
+        - generic [ref=e51]:
+          - generic [ref=e52]: "02"
+          - heading "Hardware & Software" [level=2] [ref=e53]
+          - generic [ref=e54]:
+            - paragraph [ref=e55]: Most vendors do one side. D8 does both, in one team, without the integration tax. From PCB to cloud dashboard, we own the full hardware-software stack and eliminate the gaps between layers.
+            - list [ref=e56]:
+              - listitem [ref=e57]:
+                - generic [ref=e59]: Firmware development for ESP32, STM32, and RTOS environments
+              - listitem [ref=e60]:
+                - generic [ref=e62]: PCB design, board bringup, and manufacturing handoff
+              - listitem [ref=e63]:
+                - generic [ref=e65]: Cloud connectivity, device management, and real-time data
+              - listitem [ref=e66]:
+                - generic [ref=e68]: Full-stack dashboards and operational interfaces
+        - generic [ref=e69]:
+          - generic [ref=e70]: "03"
+          - heading "Web & App" [level=2] [ref=e71]
+          - generic [ref=e72]:
+            - paragraph [ref=e73]: Platforms that operate, not just display. Scheduling, billing, multi-tenant data, the systems that run a business day to day. Built to scale and maintained by a team that understands the architecture.
+            - list [ref=e74]:
+              - listitem [ref=e75]:
+                - generic [ref=e77]: Web applications and multi-tenant SaaS platforms
+              - listitem [ref=e78]:
+                - generic [ref=e80]: Role-based access, billing, and operational workflows
+              - listitem [ref=e81]:
+                - generic [ref=e83]: API design, integrations, and service architecture
+              - listitem [ref=e84]:
+                - generic [ref=e86]: Mobile applications and progressive web apps
+        - generic [ref=e87]:
+          - generic [ref=e88]: "04"
+          - heading "AI & Data" [level=2] [ref=e89]
+          - generic [ref=e90]:
+            - paragraph [ref=e91]: Not a wrapper around an existing model. Real inference pipelines, edge deployment, and data systems built for the questions you actually need to answer. We train, deploy, and keep models useful over time.
+            - list [ref=e92]:
+              - listitem [ref=e93]:
+                - generic [ref=e95]: Model training, fine-tuning, and performance evaluation
+              - listitem [ref=e96]:
+                - generic [ref=e98]: Edge inference on low-power hardware (Raspberry Pi, ESP32)
+              - listitem [ref=e99]:
+                - generic [ref=e101]: Data pipelines, ETL processes, and warehouse design
+              - listitem [ref=e102]:
+                - generic [ref=e104]: Decision dashboards and automated reporting
+    - generic [ref=e107]:
+      - generic [ref=e108]: Work with us
+      - heading "Have something to build?" [level=2] [ref=e109]
+      - paragraph [ref=e110]: We work with companies who need a technical partner, not just a vendor. If you have a hard problem, we're interested.
+      - link "Get in touch" [ref=e111] [cursor=pointer]:
+        - /url: /en/contact?open=1
+  - contentinfo [ref=e112]:
+    - generic [ref=e113]:
+      - generic [ref=e114]:
+        - generic [ref=e115]:
+          - paragraph [ref=e116]: D8
+          - paragraph [ref=e117]: R&D, hardware, software, and AI. No handoffs, no shortcuts.
+        - list [ref=e118]:
+          - listitem [ref=e119]:
+            - link "About Us" [ref=e120] [cursor=pointer]:
+              - /url: /en/services
+          - listitem [ref=e121]:
+            - link "Projects" [ref=e122] [cursor=pointer]:
+              - /url: /en/projects
+          - listitem [ref=e123]:
+            - link "Careers" [ref=e124] [cursor=pointer]:
+              - /url: /en/careers
+          - listitem [ref=e125]:
+            - link "Contact" [ref=e126] [cursor=pointer]:
+              - /url: /en/contact
+      - generic [ref=e127]:
+        - paragraph [ref=e128]: © 2026 D8. All rights reserved.
+        - link "contacto@d8tec.com" [ref=e129] [cursor=pointer]:
+          - /url: mailto:contacto@d8tec.com
+  - alert [ref=e130]
