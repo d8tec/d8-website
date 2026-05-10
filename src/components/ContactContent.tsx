@@ -42,6 +42,9 @@ export function ContactContent() {
       url.searchParams.delete("open");
       window.history.replaceState({}, "", url.toString());
     }
+    const handler = () => openModal();
+    window.addEventListener("d8:open-contact", handler);
+    return () => window.removeEventListener("d8:open-contact", handler);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {

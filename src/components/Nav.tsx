@@ -63,6 +63,12 @@ export function Nav() {
           {/* CTA */}
           <Link
             href="/contact?open=1"
+            onClick={(e) => {
+              if (pathname === "/contact") {
+                e.preventDefault();
+                window.dispatchEvent(new CustomEvent("d8:open-contact"));
+              }
+            }}
             className="rounded-sm bg-d8-purple px-4 py-2 font-body text-sm font-medium text-white transition-opacity hover:opacity-90"
           >
             {t("cta")}
