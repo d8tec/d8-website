@@ -4,6 +4,7 @@ import { Projects } from "@/components/Projects";
 import { ContactCTA } from "@/components/ContactCTA";
 import { Footer } from "@/components/Footer";
 import { AboutHeader } from "@/components/AboutHeader";
+import { Founders } from "@/components/Founders";
 
 export function generateMetadata({
   params: { locale },
@@ -25,6 +26,7 @@ export default function AboutPage() {
       <Nav />
       <main id="main-content">
         <AboutHeader />
+        <Founders />
         <Projects />
         <ContactCTA />
       </main>

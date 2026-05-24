@@ -71,16 +71,24 @@
   },
   "featuredProjects": [
     {
-      "title": "Industrial sensor gateway",
-      "description": "Wireless sensor network aggregating data from 40+ nodes, with real-time dashboard and OTA firmware updates."
+      "title": "Transit revenue collection system",
+      "description": "Custom-built hardware unit for automated fare collection on a bus fleet, paired with an operations platform for route tracking, revenue aggregation, and financial reporting. End-to-end: enclosure design, embedded firmware, and cloud backend."
     },
     {
-      "title": "AI-powered quality inspection",
-      "description": "On-device inference pipeline running on Raspberry Pi 5. Sub-100ms latency per frame, zero cloud dependency."
+      "title": "Personal services booking platform",
+      "description": "Multi-tenant SaaS for independent service operators: appointment scheduling, recurring client benefits, product and service catalogs, and a local discovery network connecting clients to nearby businesses."
     },
     {
-      "title": "SaaS operations platform",
-      "description": "Multi-tenant platform handling scheduling, reporting, and billing for a 200-person field operations team."
+      "title": "Residential community management platform",
+      "description": "Full-featured platform for gated communities covering payment management, amenity reservations, visitor access control, and resident communications, all under one multi-tenant architecture."
+    },
+    {
+      "title": "Regulatory filing automation bot",
+      "description": "Automation system that aggregates client financial data and populates tax declarations and regulatory filings. Sold to accounting firms to eliminate repetitive document workflows across large client portfolios."
+    },
+    {
+      "title": "Padel court scoring system",
+      "description": "Sensor hardware mounted on court walls paired with real-time scoring software. Supports casual play, league modes, and pozos rotations across a full club's court inventory."
     }
   ],
   "industries": {
@@ -224,6 +232,29 @@
       "successMsg": "Got it. We'll be in touch.",
       "errorMsg": "Something went wrong. Email us directly at contacto@d8tec.com."
     }
+  },
+  "founders": {
+    "overline": "The Masterminds",
+    "heading": "The architects behind the D8 philosophy.",
+    "list": [
+      {
+        "name": "Nadir Alfaro",
+        "role": "Founder",
+        "bio": "Mechatronics engineer from the Instituto Tecnológico de Costa Rica. Defended a robotics thesis at TUM's ICS lab in Munich, then continued research across MEMS and NEMS groups at the same university. In the United States, he joined Amazon's automation division, building and commissioning large-scale conveyor systems for supply centers from the ground up. Those years abroad answered a question he hadn't fully formed: if a Costa Rican engineer can operate at that level out there, the talent was never the problem. D8 is what happens when you stop sending it elsewhere and start investing in ourselves.",
+        "image": "/portraits/nads_portrait.jpeg"
+      },
+      {
+        "name": "[Co-Founder Name]",
+        "role": "Co-Founder",
+        "bio": "[Background: studies, professional experience, and what the co-founder brings to D8 — to be filled in]"
+      },
+      {
+        "name": "This could be you.",
+        "role": "Associate",
+        "bio": "At D8 we don't hire employees — we invite associates. People who understand the D8 philosophy and want to keep advancing it. The deal is simple: if we do well, you do well. If you do well, we do well. There are no founder privileges here. We're all at the same level. What matters is what you build.",
+        "invite": true
+      }
+    ]
   },
   "cta": {
     "overline": "Work with us",

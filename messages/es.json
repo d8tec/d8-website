@@ -71,16 +71,24 @@
   },
   "featuredProjects": [
     {
-      "title": "Gateway de sensores industriales",
-      "description": "Red de sensores inalámbricos que agrega datos de más de 40 nodos, con dashboard en tiempo real y actualizaciones OTA de firmware."
+      "title": "Sistema de cobro en tránsito",
+      "description": "Unidad de hardware a medida para cobro automatizado de pasajes en una flota de buses, con plataforma operacional para rastreo de rutas, consolidación de ingresos y reportería financiera. De punta a punta: diseño del chasis, firmware embebido y backend en la nube."
     },
     {
-      "title": "Inspección de calidad con IA",
-      "description": "Pipeline de inferencia en el dispositivo ejecutándose en Raspberry Pi 5. Menos de 100ms de latencia por frame, sin dependencia de la nube."
+      "title": "Plataforma de reservas para servicios personales",
+      "description": "SaaS multi-tenant para operadores independientes: agendamiento de citas, beneficios recurrentes para clientes, catálogos de servicios y productos, y una red de descubrimiento local que conecta clientes con negocios cercanos."
     },
     {
-      "title": "Plataforma operacional SaaS",
-      "description": "Plataforma multi-tenant para agendamiento, reportería y facturación de un equipo de 200 personas en operaciones de campo."
+      "title": "Plataforma de gestión para comunidades residenciales",
+      "description": "Plataforma completa para condominios con gestión de pagos, reserva de amenidades, control de acceso de visitantes y comunicación con residentes, todo bajo una arquitectura multi-tenant."
+    },
+    {
+      "title": "Bot de automatización de declaraciones tributarias",
+      "description": "Sistema de automatización que agrega datos financieros de clientes y genera declaraciones tributarias y documentos regulatorios completos. Vendido a oficinas contables para eliminar flujos documentales repetitivos en carteras de clientes."
+    },
+    {
+      "title": "Sistema de marcador para canchas de pádel",
+      "description": "Hardware con sensores en las paredes de la cancha y software de marcador en tiempo real. Compatible con juego casual, modos de liga y rotaciones tipo pozos en toda la flota de canchas de un club."
     }
   ],
   "industries": {
@@ -224,6 +232,29 @@
       "successMsg": "Recibido. Nos ponemos en contacto.",
       "errorMsg": "Algo salió mal. Escríbenos directamente a contacto@d8tec.com."
     }
+  },
+  "founders": {
+    "overline": "Los Masterminds",
+    "heading": "Los arquitectos detrás de la filosofía D8.",
+    "list": [
+      {
+        "name": "Nadir Alfaro",
+        "role": "Fundador",
+        "bio": "Ingeniero en Mecatrónica del Instituto Tecnológico de Costa Rica. Defendió su tesis en robótica en el laboratorio ICS de TUM en Múnich y trabajó en grupos de investigación en MEMS y NEMS de la misma universidad. En Estados Unidos se integró a la división de automatización de Amazon, construyendo y poniendo en marcha sistemas de transporte a gran escala para centros de distribución. Esos años afuera respondieron una pregunta que no había terminado de formularse: si un ingeniero costarricense puede operar a ese nivel allá afuera, el talento nunca fue el problema. D8 es lo que pasa cuando dejas de exportarlo y empiezas a invertir en nosotros mismos.",
+        "image": "/portraits/nads_portrait.jpeg"
+      },
+      {
+        "name": "[Nombre del Cofundador]",
+        "role": "Cofundador",
+        "bio": "[Formación, experiencia profesional y lo que el cofundador aporta a D8 — por completar]"
+      },
+      {
+        "name": "Este podrías ser tú.",
+        "role": "Asociado",
+        "bio": "En D8 no contratamos empleados, invitamos asociados. Personas que entienden la filosofía D8 y quieren seguir empujándola hacia adelante. El trato es simple: si nos va bien, te va bien. Si te va bien, nos va bien. Aquí no hay privilegios de fundador. Todos estamos al mismo nivel. Lo que importa es lo que construyes.",
+        "invite": true
+      }
+    ]
   },
   "cta": {
     "overline": "Trabaja con nosotros",

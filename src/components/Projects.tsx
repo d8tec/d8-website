@@ -7,9 +7,11 @@ import { motion, useReducedMotion, type Variants } from "framer-motion";
 type FeaturedProject = { title: string; description: string };
 
 const tags = [
-  ["ESP32", "MQTT", "React"],
-  ["Computer vision", "Edge ML", "FastAPI"],
+  ["ESP32", "React", "Cloud"],
   ["Next.js", "TypeScript", "PostgreSQL"],
+  ["Next.js", "Multi-tenant", "PostgreSQL"],
+  ["Python", "Automation", "FastAPI"],
+  ["ESP32", "React", "IoT"],
 ];
 
 export function Projects() {
