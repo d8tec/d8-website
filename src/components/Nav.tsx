@@ -16,7 +16,7 @@ export function Nav() {
   const otherCode = otherLocale.toUpperCase();
 
   const links = [
-    { href: "/services", label: t("aboutUs") },
+    { href: "/about_us", label: t("aboutUs") },
     { href: "/projects", label: t("projects") },
     { href: "/careers", label: t("careers") },
     { href: "/contact", label: t("contact") },
