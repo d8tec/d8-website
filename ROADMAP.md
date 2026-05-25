@@ -2,9 +2,9 @@
 
 > Permanent project document. Do not rewrite each session.
 > Update manually when scope changes or an objective is completed.
-> HANDOFF.md references items here by ID (e.g. `← R01`).
+> HANDOFF.md references items here by ID (e.g. `← M1.1`).
 
-Last updated: 2026-05-10
+Last updated: 2026-05-24
 
 ---
 
@@ -25,14 +25,14 @@ Core site scaffold and all five pages live.
 
 | ID | Objective | Status |
 |---|---|---|
-| R01 | Scaffold Next.js 14 project with Tailwind D8 tokens, Google Fonts (Space Grotesk / IBM Plex Sans / JetBrains Mono) | ✅ |
-| R02 | Home page — Hero, value proposition, ContactCTA | ✅ |
-| R03 | About Us (Services) page — brand story, tech focus, featured projects | ✅ |
-| R04 | Projects page — 6-industry matrix with stage tags | ✅ |
-| R05 | Careers page — principles + unsolicited application form | ✅ |
-| R06 | Contact page — contact rows + modal dialog (Name, Email, Phone, Message) | ✅ |
-| R07 | EN/ES i18n — next-intl v4, URL-based routing (`/en/`, `/es/`), full translations | ✅ |
-| R08 | SVG favicon + page title metadata (EN/ES) | ✅ |
+| M1.1 | Scaffold Next.js 14 project with Tailwind D8 tokens, Google Fonts (Space Grotesk / IBM Plex Sans / JetBrains Mono) | ✅ |
+| M1.2 | Home page — Hero, value proposition, ContactCTA | ✅ |
+| M1.3 | About Us (/about_us) page — brand story, Founders section, featured projects | ✅ |
+| M1.4 | Projects page — real project rows with process key (Research/Model/Design/Prototype) | ✅ |
+| M1.5 | Careers page — principles + unsolicited application form | ✅ |
+| M1.6 | Contact page — contact rows + modal dialog (Name, Email, Phone, Message) | ✅ |
+| M1.7 | EN/ES i18n — next-intl v4, URL-based routing (`/en/`, `/es/`), full translations | ✅ |
+| M1.8 | SVG favicon + page title metadata (EN/ES) | ✅ |
 
 ---
 
@@ -42,15 +42,15 @@ Email, hosting, and form delivery in production.
 
 | ID | Objective | Status |
 |---|---|---|
-| R09 | GitHub repository — `github.com/d8tec/d8-website` | ✅ |
-| R10 | Vercel deployment at `d8tec.com` | ✅ |
-| R11 | Resend domain verification — `d8tec.com` via Squarespace DNS | ✅ |
-| R12 | `/api/careers` — FormData POST, Resend email with optional attachment | ✅ |
-| R13 | `/api/contact` — JSON POST, Resend email from `contact@d8tec.com` | ✅ |
-| R14 | Careers form drag-and-drop file upload (4 MB, PDF/image/ZIP) | ✅ |
-| R15 | Contact modal auto-open via `?open=1` query param and `d8:open-contact` event | ✅ |
-| R16 | `RESEND_API_KEY` + `CAREERS_EMAIL` env vars active on Vercel | ✅ |
-| R17 | Set `CONTACT_EMAIL` env var explicitly on Vercel (currently using hardcoded fallback) | ✅ |
+| M2.1 | GitHub repository — `github.com/d8tec/d8-website` | ✅ |
+| M2.2 | Vercel deployment at `d8tec.com` | ✅ |
+| M2.3 | Resend domain verification — `d8tec.com` via Squarespace DNS | ✅ |
+| M2.4 | `/api/careers` — FormData POST, Resend email with optional attachment | ✅ |
+| M2.5 | `/api/contact` — JSON POST, Resend email from `contact@d8tec.com` | ✅ |
+| M2.6 | Careers form drag-and-drop file upload (4 MB, PDF/image/ZIP) | ✅ |
+| M2.7 | Contact modal auto-open via `?open=1` query param and `d8:open-contact` event | ✅ |
+| M2.8 | `RESEND_API_KEY` + `CAREERS_EMAIL` env vars active on Vercel | ✅ |
+| M2.9 | Set `CONTACT_EMAIL` env var explicitly on Vercel (currently using hardcoded fallback) | ✅ |
 
 ---
 
@@ -60,12 +60,12 @@ Quality pass before active outreach.
 
 | ID | Objective | Status |
 |---|---|---|
-| R18 | `og:image` — create asset and wire into locale layout metadata | ✅ |
-| R19 | Real LinkedIn and Instagram URLs (currently placeholders) | ⏳ |
-| R20 | Visual design iteration — style pass post-deploy | ⏳ |
-| R21 | Resolve em dashes in About Us body copy (pending explicit decision) | ✅ |
-| R22 | Monitor hero service titles at `lg:text-5xl` on 1024–1280px ("Hardware & Software" wrap risk) | ✅ |
-| R23 | Hero glow feel on very tall viewports — evaluate and adjust if needed | ✅ |
+| M3.1 | `og:image` — create asset and wire into locale layout metadata | ✅ |
+| M3.2 | Real LinkedIn and Instagram URLs (currently placeholders) | ⏳ |
+| M3.3 | Visual design iteration — style pass post-deploy | ⏳ |
+| M3.4 | Resolve em dashes in About Us body copy (pending explicit decision) | ✅ |
+| M3.5 | Monitor hero service titles at `lg:text-5xl` on 1024–1280px ("Hardware & Software" wrap risk) | ✅ |
+| M3.6 | Hero glow feel on very tall viewports — evaluate and adjust if needed | ✅ |
 
 ---
 
@@ -75,10 +75,10 @@ Real content replacing placeholder copy.
 
 | ID | Objective | Status |
 |---|---|---|
-| R24 | Projects page — real case studies with client/outcome detail | ⏳ |
-| R25 | About Us — final approved copy (no placeholder sections) | ⏳ |
-| R26 | Careers — publish open roles when hiring begins | 💡 |
-| R27 | Spanish copy review by a native speaker | 💡 |
+| M4.1 | Projects page — real case studies with client/outcome detail | ✅ |
+| M4.2 | About Us — final approved copy (no placeholder sections) | ⏳ |
+| M4.3 | Careers — publish open roles when hiring begins | 💡 |
+| M4.4 | Spanish copy review by a native speaker | 💡 |
 
 ---
 
@@ -88,11 +88,11 @@ Post-launch expansion, not required for initial outreach.
 
 | ID | Objective | Status |
 |---|---|---|
-| R28 | Analytics — privacy-respecting provider (Fathom, Plausible, or Vercel Analytics) | 💡 |
-| R29 | Blog / Insights section — thought leadership, SEO traffic | 💡 |
-| R30 | Core Web Vitals pass — LCP, CLS, INP targets | 💡 |
-| R31 | Spanish SEO strategy — `/es/` indexing, keyword targeting for CR market | 💡 |
-| R32 | Cookie / privacy notice — required if analytics added | 💡 |
+| M5.1 | Analytics — privacy-respecting provider (Fathom, Plausible, or Vercel Analytics) | 💡 |
+| M5.2 | Blog / Insights section — thought leadership, SEO traffic | 💡 |
+| M5.3 | Core Web Vitals pass — LCP, CLS, INP targets | 💡 |
+| M5.4 | Spanish SEO strategy — `/es/` indexing, keyword targeting for CR market | 💡 |
+| M5.5 | Cookie / privacy notice — required if analytics added | 💡 |
 
 ---
 
