@@ -13,8 +13,8 @@ export function generateMetadata({
     title: locale === "es" ? "Proyectos — D8" : "Projects — D8",
     description:
       locale === "es"
-        ? "D8 opera en seis industrias con el ciclo completo de ingeniería: modelado, diseño, creación y prototipado."
-        : "D8 operates across six industries with the full engineering cycle: model, design, create, prototype.",
+        ? "Cinco proyectos reales: cómo D8 investiga, modela, diseña y prototipa soluciones en hardware, software e IA."
+        : "Five real projects: how D8 researches, models, designs, and prototypes solutions across hardware, software, and AI.",
   };
 }
 

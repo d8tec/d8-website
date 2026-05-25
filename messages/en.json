@@ -92,51 +92,45 @@
     }
   ],
   "industries": {
-    "overline": "Industries",
-    "heading": "The full engineering cycle.",
-    "body": "From modeling to prototyping, across six industries where existing solutions are fragmented, overpriced, or simply missing.",
+    "overline": "Projects",
+    "heading": "How we build.",
+    "body": "Every project starts with research, not assumptions. From there we model the system, design the artifact, and validate it in the real world.",
     "process": [
-      { "num": "01", "name": "Model", "desc": "Feasibility, architecture, and system planning before anything is built." },
-      { "num": "02", "name": "Design", "desc": "Schematics, UX, hardware layouts, and detailed technical specification." },
-      { "num": "03", "name": "Create", "desc": "Firmware, software, PCBs: the production-quality artifact." },
-      { "num": "04", "name": "Prototype", "desc": "Field validation, iteration, and the handoff to deployment." }
+      { "num": "01", "name": "Research", "desc": "Map what exists, identify the gaps, and explore possible approaches before writing a line of code or cutting a trace." },
+      { "num": "02", "name": "Model", "desc": "Feasibility, architecture, and system planning. Define what gets built and how the pieces fit." },
+      { "num": "03", "name": "Design", "desc": "Schematics, UX, hardware layouts, and detailed technical specification." },
+      { "num": "04", "name": "Prototype", "desc": "Build, validate in the field, iterate, and hand off to deployment." }
     ],
     "industries": [
       {
         "tag": "01",
-        "name": "Industrial IoT",
+        "name": "Transit revenue collection system",
         "stages": [true, true, true, true],
-        "description": "Sensor networks, edge firmware, real-time data pipelines, and the operational dashboards that make them useful. D8 takes industrial IoT from first datasheet to deployed, field-proven system."
+        "description": "A bus fleet needed to collect, record, and report fare revenue without relying on manual cash handling. We researched existing fare collection systems, mapped the hardware constraints of a bus environment, and designed a custom unit from the ground up. The unit handles bill and coin intake, tamper-resistant storage, and real-time reporting to a cloud operations platform. The platform tracks fleet-wide revenue, flags anomalies, and generates the financial reports the company actually uses."
       },
       {
         "tag": "02",
-        "name": "Manufacturing & QC",
+        "name": "Personal services booking platform",
         "stages": [true, true, true, true],
-        "description": "On-device vision systems and quality inspection pipelines that run at manufacturing speed. Sub-100ms inference, no cloud dependency, designed for the line, not the server room."
+        "description": "Independent service businesses were running client relationships through spreadsheets, phone calls, and group chats. We studied how bookings, loyalty, and client history actually work in these operations, then designed a multi-tenant platform that handles all of it. Clients browse local businesses, book services, view their history, and activate recurring benefits. Owners manage their schedule, catalog, and client base from a single interface. The platform operates as a local discovery network across businesses, not just a back-office tool."
       },
       {
         "tag": "03",
-        "name": "Property Technology",
-        "stages": [false, true, true, false],
-        "description": "Resident platforms, condo administration tools, and building management software. Designed for the person who runs the building, not just the person who commissioned the software."
+        "name": "Residential community management platform",
+        "stages": [true, true, true, true],
+        "description": "Gated community administrators were managing payments, visitor access, amenity reservations, and resident communications across disconnected tools — or none at all. We mapped the full administrative workflow, then built a multi-tenant platform where residents and administrators share one system with role-appropriate views. Residents pay fees, reserve amenities, register visitors, and receive community updates. Administrators manage the building, approve requests, and keep records without paper."
       },
       {
         "tag": "04",
-        "name": "Personal Services",
-        "stages": [false, true, true, false],
-        "description": "Booking, scheduling, and service management platforms for independent operators. Designed to replace spreadsheets and group chats with tools people actually use."
+        "name": "Regulatory filing automation bot",
+        "stages": [true, false, true, true],
+        "description": "Accountants handling large client portfolios spent hours per client per period manually navigating government portals to file tax declarations. We analyzed the filing workflows for multiple declaration types, mapped the data inputs, and built an automation system that aggregates client financial data and submits completed filings without human intervention. Sold to accounting firms, it eliminates the repetitive document layer so accountants can focus on advisory work."
       },
       {
         "tag": "05",
-        "name": "Field Operations",
-        "stages": [false, true, true, false],
-        "description": "Operations platforms for companies that coordinate people and assets in the field: scheduling, dispatch, billing, and the reporting that keeps management informed."
-      },
-      {
-        "tag": "06",
-        "name": "R&D & Deep Tech",
+        "name": "Padel court scoring system",
         "stages": [true, true, true, true],
-        "description": "Feasibility work, novel systems, and first-of-kind builds. When the problem is undefined or the technology doesn't yet exist, D8 builds the evidence that makes the next decision possible."
+        "description": "Padel clubs had no reliable way to track live match scores on casual courts, forcing players to keep score in their heads or lose track entirely. We researched existing solutions, found them either too expensive or too fragile for daily club use, and built our own. Pressure sensors mounted on court walls detect wall strikes in real time. A companion display shows the live score, tracks game history, and supports multiple formats including pozos rotation for club nights. The system installs on existing courts without structural modification."
       }
     ]
   },

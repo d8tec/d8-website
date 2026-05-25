@@ -92,51 +92,45 @@
     }
   ],
   "industries": {
-    "overline": "Industrias",
-    "heading": "El ciclo completo de ingeniería.",
-    "body": "Del modelado al prototipado, en seis industrias donde las soluciones existentes están fragmentadas, son costosas o simplemente no existen.",
+    "overline": "Proyectos",
+    "heading": "Cómo construimos.",
+    "body": "Todo proyecto empieza con investigación, no con suposiciones. Desde ahí modelamos el sistema, diseñamos el artefacto y lo validamos en el mundo real.",
     "process": [
-      { "num": "01", "name": "Modelo", "desc": "Factibilidad, arquitectura y planificación del sistema antes de construir nada." },
-      { "num": "02", "name": "Diseño", "desc": "Esquemáticos, UX, distribución de hardware y especificación técnica detallada." },
-      { "num": "03", "name": "Crear", "desc": "Firmware, software, PCBs: el artefacto de calidad de producción." },
-      { "num": "04", "name": "Prototipo", "desc": "Validación en campo, iteración y transferencia al despliegue." }
+      { "num": "01", "name": "Investigación", "desc": "Mapear lo que existe, identificar las brechas y explorar enfoques posibles antes de escribir una línea de código o cortar una traza." },
+      { "num": "02", "name": "Modelo", "desc": "Factibilidad, arquitectura y planificación del sistema. Definir qué se construye y cómo encajan las piezas." },
+      { "num": "03", "name": "Diseño", "desc": "Esquemáticos, UX, distribución de hardware y especificación técnica detallada." },
+      { "num": "04", "name": "Prototipo", "desc": "Construir, validar en campo, iterar y transferir al despliegue." }
     ],
     "industries": [
       {
         "tag": "01",
-        "name": "IoT Industrial",
+        "name": "Sistema de cobro en tránsito",
         "stages": [true, true, true, true],
-        "description": "Redes de sensores, firmware en el edge, pipelines de datos en tiempo real y los dashboards operacionales que los hacen útiles. D8 lleva el IoT industrial del primer datasheet al sistema desplegado y probado en campo."
+        "description": "Una flota de buses necesitaba recolectar, registrar y reportar ingresos sin depender del manejo manual de efectivo. Investigamos sistemas de cobro existentes a nivel global, mapeamos las restricciones del entorno de un bus y diseñamos una unidad a medida desde cero. La unidad maneja recepción de billetes y monedas, almacenamiento inviolable y reportería en tiempo real a una plataforma operacional en la nube. La plataforma rastrea los ingresos de toda la flota, detecta anomalías y genera los reportes financieros que la empresa realmente usa."
       },
       {
         "tag": "02",
-        "name": "Manufactura y Control de Calidad",
+        "name": "Plataforma de reservas para servicios personales",
         "stages": [true, true, true, true],
-        "description": "Sistemas de visión en el dispositivo y pipelines de inspección de calidad que corren a velocidad de manufactura. Inferencia en menos de 100ms, sin dependencia de la nube, diseñados para la línea, no para el cuarto de servidores."
+        "description": "Los negocios de servicios independientes manejaban sus relaciones con clientes a través de hojas de cálculo, llamadas y grupos de chat. Estudiamos cómo funcionan realmente las reservas, la fidelización y el historial de clientes en estas operaciones, y diseñamos una plataforma multi-tenant que lo resuelve todo. Los clientes buscan negocios locales, reservan servicios, ven su historial y activan beneficios recurrentes. Los dueños administran su agenda, catálogo y base de clientes desde una sola interfaz. La plataforma opera como una red de descubrimiento local entre negocios."
       },
       {
         "tag": "03",
-        "name": "Tecnología Inmobiliaria",
-        "stages": [false, true, true, false],
-        "description": "Plataformas para residentes, herramientas de administración de condominios y software de gestión de edificios. Diseñado para quien administra el edificio, no solo para quien encargó el software."
+        "name": "Plataforma de gestión para comunidades residenciales",
+        "stages": [true, true, true, true],
+        "description": "Los administradores de condominios manejaban pagos, acceso de visitantes, reservas de amenidades y comunicación con residentes en herramientas desconectadas, o sin ninguna. Mapeamos el flujo administrativo completo y construimos una plataforma multi-tenant donde residentes y administradores comparten un mismo sistema con vistas ajustadas a su rol. Los residentes pagan cuotas, reservan amenidades, registran visitantes y reciben noticias del condominio. Los administradores gestionan el edificio, aprueban solicitudes y mantienen registros sin papel."
       },
       {
         "tag": "04",
-        "name": "Servicios Personales",
-        "stages": [false, true, true, false],
-        "description": "Plataformas de reservas, agendamiento y gestión de servicios para operadores independientes. Diseñado para reemplazar hojas de cálculo y grupos de WhatsApp con herramientas que la gente realmente usa."
+        "name": "Bot de automatización de declaraciones tributarias",
+        "stages": [true, false, true, true],
+        "description": "Los contadores con carteras grandes de clientes invertían horas por cliente por período navegando portales del gobierno para presentar declaraciones tributarias. Analizamos los flujos de declaración para múltiples tipos de documentos, mapeamos los datos de entrada y construimos un sistema de automatización que agrega datos financieros y envía declaraciones completas sin intervención humana. Vendido a oficinas contables, elimina la capa documental repetitiva para que los contadores puedan enfocarse en el trabajo de asesoría."
       },
       {
         "tag": "05",
-        "name": "Operaciones de Campo",
-        "stages": [false, true, true, false],
-        "description": "Plataformas operacionales para empresas que coordinan personas y activos en campo: agendamiento, despacho, facturación y la reportería que mantiene informada a la gerencia."
-      },
-      {
-        "tag": "06",
-        "name": "R&D y Deep Tech",
+        "name": "Sistema de marcador para canchas de pádel",
         "stages": [true, true, true, true],
-        "description": "Trabajo de factibilidad, sistemas novedosos y proyectos únicos en su tipo. Cuando el problema no está definido o la tecnología aún no existe, D8 construye la evidencia que permite tomar la siguiente decisión."
+        "description": "Los clubes de pádel no tenían forma confiable de registrar marcadores en vivo en canchas de juego casual, obligando a los jugadores a llevar el marcador de memoria o perderlo. Investigamos soluciones existentes, encontramos que eran demasiado costosas o frágiles para el uso diario de un club, y construimos la nuestra. Sensores de presión montados en las paredes de la cancha detectan golpes en tiempo real. Una pantalla muestra el marcador en vivo, registra el historial de partidos y soporta múltiples formatos incluyendo el modo pozos para noches de club. El sistema se instala en canchas existentes sin modificación estructural."
       }
     ]
   },
