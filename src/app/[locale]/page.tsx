@@ -1,8 +1,8 @@
 import { Nav } from "@/components/Nav";
-import { Hero } from "@/components/Hero";
+import { Hero, ServicePanels } from "@/components/Hero";
 import { ContactCTA } from "@/components/ContactCTA";
 import { Footer } from "@/components/Footer";
-import { ServicesMarquee, ProcessMarquee, TechMarquee } from "@/components/Marquee";
+import { ServicesMarquee } from "@/components/Marquee";
 
 export default function HomePage() {
   return (
@@ -11,9 +11,9 @@ export default function HomePage() {
       <main id="main-content">
         <Hero />
         <ServicesMarquee />
-        <ProcessMarquee />
+        <ServicePanels />
+        <ServicesMarquee />
         <ContactCTA />
-        <TechMarquee />
       </main>
       <Footer />
     </>

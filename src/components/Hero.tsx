@@ -1,10 +1,11 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, type RefObject } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { useScrollLinkedBg, arrowNudge } from "@/lib/animations";
+import { useScrollLinkedBg, arrowNudge, useMagneticButton } from "@/lib/animations";
+import { useHeartbeatDot, useAnimeScramble } from "@/lib/animePatterns";
 
 type Service = {
   tag: string;
@@ -15,10 +16,12 @@ type Service = {
 
 export function Hero() {
   const t = useTranslations("hero");
-  const services = t.raw("services") as Service[];
   const shouldReduceMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
   const { y: glowY, opacity: glowOpacity } = useScrollLinkedBg(sectionRef);
+  const mag = useMagneticButton(0.3);
+  const heartbeat = useHeartbeatDot();
+  const scramble = useAnimeScramble();
   const fade: Variants = {
     hidden: { opacity: 0, y: 16 },
     show: (i: number) => ({
@@ -30,25 +33,6 @@ export function Hero() {
         ease: "easeOut" as const,
       },
     }),
-  };
-
-  const panelContainer: Variants = {
-    hidden: {},
-    show: {
-      transition: {
-        delayChildren: shouldReduceMotion ? 0 : 0.55,
-        staggerChildren: shouldReduceMotion ? 0 : 0.09,
-      },
-    },
-  };
-
-  const panelItem: Variants = {
-    hidden: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 14 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: shouldReduceMotion ? 0 : 0.45, ease: "easeOut" as const },
-    },
   };
 
   return (
@@ -64,10 +48,20 @@ export function Hero() {
           initial="hidden"
           animate="show"
           variants={fade}
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-d8-purple bg-d8-surface px-5 py-2"
+          onAnimationComplete={shouldReduceMotion ? undefined : () => scramble.trigger()}
+          className="relative mb-6 inline-flex items-center gap-2 overflow-hidden rounded-full border border-d8-purple bg-d8-surface px-5 py-2"
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-d8-purple" />
-          <span className="font-mono text-xs tracking-widest uppercase text-d8-purple-light">
+          {!shouldReduceMotion && (
+            <motion.span
+              aria-hidden
+              className="pointer-events-none absolute inset-0 rounded-full bg-d8-purple"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 0.15, 0] }}
+              transition={{ duration: 1.5, ease: "easeInOut", repeat: Infinity, delay: 0.6 }}
+            />
+          )}
+          <span ref={shouldReduceMotion ? undefined : heartbeat} className="relative z-10 h-1.5 w-1.5 rounded-full bg-d8-purple" />
+          <span ref={shouldReduceMotion ? undefined : scramble.ref} className="relative z-10 font-mono text-xs tracking-widest uppercase text-d8-purple-light">
             {t("badge")}
           </span>
         </motion.div>
@@ -100,12 +94,19 @@ export function Hero() {
           variants={fade}
           className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
         >
-          <Link
-            href="/contact"
-            className="rounded-sm bg-d8-purple px-6 py-3 font-body text-sm font-medium text-white transition-opacity hover:opacity-90"
+          <motion.div
+            ref={mag.ref as RefObject<HTMLDivElement>}
+            style={shouldReduceMotion ? {} : { x: mag.x, y: mag.y }}
+            onMouseMove={shouldReduceMotion ? undefined : mag.handleMouseMove}
+            onMouseLeave={shouldReduceMotion ? undefined : mag.handleMouseLeave}
           >
-            {t("cta1")}
-          </Link>
+            <Link
+              href="/contact"
+              className="block rounded-sm bg-d8-purple px-6 py-3 font-body text-sm font-medium text-white transition-opacity hover:opacity-90"
+            >
+              {t("cta1")}
+            </Link>
+          </motion.div>
           <motion.div className="inline-block" initial="rest" whileHover="hover">
             <Link
               href="/about_us"
@@ -117,51 +118,81 @@ export function Hero() {
           </motion.div>
         </motion.div>
       </div>
+    </section>
+  );
+}
 
-      <motion.div
-        variants={panelContainer}
-        initial="hidden"
-        animate="show"
-        className="relative z-10 mt-20 w-full max-w-7xl text-left"
-      >
-        <div className="divide-y divide-d8-border border-y border-d8-border">
-          {services.map(({ tag, title, description, capabilities }) => (
-            <motion.div
-              key={tag}
-              variants={panelItem}
-              whileHover={{ scale: 1.016, transition: { duration: 0.3, ease: [0, 0, 0.5, 1] } }}
-              className="group -mx-4 grid cursor-default grid-cols-[3rem_1fr] gap-x-6 gap-y-6 px-4 py-12 transition-colors duration-200 hover:bg-d8-surface md:-mx-6 md:grid-cols-[3rem_2fr_3fr] md:items-start md:gap-x-14 md:gap-y-0 md:px-6"
-            >
-              <span className="mt-[0.3rem] font-mono text-sm font-semibold text-d8-purple-light md:mt-[0.55rem]">
-                {tag}
-              </span>
-              <h2 className="font-heading text-2xl font-semibold leading-none tracking-tight text-d8-text-primary transition-colors duration-200 group-hover:text-d8-purple-light md:text-3xl lg:text-5xl">
-                {title}
-              </h2>
-              <div className="col-span-2 pl-[4.5rem] md:col-auto md:pl-0">
-                <p className="font-body text-sm leading-relaxed text-d8-text-secondary">
-                  {description}
-                </p>
-                <ul className="mt-5 flex flex-col gap-2">
-                  {capabilities.map((cap) => (
-                    <li key={cap} className="flex items-start gap-3">
-                      <span
-                        className="mt-[7px] h-1 w-1 flex-shrink-0 rounded-full bg-d8-purple"
-                        aria-hidden="true"
-                      />
-                      <span className="font-body text-sm text-d8-text-secondary">
-                        {cap}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
+export function ServicePanels() {
+  const t = useTranslations("hero");
+  const services = t.raw("services") as Service[];
+  const shouldReduceMotion = useReducedMotion();
 
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-d8-bg to-transparent" />
+  const panelContainer: Variants = {
+    hidden: {},
+    show: {
+      transition: {
+        delayChildren: shouldReduceMotion ? 0 : 0.2,
+        staggerChildren: shouldReduceMotion ? 0 : 0.09,
+      },
+    },
+  };
+
+  const panelItem: Variants = {
+    hidden: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 14 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: shouldReduceMotion ? 0 : 0.45, ease: "easeOut" as const },
+    },
+  };
+
+  return (
+    <section className="px-6">
+      <div className="mx-auto w-full max-w-7xl">
+        <motion.div
+          variants={panelContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          className="w-full text-left"
+        >
+          <div className="divide-y divide-d8-border">
+            {services.map(({ tag, title, description, capabilities }) => (
+              <motion.div
+                key={tag}
+                variants={panelItem}
+                whileHover={{ scale: 1.016, transition: { duration: 0.3, ease: [0, 0, 0.5, 1] } }}
+                className="group -mx-4 grid cursor-default grid-cols-[3rem_1fr] gap-x-6 gap-y-6 px-4 py-12 transition-colors duration-200 hover:bg-d8-surface md:-mx-6 md:grid-cols-[3rem_2fr_3fr] md:items-start md:gap-x-14 md:gap-y-0 md:px-6"
+              >
+                <span className="mt-[0.3rem] font-mono text-sm font-semibold text-d8-purple-light md:mt-[0.55rem]">
+                  {tag}
+                </span>
+                <h2 className="font-heading text-2xl font-semibold leading-none tracking-tight text-d8-text-primary transition-colors duration-200 group-hover:text-d8-purple-light md:text-3xl lg:text-5xl">
+                  {title}
+                </h2>
+                <div className="col-span-2 pl-[4.5rem] md:col-auto md:pl-0">
+                  <p className="font-body text-sm leading-relaxed text-d8-text-secondary">
+                    {description}
+                  </p>
+                  <ul className="mt-5 flex flex-col gap-2">
+                    {capabilities.map((cap) => (
+                      <li key={cap} className="flex items-start gap-3">
+                        <span
+                          className="mt-[7px] h-1 w-1 flex-shrink-0 rounded-full bg-d8-purple"
+                          aria-hidden="true"
+                        />
+                        <span className="font-body text-sm text-d8-text-secondary">
+                          {cap}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }

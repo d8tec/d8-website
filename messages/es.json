@@ -10,23 +10,12 @@
     "badge": "Soluciones de Ingeniería",
     "heading1": "Construimos lo que otros",
     "heading2": "no logran dimensionar.",
-    "body": "D8 opera en R&D, sistemas embebidos, desarrollo web y app, e IA, de punta a punta, del concepto al despliegue. Tomamos los problemas difíciles y entregamos soluciones que funcionan.",
+    "body": "D8 asume los problemas difíciles y entrega soluciones que funcionan, del concepto al despliegue. Desarrollamos soluciones de ingeniería reales en campos multidisciplinarios y distintas industrias. Tráelo — saldrá bajo los Estándares D8.",
     "cta1": "Iniciar un proyecto",
     "cta2": "Nosotros",
     "services": [
       {
         "tag": "01",
-        "title": "R&D",
-        "description": "Vamos primero. Cuando el problema no está definido o la tecnología para resolverlo aún no existe, construimos la evidencia que permite tomar la siguiente decisión. D8 asume trabajo ambiguo y entrega algo sobre lo que puedes construir.",
-        "capabilities": [
-          "Estudios de factibilidad y selección de tecnología",
-          "Prototipado embebido y mecánico",
-          "Validación en campo e instrumentación de pruebas",
-          "Transferencia de investigación a producción"
-        ]
-      },
-      {
-        "tag": "02",
         "title": "Hardware & Software",
         "description": "La mayoría de los proveedores hacen un lado. D8 hace ambos, en un equipo, sin el costo de integración. Del PCB al dashboard en la nube, somos dueños del stack completo hardware-software y eliminamos las brechas entre capas.",
         "capabilities": [
@@ -37,7 +26,7 @@
         ]
       },
       {
-        "tag": "03",
+        "tag": "02",
         "title": "Web & App",
         "description": "Plataformas que operan, no solo muestran. Agendamiento, facturación, datos multi-tenant, los sistemas que hacen funcionar un negocio día a día. Construidas para escalar y mantenidas por un equipo que entiende la arquitectura.",
         "capabilities": [
@@ -48,7 +37,7 @@
         ]
       },
       {
-        "tag": "04",
+        "tag": "03",
         "title": "AI & Data",
         "description": "No es un wrapper sobre un modelo existente. Pipelines de inferencia reales, despliegue en el edge y sistemas de datos construidos para las preguntas que realmente necesitas responder. Entrenamos, desplegamos y mantenemos modelos útiles con el tiempo.",
         "capabilities": [
@@ -56,6 +45,17 @@
           "Inferencia en el edge sobre hardware de bajo consumo (Raspberry Pi, ESP32)",
           "Pipelines de datos, procesos ETL y diseño de warehouse",
           "Dashboards de decisión y reportería automatizada"
+        ]
+      },
+      {
+        "tag": "04",
+        "title": "R&D",
+        "description": "Investigación y Desarrollo — vamos primero. Cuando el problema no está definido o la tecnología para resolverlo aún no existe, construimos la evidencia que permite tomar la siguiente decisión. D8 asume trabajo ambiguo y entrega algo sobre lo que puedes construir.",
+        "capabilities": [
+          "Estudios de factibilidad y selección de tecnología",
+          "Prototipado embebido y mecánico",
+          "Validación en campo e instrumentación de pruebas",
+          "Transferencia de investigación a producción"
         ]
       }
     ]
@@ -257,7 +257,7 @@
     "cta": "Escríbenos"
   },
   "footer": {
-    "tagline": "R&D, hardware, software e IA. Sin transferencias, sin atajos.",
+    "tagline": "Soluciones de Ingeniería Funcionales. Sin transferencias, sin atajos.",
     "copyright": "Todos los derechos reservados."
   }
 }

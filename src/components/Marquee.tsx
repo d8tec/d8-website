@@ -2,20 +2,28 @@
 
 import { useReducedMotion } from "framer-motion";
 
-const servicesItems = [
-  "R&D", "Hardware Integration", "Firmware", "Embedded Systems",
-  "Web Development", "App Development", "AI & Data", "Cloud Infrastructure",
-  "ESP32", "React", "Next.js", "FastAPI", "Python", "TypeScript",
-];
-
-const processItems = [
-  "01 Discovery", "02 Architecture", "03 Build", "04 Delivery",
-  "01 Discovery", "02 Architecture", "03 Build", "04 Delivery",
-];
-
-const techItems = [
-  "React", "Next.js", "TypeScript", "Python", "FastAPI", "PostgreSQL",
-  "ESP32", "STM32", "MQTT", "Docker", "Vercel", "Node.js", "TailwindCSS", "Framer Motion",
+const serviceItems = [
+  "Research",
+  "Embedded Systems",
+  "Firmware",
+  "Real-Time Systems",
+  "Custom Hardware",
+  "Sensor Networks",
+  "IoT Solutions",
+  "Industry 4.0",
+  "Industrial Automation",
+  "Robotics",
+  "Protocol Engineering",
+  "Systems Integration",
+  "Edge AI",
+  "Computer Vision",
+  "Predictive Analytics",
+  "Data Analysis",
+  "AI",
+  "Web Development",
+  "App Development",
+  "Cloud-Based Solutions",
+  "Digital Twins",
 ];
 
 interface MarqueeTrackProps {
@@ -24,7 +32,7 @@ interface MarqueeTrackProps {
   reverse?: boolean;
 }
 
-function MarqueeTrack({ items, speed = 25, reverse = false }: MarqueeTrackProps) {
+function MarqueeTrack({ items, speed = 20, reverse = false }: MarqueeTrackProps) {
   const shouldReduceMotion = useReducedMotion();
   const doubled = [...items, ...items];
 
@@ -38,7 +46,7 @@ function MarqueeTrack({ items, speed = 25, reverse = false }: MarqueeTrackProps)
         {doubled.map((item, i) => (
           <span
             key={i}
-            className="flex-shrink-0 inline-flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-widest text-d8-text-dim"
+            className="flex-shrink-0 inline-flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-widest text-d8-text-primary"
           >
             <span className="h-[3px] w-[3px] rounded-full bg-d8-purple flex-shrink-0" />
             {item}
@@ -51,24 +59,8 @@ function MarqueeTrack({ items, speed = 25, reverse = false }: MarqueeTrackProps)
 
 export function ServicesMarquee() {
   return (
-    <div className="border-y border-d8-border bg-d8-surface py-3.5">
-      <MarqueeTrack items={servicesItems} speed={32} />
-    </div>
-  );
-}
-
-export function ProcessMarquee() {
-  return (
-    <div className="border-y border-d8-border py-3.5">
-      <MarqueeTrack items={processItems} speed={18} reverse />
-    </div>
-  );
-}
-
-export function TechMarquee() {
-  return (
-    <div className="border-t border-d8-border bg-d8-surface py-3.5">
-      <MarqueeTrack items={techItems} speed={26} />
+    <div className="border-y border-d8-border bg-d8-bg py-3.5">
+      <MarqueeTrack items={serviceItems} speed={20} />
     </div>
   );
 }

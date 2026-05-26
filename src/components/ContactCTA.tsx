@@ -1,13 +1,15 @@
 "use client";
 
+import { type RefObject } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
 import { motion, useReducedMotion } from "framer-motion";
-import { pillMaterialise, arrowNudge } from "@/lib/animations";
+import { pillMaterialise, arrowNudge, useMagneticButton } from "@/lib/animations";
 
 export function ContactCTA() {
   const t = useTranslations("cta");
   const shouldReduceMotion = useReducedMotion();
+  const mag = useMagneticButton(0.3);
 
   return (
     <section className="border-t border-d8-border px-6 py-24">
@@ -28,7 +30,15 @@ export function ContactCTA() {
           <p className="font-body text-sm leading-relaxed text-d8-text-secondary">
             {t("body")}
           </p>
-          <motion.div className="mt-2 inline-block" initial="rest" whileHover="hover">
+          <motion.div
+            ref={mag.ref as RefObject<HTMLDivElement>}
+            className="mt-2 inline-block"
+            initial="rest"
+            whileHover="hover"
+            style={shouldReduceMotion ? {} : { x: mag.x, y: mag.y }}
+            onMouseMove={shouldReduceMotion ? undefined : mag.handleMouseMove}
+            onMouseLeave={shouldReduceMotion ? undefined : mag.handleMouseLeave}
+          >
             <Link
               href="/contact?open=1"
               className="inline-flex items-center gap-2 rounded-sm bg-d8-purple px-8 py-3 font-body text-sm font-medium text-white transition-opacity hover:opacity-90"
