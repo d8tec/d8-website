@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import "../globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -74,6 +75,7 @@ export default async function LocaleLayout({
     >
       <body>
         <NextIntlClientProvider messages={messages}>
+          <ScrollProgress />
           <a href="#main-content" className="skip-to-content">
             {locale === "es" ? "Ir al contenido" : "Skip to content"}
           </a>

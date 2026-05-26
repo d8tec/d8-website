@@ -1,4 +1,5 @@
-import { type Variants, useScroll, useTransform, useMotionValue } from "framer-motion";
+import { type Variants, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
+import { useRef } from "react";
 import type { RefObject } from "react";
 
 // D8 timing conventions
@@ -372,3 +373,56 @@ export const pillMaterialise: Variants = {
     transition: { duration: 0.6, ease: D8_EASE },
   },
 };
+
+// ─── 22. Magnetic button cursor drift ────────────────────────────────────────
+// Source: animejs.com interactive demos — element drifts toward cursor with
+// spring physics. Returns ref + x/y motion values + mouse handlers.
+// Usage: spread handlers onto the element; apply x/y as motion style props.
+
+export function useMagneticButton(strength = 0.35) {
+  const ref = useRef<HTMLElement>(null);
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
+  const x = useSpring(rawX, { stiffness: 320, damping: 28 });
+  const y = useSpring(rawY, { stiffness: 320, damping: 28 });
+
+  function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    rawX.set((e.clientX - rect.left - rect.width / 2) * strength);
+    rawY.set((e.clientY - rect.top - rect.height / 2) * strength);
+  }
+
+  function handleMouseLeave() {
+    rawX.set(0);
+    rawY.set(0);
+  }
+
+  return { ref, x, y, handleMouseMove, handleMouseLeave };
+}
+
+// ─── 23. 3D card tilt on mouse move ──────────────────────────────────────────
+// Source: animejs.com card demos — rotateX/Y spring-tracked to cursor position
+// within the card boundary. Apply with transformPerspective on the element.
+
+export function useCardTilt(maxAngle = 8) {
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
+  const rotateX = useSpring(rawX, { stiffness: 320, damping: 28 });
+  const rotateY = useSpring(rawY, { stiffness: 320, damping: 28 });
+
+  function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const nx = (e.clientX - rect.left) / rect.width - 0.5;
+    const ny = (e.clientY - rect.top) / rect.height - 0.5;
+    rawY.set(nx * maxAngle * 2);
+    rawX.set(-ny * maxAngle * 2);
+  }
+
+  function handleMouseLeave() {
+    rawX.set(0);
+    rawY.set(0);
+  }
+
+  return { rotateX, rotateY, handleMouseMove, handleMouseLeave };
+}

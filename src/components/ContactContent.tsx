@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { motion, AnimatePresence, useReducedMotion, type Variants } from "framer-motion";
+import { sweepReveal, dropInStagger, dropIn, gradientBorderReveal } from "@/lib/animations";
 
 type ContactFormValues = {
   name: string;
@@ -91,11 +92,6 @@ export function ContactContent() {
     }
   }
 
-  const fade: Variants = {
-    hidden: {},
-    show: { transition: { staggerChildren: shouldReduceMotion ? 0 : 0.09 } },
-  };
-
   const item: Variants = {
     hidden: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 12 },
     show: {
@@ -112,20 +108,24 @@ export function ContactContent() {
       {/* Page header */}
       <section className="px-6 pt-40 pb-16">
         <div className="mx-auto max-w-7xl">
-          <motion.div variants={fade} initial="hidden" animate="show" className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5">
             <motion.span
-              variants={item}
-              className="font-mono text-xs uppercase tracking-widest text-d8-purple-light"
+              variants={sweepReveal}
+              initial={shouldReduceMotion ? false : "hidden"}
+              animate="visible"
+              className="inline-block font-mono text-xs uppercase tracking-widest text-d8-purple-light"
             >
               {t("overline")}
             </motion.span>
             <motion.h1
               variants={item}
+              initial="hidden"
+              animate="show"
               className="font-heading text-4xl font-semibold leading-tight tracking-tight text-d8-text-primary sm:text-5xl"
             >
               {t("heading")}
             </motion.h1>
-            <motion.div variants={item} className="flex flex-col gap-2 pt-2">
+            <motion.div variants={item} initial="hidden" animate="show" className="flex flex-col gap-2 pt-2">
               <p className="max-w-xl font-body text-sm leading-relaxed text-d8-text-secondary">
                 {t("foundationBody")}
               </p>
@@ -133,7 +133,7 @@ export function ContactContent() {
                 {t("foundationVerse")}
               </p>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -141,18 +141,25 @@ export function ContactContent() {
       <section className="border-t border-d8-border px-6 pb-24 pt-16">
         <div className="mx-auto max-w-7xl">
           <motion.div
-            variants={fade}
-            initial="hidden"
-            animate="show"
+            variants={dropInStagger}
+            initial={shouldReduceMotion ? false : "hidden"}
+            animate="visible"
+            transition={shouldReduceMotion ? undefined : { delayChildren: 0.1, staggerChildren: 0.08 }}
             className="grid grid-cols-1 gap-3 md:grid-cols-3"
           >
             {/* Email — span 2, primary action */}
             <motion.button
-              variants={item}
+              variants={dropIn}
               type="button"
               onClick={openModal}
-              className="md:col-span-2 flex flex-col gap-3 border border-d8-border bg-d8-surface p-8 text-left group transition-colors hover:border-d8-purple/40 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-d8-purple"
+              whileHover="hover"
+              className="relative md:col-span-2 flex flex-col gap-3 border border-d8-border bg-d8-surface p-8 text-left group transition-colors hover:border-d8-purple/40 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-d8-purple"
             >
+              <motion.div
+                variants={gradientBorderReveal}
+                initial="rest"
+                className="absolute inset-0 pointer-events-none bg-d8-purple/[0.04]"
+              />
               <span className="font-mono text-xs uppercase tracking-wider text-d8-purple-light">
                 {t("rows.emailLabel")}
               </span>
@@ -165,7 +172,7 @@ export function ContactContent() {
             </motion.button>
 
             {/* Phone */}
-            <motion.div variants={item} className="flex flex-col gap-6 border border-d8-border bg-d8-surface p-8">
+            <motion.div variants={dropIn} className="flex flex-col gap-6 border border-d8-border bg-d8-surface p-8">
               {["+506 6048-1496", "+506 7275-3532"].map((number) => (
                 <div key={number} className="flex flex-col gap-1">
                   <span className="font-mono text-xs uppercase tracking-wider text-d8-purple-light">
@@ -182,7 +189,7 @@ export function ContactContent() {
             </motion.div>
 
             {/* Location */}
-            <motion.div variants={item} className="flex flex-col gap-2 border border-d8-border bg-d8-surface p-8">
+            <motion.div variants={dropIn} className="flex flex-col gap-2 border border-d8-border bg-d8-surface p-8">
               <span className="font-mono text-xs uppercase tracking-wider text-d8-purple-light">
                 {t("rows.locationLabel")}
               </span>
@@ -192,7 +199,7 @@ export function ContactContent() {
             </motion.div>
 
             {/* Hours */}
-            <motion.div variants={item} className="flex flex-col gap-2 border border-d8-border bg-d8-surface p-8">
+            <motion.div variants={dropIn} className="flex flex-col gap-2 border border-d8-border bg-d8-surface p-8">
               <span className="font-mono text-xs uppercase tracking-wider text-d8-purple-light">
                 {t("rows.hoursLabel")}
               </span>
@@ -202,7 +209,7 @@ export function ContactContent() {
             </motion.div>
 
             {/* Socials */}
-            <motion.div variants={item} className="flex flex-col gap-6 border border-d8-border bg-d8-surface p-8">
+            <motion.div variants={dropIn} className="flex flex-col gap-6 border border-d8-border bg-d8-surface p-8">
               {socials.map(({ name, handle, href }) => (
                 <div key={name} className="flex flex-col gap-1">
                   <span className="font-mono text-xs uppercase tracking-wider text-d8-purple-light">

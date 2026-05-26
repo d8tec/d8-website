@@ -2,7 +2,8 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { sweepReveal, floatingCardContainer, floatingCardEntrance } from "@/lib/animations";
 
 type FeaturedProject = { title: string; description: string };
 
@@ -20,27 +21,19 @@ export function Projects() {
   const tAbout = useTranslations("about");
   const shouldReduceMotion = useReducedMotion();
 
-  const containerVariants: Variants = {
-    hidden: {},
-    show: { transition: { staggerChildren: shouldReduceMotion ? 0 : 0.1 } },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: shouldReduceMotion ? 0 : 0.45, ease: "easeOut" as const },
-    },
-  };
-
   return (
     <section className="border-t border-d8-border py-28 px-6">
       <div className="mx-auto max-w-7xl">
         <div className="mb-16 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <h2 className="font-heading text-3xl font-semibold text-d8-text-primary tracking-tight">
+          <motion.h2
+            variants={sweepReveal}
+            initial={shouldReduceMotion ? false : "hidden"}
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="font-heading text-3xl font-semibold text-d8-text-primary tracking-tight"
+          >
             {tAbout("selectedWork")}
-          </h2>
+          </motion.h2>
           <Link
             href="/projects"
             className="py-2 -my-2 font-body text-sm text-d8-text-secondary underline-offset-4 hover:text-d8-purple hover:underline"
@@ -50,16 +43,17 @@ export function Projects() {
         </div>
 
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
+          variants={floatingCardContainer}
+          initial={shouldReduceMotion ? false : "hidden"}
+          whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
           className="flex flex-col divide-y divide-d8-border border-y border-d8-border"
         >
           {projects.map(({ title, description }, i) => (
             <motion.div
               key={title}
-              variants={itemVariants}
+              variants={floatingCardEntrance}
+              whileHover={{ scale: 1.016, transition: { duration: 0.3, ease: [0, 0, 0.5, 1] } }}
               className="group flex flex-col gap-3 py-8 transition-colors hover:bg-d8-bg md:flex-row md:items-start md:gap-12 md:px-4"
             >
               <div className="flex-1">

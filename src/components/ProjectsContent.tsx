@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { sweepReveal, splitLineLine } from "@/lib/animations";
 
 type ProcessStage = { num: string; name: string; desc: string };
 type Industry = {
@@ -16,11 +17,6 @@ export function ProjectsContent() {
   const processStages = t.raw("process") as ProcessStage[];
   const industries = t.raw("industries") as Industry[];
   const shouldReduceMotion = useReducedMotion();
-
-  const headerFade: Variants = {
-    hidden: {},
-    show: { transition: { staggerChildren: shouldReduceMotion ? 0 : 0.1 } },
-  };
 
   const headerItem: Variants = {
     hidden: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 12 },
@@ -50,31 +46,33 @@ export function ProjectsContent() {
       {/* Page header */}
       <section className="px-6 pb-20 pt-40">
         <div className="mx-auto max-w-7xl">
-          <motion.div
-            variants={headerFade}
-            initial="hidden"
-            animate="show"
-            className="flex flex-col gap-5 max-w-4xl"
-          >
+          <div className="flex flex-col gap-5 max-w-4xl">
             <motion.span
-              variants={headerItem}
-              className="font-mono text-xs uppercase tracking-widest text-d8-purple-light"
+              variants={sweepReveal}
+              initial={shouldReduceMotion ? false : "hidden"}
+              animate="visible"
+              className="inline-block font-mono text-xs uppercase tracking-widest text-d8-purple-light"
             >
               {t("overline")}
             </motion.span>
             <motion.h1
-              variants={headerItem}
+              variants={splitLineLine}
+              initial={shouldReduceMotion ? false : "hidden"}
+              animate="visible"
+              transition={shouldReduceMotion ? undefined : { duration: 0.7, delay: 0.15, ease: [0.85, 0.09, 0.15, 0.91] }}
               className="font-heading text-4xl font-semibold leading-tight tracking-tight text-d8-text-primary text-balance sm:text-5xl"
             >
               {t("heading")}
             </motion.h1>
             <motion.p
               variants={headerItem}
+              initial="hidden"
+              animate="show"
               className="max-w-2xl font-body text-base leading-relaxed text-d8-text-secondary"
             >
               {t("body")}
             </motion.p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -114,6 +112,7 @@ export function ProjectsContent() {
               <motion.div
                 key={tag}
                 variants={itemVariants}
+                whileHover={{ scale: 1.016, transition: { duration: 0.3, ease: [0, 0, 0.5, 1] } }}
                 className="group -mx-4 grid cursor-default grid-cols-[3rem_1fr] gap-x-6 gap-y-6 px-4 py-12 transition-colors duration-200 hover:bg-d8-surface md:-mx-6 md:grid-cols-[3rem_2fr_3fr] md:items-start md:gap-x-14 md:gap-y-0 md:px-6"
               >
                 <span className="mt-[0.3rem] font-mono text-sm font-semibold text-d8-purple-light md:mt-[0.55rem]">

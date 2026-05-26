@@ -4,13 +4,15 @@ import { useTranslations } from "next-intl";
 import { useLocale } from "next-intl";
 import { Link, usePathname } from "@/navigation";
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { ribbonDrop, dropInStagger, dropIn, underlineExpand } from "@/lib/animations";
 
 export function Nav() {
   const t = useTranslations("nav");
   const locale = useLocale();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
   const otherLocale = locale === "en" ? "es" : "en";
   const otherFlag = locale === "en" ? "🇨🇷" : "🇺🇸";
@@ -24,7 +26,12 @@ export function Nav() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-d8-border bg-d8-bg/90 backdrop-blur-sm">
+    <motion.header
+      className="fixed top-0 left-0 right-0 z-50 border-b border-d8-border bg-d8-bg/90 backdrop-blur-sm"
+      variants={ribbonDrop}
+      initial={shouldReduceMotion ? false : "hidden"}
+      animate="visible"
+    >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link
           href="/"
@@ -35,19 +42,36 @@ export function Nav() {
         </Link>
 
         {/* Desktop */}
-        <ul className="hidden items-center gap-8 md:flex">
+        <motion.ul
+          className="hidden items-center gap-8 md:flex"
+          variants={dropInStagger}
+          initial={shouldReduceMotion ? false : "hidden"}
+          animate="visible"
+          transition={shouldReduceMotion ? undefined : { delayChildren: 0.65, staggerChildren: 0.08 }}
+        >
           {links.map(({ href, label }) => (
-            <li key={href}>
-              <Link
-                href={href}
-                aria-current={pathname === href ? "page" : undefined}
-                className="font-body text-base text-d8-text-secondary transition-colors hover:text-d8-text-primary aria-[current=page]:text-d8-text-primary aria-[current=page]:underline aria-[current=page]:underline-offset-4 aria-[current=page]:decoration-d8-purple-light"
+            <motion.li key={href} variants={dropIn}>
+              <motion.span
+                className="relative block"
+                initial="rest"
+                whileHover="hover"
               >
-                {label}
-              </Link>
-            </li>
+                <Link
+                  href={href}
+                  aria-current={pathname === href ? "page" : undefined}
+                  className="font-body text-base text-d8-text-secondary transition-colors hover:text-d8-text-primary aria-[current=page]:text-d8-text-primary aria-[current=page]:underline aria-[current=page]:underline-offset-4 aria-[current=page]:decoration-d8-purple-light"
+                >
+                  {label}
+                </Link>
+                <motion.span
+                  className="absolute -bottom-0.5 left-0 right-0 h-px bg-d8-purple-light pointer-events-none"
+                  style={{ originX: 0 }}
+                  variants={underlineExpand}
+                />
+              </motion.span>
+            </motion.li>
           ))}
-        </ul>
+        </motion.ul>
 
         <div className="hidden items-center gap-4 md:flex">
           {/* Locale switcher */}
@@ -136,6 +160,6 @@ export function Nav() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }

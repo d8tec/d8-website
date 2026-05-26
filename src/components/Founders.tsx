@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { sweepReveal, floatingCardContainer, floatingCardEntrance } from "@/lib/animations";
 
 type Founder = {
   name: string;
@@ -15,32 +16,45 @@ type Founder = {
 export function Founders() {
   const t = useTranslations("founders");
   const list = t.raw("list") as Founder[];
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <section className="px-6 py-24 border-b border-d8-border">
       <div className="mx-auto max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.45, ease: "easeOut" }}
-        >
-          <span className="font-mono text-xs uppercase tracking-widest text-d8-purple-light">
+        <div>
+          <motion.span
+            variants={sweepReveal}
+            initial={shouldReduceMotion ? false : "hidden"}
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="inline-block font-mono text-xs uppercase tracking-widest text-d8-purple-light"
+          >
             {t("overline")}
-          </span>
-          <h2 className="mt-6 font-heading text-3xl font-semibold tracking-tight text-d8-text-primary">
+          </motion.span>
+          <motion.h2
+            variants={sweepReveal}
+            initial={shouldReduceMotion ? false : "hidden"}
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={shouldReduceMotion ? undefined : { duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-6 font-heading text-3xl font-semibold tracking-tight text-d8-text-primary"
+          >
             {t("heading")}
-          </h2>
-        </motion.div>
+          </motion.h2>
+        </div>
 
-        <div className="mt-16 flex flex-col divide-y divide-d8-border">
+        <motion.div
+          className="mt-16 flex flex-col divide-y divide-d8-border"
+          variants={floatingCardContainer}
+          initial={shouldReduceMotion ? false : "hidden"}
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+        >
           {list.map((founder, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, ease: "easeOut", delay: i * 0.1 }}
+              variants={floatingCardEntrance}
+              whileHover={{ scale: 1.008, transition: { duration: 0.3, ease: [0, 0, 0.5, 1] } }}
               className={`flex flex-col sm:flex-row gap-10 items-start ${
                 i === 0 ? "pb-20" : "py-20"
               }`}
@@ -82,7 +96,7 @@ export function Founders() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
