@@ -79,7 +79,7 @@ export function ProjectsContent() {
       </section>
 
       {/* Process key */}
-      <section className="border-t border-d8-border bg-d8-surface px-6 py-16">
+      <section className="sticky top-16 z-10 border-t border-d8-border bg-d8-surface px-6 py-6">
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-0 md:divide-x md:divide-d8-border">
             {processStages.map(({ num, name, desc }, i) => (

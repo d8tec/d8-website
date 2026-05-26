@@ -137,48 +137,43 @@ export function ContactContent() {
         </div>
       </section>
 
-      {/* Contact rows */}
-      <section className="border-t border-d8-border bg-d8-surface px-6 pb-32">
+      {/* Contact bento */}
+      <section className="border-t border-d8-border px-6 pb-24 pt-16">
         <div className="mx-auto max-w-7xl">
           <motion.div
             variants={fade}
             initial="hidden"
             animate="show"
-            className="divide-y divide-d8-border border-b border-d8-border"
+            className="grid grid-cols-1 gap-3 md:grid-cols-3"
           >
-            {/* Email — opens modal */}
-            <motion.div
+            {/* Email — span 2, primary action */}
+            <motion.button
               variants={item}
-              className="-mx-4 flex flex-col gap-1 px-4 py-10 transition-colors hover:bg-d8-bg md:-mx-6 md:px-6"
+              type="button"
+              onClick={openModal}
+              className="md:col-span-2 flex flex-col gap-3 border border-d8-border bg-d8-surface p-8 text-left group transition-colors hover:border-d8-purple/40 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-d8-purple"
             >
-              <span className="font-mono text-xs uppercase tracking-wider text-d8-text-dim">
+              <span className="font-mono text-xs uppercase tracking-wider text-d8-purple-light">
                 {t("rows.emailLabel")}
               </span>
-              <button
-                type="button"
-                onClick={openModal}
-                className="text-left font-heading text-2xl font-semibold tracking-tight text-d8-text-primary transition-colors hover:text-d8-purple-light sm:text-3xl"
-              >
+              <span className="font-heading text-2xl font-semibold tracking-tight text-d8-text-primary transition-colors group-hover:text-d8-purple-light sm:text-3xl">
                 contacto@d8tec.com
-              </button>
-              <span className="mt-1 font-body text-xs text-d8-text-dim">
+              </span>
+              <span className="mt-auto font-body text-xs text-d8-text-dim pt-2">
                 {t("rows.responseTime")}
               </span>
-            </motion.div>
+            </motion.button>
 
             {/* Phone */}
-            <motion.div
-              variants={item}
-              className="-mx-4 flex flex-col gap-4 px-4 py-10 transition-colors hover:bg-d8-bg md:-mx-6 md:flex-row md:gap-16 md:px-6"
-            >
+            <motion.div variants={item} className="flex flex-col gap-6 border border-d8-border bg-d8-surface p-8">
               {["+506 6048-1496", "+506 7275-3532"].map((number) => (
                 <div key={number} className="flex flex-col gap-1">
-                  <span className="font-mono text-xs uppercase tracking-wider text-d8-text-dim">
+                  <span className="font-mono text-xs uppercase tracking-wider text-d8-purple-light">
                     {t("rows.phoneLabel")}
                   </span>
                   <a
                     href={`tel:${number.replace(/\s|-/g, "")}`}
-                    className="font-heading text-2xl font-semibold tracking-tight text-d8-text-primary transition-colors hover:text-d8-purple-light sm:text-3xl"
+                    className="font-heading text-xl font-semibold tracking-tight text-d8-text-primary transition-colors hover:text-d8-purple-light sm:text-2xl"
                   >
                     {number}
                   </a>
@@ -186,44 +181,38 @@ export function ContactContent() {
               ))}
             </motion.div>
 
-            {/* Location + Hours */}
-            <motion.div
-              variants={item}
-              className="-mx-4 flex flex-col gap-4 px-4 py-10 transition-colors hover:bg-d8-bg md:-mx-6 md:flex-row md:gap-16 md:px-6"
-            >
-              <div className="flex flex-col gap-1">
-                <span className="font-mono text-xs uppercase tracking-wider text-d8-text-dim">
-                  {t("rows.locationLabel")}
-                </span>
-                <span className="font-heading text-2xl font-semibold tracking-tight text-d8-text-primary sm:text-3xl">
-                  {t("rows.locationValue")}
-                </span>
-              </div>
-              <div className="flex flex-col gap-1">
-                <span className="font-mono text-xs uppercase tracking-wider text-d8-text-dim">
-                  {t("rows.hoursLabel")}
-                </span>
-                <span className="font-heading text-2xl font-semibold tracking-tight text-d8-text-primary sm:text-3xl">
-                  {t("rows.hoursValue")}
-                </span>
-              </div>
+            {/* Location */}
+            <motion.div variants={item} className="flex flex-col gap-2 border border-d8-border bg-d8-surface p-8">
+              <span className="font-mono text-xs uppercase tracking-wider text-d8-purple-light">
+                {t("rows.locationLabel")}
+              </span>
+              <span className="font-heading text-xl font-semibold tracking-tight text-d8-text-primary sm:text-2xl">
+                {t("rows.locationValue")}
+              </span>
+            </motion.div>
+
+            {/* Hours */}
+            <motion.div variants={item} className="flex flex-col gap-2 border border-d8-border bg-d8-surface p-8">
+              <span className="font-mono text-xs uppercase tracking-wider text-d8-purple-light">
+                {t("rows.hoursLabel")}
+              </span>
+              <span className="font-heading text-xl font-semibold tracking-tight text-d8-text-primary sm:text-2xl">
+                {t("rows.hoursValue")}
+              </span>
             </motion.div>
 
             {/* Socials */}
-            <motion.div
-              variants={item}
-              className="-mx-4 flex flex-col gap-4 px-4 py-10 transition-colors hover:bg-d8-bg md:-mx-6 md:flex-row md:gap-16 md:px-6"
-            >
+            <motion.div variants={item} className="flex flex-col gap-6 border border-d8-border bg-d8-surface p-8">
               {socials.map(({ name, handle, href }) => (
                 <div key={name} className="flex flex-col gap-1">
-                  <span className="font-mono text-xs uppercase tracking-wider text-d8-text-dim">
+                  <span className="font-mono text-xs uppercase tracking-wider text-d8-purple-light">
                     {name}
                   </span>
                   <Link
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-heading text-2xl font-semibold tracking-tight text-d8-text-primary transition-colors hover:text-d8-purple-light sm:text-3xl"
+                    className="font-heading text-xl font-semibold tracking-tight text-d8-text-primary transition-colors hover:text-d8-purple-light sm:text-2xl"
                   >
                     {handle}
                   </Link>
@@ -246,7 +235,7 @@ export function ContactContent() {
             transition={{ duration: shouldReduceMotion ? 0 : 0.2 }}
             onClick={closeModal}
           >
-            <div className="absolute inset-0 bg-black/70" aria-hidden="true" />
+            <div className="absolute inset-0 bg-d8-bg/80" aria-hidden="true" />
 
             <motion.div
               className="relative w-full max-w-lg"

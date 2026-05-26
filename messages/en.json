@@ -209,7 +209,7 @@
       "hoursValue": "Mon–Fri, 8am–6pm CST"
     },
     "form": {
-      "heading": "Let us know your regards",
+      "heading": "Send us a message",
       "fields": {
         "name": "Name",
         "namePlaceholder": "Your name",
@@ -228,7 +228,7 @@
     }
   },
   "founders": {
-    "overline": "The Masterminds",
+    "overline": "The founders",
     "heading": "The engineers behind the D8 Standard.",
     "list": [
       {
@@ -238,9 +238,9 @@
         "image": "/portraits/nads_portrait.jpeg"
       },
       {
-        "name": "[Co-Founder Name]",
+        "name": "Fernando Montero",
         "role": "Co-Founder",
-        "bio": "[Background: studies, professional experience, and what the co-founder brings to D8 — to be filled in]"
+        "bio": "Full profile coming soon."
       },
       {
         "name": "This could be you.",

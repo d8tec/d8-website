@@ -38,7 +38,7 @@ export function AboutHeader() {
           </motion.span>
           <motion.h1
             variants={item}
-            className="mt-6 font-heading text-2xl font-semibold leading-snug tracking-tight text-d8-text-primary text-balance md:text-3xl lg:text-4xl"
+            className="mt-6 font-heading text-3xl font-semibold leading-snug tracking-tight text-d8-text-primary text-balance md:text-4xl lg:text-5xl"
           >
             {t("heading")}
           </motion.h1>
@@ -46,13 +46,13 @@ export function AboutHeader() {
             variants={item}
             className="mt-10 flex flex-col gap-4 max-w-2xl"
           >
-            <p className="font-body text-sm leading-relaxed text-d8-text-secondary">
+            <p className="font-body text-base leading-relaxed text-d8-text-secondary">
               {t("body1")}
             </p>
-            <p className="font-body text-sm leading-relaxed text-d8-text-secondary">
+            <p className="font-body text-base leading-relaxed text-d8-text-secondary">
               {t("body2")}
             </p>
-            <p className="font-body text-sm leading-relaxed text-d8-text-secondary">
+            <p className="font-body text-base leading-relaxed text-d8-text-secondary">
               {t("body3")}
             </p>
           </motion.div>

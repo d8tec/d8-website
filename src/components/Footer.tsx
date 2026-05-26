@@ -6,7 +6,7 @@ export async function Footer() {
   const tFooter = await getTranslations("footer");
 
   const nav = [
-    { href: "/services", label: tNav("aboutUs") },
+    { href: "/about_us", label: tNav("aboutUs") },
     { href: "/projects", label: tNav("projects") },
     { href: "/careers", label: tNav("careers") },
     { href: "/contact", label: tNav("contact") },

@@ -35,7 +35,7 @@ export function Projects() {
   };
 
   return (
-    <section className="border-t border-d8-border bg-d8-surface py-28 px-6">
+    <section className="border-t border-d8-border py-28 px-6">
       <div className="mx-auto max-w-7xl">
         <div className="mb-16 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <h2 className="font-heading text-3xl font-semibold text-d8-text-primary tracking-tight">
@@ -60,10 +60,10 @@ export function Projects() {
             <motion.div
               key={title}
               variants={itemVariants}
-              className="group flex flex-col gap-3 py-8 transition-colors hover:bg-d8-surface md:flex-row md:items-start md:gap-12 md:px-4"
+              className="group flex flex-col gap-3 py-8 transition-colors hover:bg-d8-bg md:flex-row md:items-start md:gap-12 md:px-4"
             >
               <div className="flex-1">
-                <h3 className="font-heading text-lg font-semibold text-d8-text-primary">
+                <h3 className="font-heading text-lg font-semibold text-d8-text-primary transition-colors group-hover:text-d8-purple-light">
                   {title}
                 </h3>
                 <p className="mt-2 font-body text-sm leading-relaxed text-d8-text-secondary">

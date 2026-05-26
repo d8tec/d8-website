@@ -190,9 +190,9 @@ export function CareersContent() {
       </section>
 
       {/* Principles */}
-      <section className="border-t border-d8-border bg-d8-surface px-6 py-16">
+      <section className="border-t border-d8-border px-6 py-16">
         <div className="mx-auto max-w-7xl">
-          <p className="mb-8 font-mono text-xs uppercase tracking-widest text-d8-text-dim">
+          <p className="mb-8 font-mono text-xs uppercase tracking-widest text-d8-purple-light">
             {t("howWeWork")}
           </p>
           <motion.div
@@ -229,7 +229,7 @@ export function CareersContent() {
           <div className="grid gap-12 md:grid-cols-[2fr_3fr] md:gap-16">
             {/* Left: context */}
             <div className="flex flex-col gap-4">
-              <p className="font-mono text-xs uppercase tracking-widest text-d8-text-dim">
+              <p className="font-mono text-xs uppercase tracking-widest text-d8-purple-light">
                 {tForm("overline")}
               </p>
               <h2 className="font-heading text-2xl font-semibold leading-tight tracking-tight text-d8-text-primary">

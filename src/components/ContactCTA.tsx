@@ -9,22 +9,22 @@ export function ContactCTA() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className="border-t border-d8-border py-24 px-6">
+    <section className="border-t border-d8-border px-6 py-24">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: shouldReduceMotion ? 0 : 0.5, ease: "easeOut" as const }}
-          className="flex flex-col items-center gap-6 rounded-sm border border-d8-border bg-d8-surface px-8 py-16 text-center"
+          className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center"
         >
-          <span className="font-mono text-xs text-d8-purple-light tracking-widest uppercase">
+          <span className="font-mono text-xs uppercase tracking-widest text-d8-purple-light">
             {t("overline")}
           </span>
-          <h2 className="font-heading text-3xl font-semibold text-d8-text-primary tracking-tight text-balance max-w-xl">
+          <h2 className="font-heading text-4xl font-semibold tracking-tight text-d8-text-primary sm:text-5xl">
             {t("heading")}
           </h2>
-          <p className="font-body text-sm leading-relaxed text-d8-text-secondary max-w-md text-balance">
+          <p className="font-body text-sm leading-relaxed text-d8-text-secondary">
             {t("body")}
           </p>
           <Link

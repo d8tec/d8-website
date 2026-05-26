@@ -17,8 +17,8 @@ const config: Config = {
           surface: "#111111",
           border: "#1e1e1e",
           "text-primary": "#f0f0f0",
-          "text-secondary": "#888888",
-          "text-dim": "#555555",
+          "text-secondary": "#ffffff",
+          "text-dim": "#888888",
         },
       },
       fontFamily: {

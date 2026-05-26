@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { useLocale } from "next-intl";
 import { Link, usePathname } from "@/navigation";
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 export function Nav() {
   const t = useTranslations("nav");
@@ -27,7 +28,7 @@ export function Nav() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link
           href="/"
-          className="font-heading text-xl font-semibold tracking-tight text-d8-text-primary"
+          className="font-heading text-2xl font-semibold tracking-tight text-d8-text-primary"
           aria-current={pathname === "/" ? "page" : undefined}
         >
           D8
@@ -40,7 +41,7 @@ export function Nav() {
               <Link
                 href={href}
                 aria-current={pathname === href ? "page" : undefined}
-                className="font-body text-sm text-d8-text-secondary transition-colors hover:text-d8-text-primary aria-[current=page]:text-d8-text-primary"
+                className="font-body text-base text-d8-text-secondary transition-colors hover:text-d8-text-primary aria-[current=page]:text-d8-text-primary aria-[current=page]:underline aria-[current=page]:underline-offset-4 aria-[current=page]:decoration-d8-purple-light"
               >
                 {label}
               </Link>
@@ -69,7 +70,7 @@ export function Nav() {
                 window.dispatchEvent(new CustomEvent("d8:open-contact"));
               }
             }}
-            className="rounded-sm bg-d8-purple px-4 py-2 font-body text-sm font-medium text-white transition-opacity hover:opacity-90"
+            className="rounded-sm bg-d8-purple px-4 py-2 font-body text-base font-medium text-white transition-opacity hover:opacity-90"
           >
             {t("cta")}
           </Link>
@@ -96,37 +97,45 @@ export function Nav() {
       </nav>
 
       {/* Mobile menu */}
-      {open && (
-        <div
-          id="mobile-menu"
-          className="border-t border-d8-border px-6 py-4 md:hidden"
-        >
-          <ul className="flex flex-col gap-4">
-            {links.map(({ href, label }) => (
-              <li key={href}>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            key="mobile-menu"
+            id="mobile-menu"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="border-t border-d8-border px-6 py-4 md:hidden"
+          >
+            <ul className="flex flex-col gap-4">
+              {links.map(({ href, label }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    onClick={() => setOpen(false)}
+                    aria-current={pathname === href ? "page" : undefined}
+                    className="font-body text-base text-d8-text-secondary hover:text-d8-text-primary aria-[current=page]:text-d8-text-primary aria-[current=page]:underline aria-[current=page]:underline-offset-4 aria-[current=page]:decoration-d8-purple-light"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+              <li>
                 <Link
-                  href={href}
-                  onClick={() => setOpen(false)}
-                  aria-current={pathname === href ? "page" : undefined}
-                  className="font-body text-sm text-d8-text-secondary hover:text-d8-text-primary aria-[current=page]:text-d8-text-primary"
+                  href={pathname}
+                  locale={otherLocale}
+                  aria-label={`Switch to ${otherCode}`}
+                  className="flex items-center gap-1.5 font-mono text-xs text-d8-text-secondary transition-colors hover:text-d8-text-primary"
                 >
-                  {label}
+                  <span aria-hidden="true">{otherFlag}</span>
+                  <span>{otherCode}</span>
                 </Link>
               </li>
-            ))}
-            <li>
-              <Link
-                href={pathname}
-                locale={otherLocale}
-                className="flex items-center gap-1.5 font-mono text-xs text-d8-text-secondary transition-colors hover:text-d8-text-primary"
-              >
-                <span aria-hidden="true">{otherFlag}</span>
-                <span>{otherCode}</span>
-              </Link>
-            </li>
-          </ul>
-        </div>
-      )}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

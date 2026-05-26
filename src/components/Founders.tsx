@@ -17,7 +17,7 @@ export function Founders() {
   const list = t.raw("list") as Founder[];
 
   return (
-    <section className="px-6 py-24 bg-d8-surface border-b border-d8-border">
+    <section className="px-6 py-24 border-b border-d8-border">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 12 }}

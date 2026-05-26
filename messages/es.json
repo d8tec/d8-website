@@ -228,7 +228,7 @@
     }
   },
   "founders": {
-    "overline": "Los Masterminds",
+    "overline": "Los fundadores",
     "heading": "Los ingenieros detrás del Estándar D8.",
     "list": [
       {
@@ -238,9 +238,9 @@
         "image": "/portraits/nads_portrait.jpeg"
       },
       {
-        "name": "[Nombre del Cofundador]",
+        "name": "Fernando Montero",
         "role": "Cofundador",
-        "bio": "[Formación, experiencia profesional y lo que el cofundador aporta a D8 — por completar]"
+        "bio": "Perfil completo próximamente."
       },
       {
         "name": "Este podrías ser tú.",

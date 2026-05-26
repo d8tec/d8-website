@@ -101,7 +101,7 @@ export function Hero() {
             {t("cta1")}
           </Link>
           <Link
-            href="/services"
+            href="/about_us"
             className="rounded-sm border border-d8-border px-6 py-3 font-body text-sm text-d8-text-secondary transition-colors hover:border-d8-text-dim hover:text-d8-text-primary"
           >
             {t("cta2")}
