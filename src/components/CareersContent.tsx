@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, type RefObject } from "react";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { sweepReveal, splitLineLine } from "@/lib/animations";
+import { sweepReveal, splitLineLine, arrowNudge, useMagneticButton } from "@/lib/animations";
 
 type FormValues = {
   name: string;
@@ -27,6 +27,8 @@ const ALLOWED_TYPES = new Set([
 ]);
 const MAX_FILE_BYTES = 4 * 1024 * 1024;
 
+const CRUMB_DELAYS = [0, 0.15, 0.3] as const;
+
 export function CareersContent() {
   const t = useTranslations("careers");
   const tForm = useTranslations("careers.form");
@@ -34,6 +36,7 @@ export function CareersContent() {
   const areas = tForm.raw("areas") as string[];
 
   const shouldReduceMotion = useReducedMotion();
+  const mag = useMagneticButton(0.3);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [file, setFile] = useState<File | null>(null);
   const [fileError, setFileError] = useState<string | null>(null);
@@ -69,6 +72,15 @@ export function CareersContent() {
       y: 0,
       transition: { duration: shouldReduceMotion ? 0 : 0.5, ease: "easeOut" as const },
     },
+  };
+
+  const crumb: Variants = {
+    rest: { opacity: 0, scale: 0 },
+    hover: (d: number) => shouldReduceMotion ? { opacity: 0 } : ({
+      opacity: [0, 1, 0],
+      scale: [0, 1, 0],
+      transition: { delay: d, duration: 0.5, ease: "easeOut" as const, repeat: Infinity, repeatDelay: 0.4 },
+    }),
   };
 
   function formatBytes(bytes: number): string {
@@ -447,25 +459,53 @@ export function CareersContent() {
 
               {/* Submit */}
               <div className="flex items-center gap-4 pt-1">
-                <button
-                  type="submit"
-                  disabled={status === "sending" || status === "sent"}
-                  className="rounded-sm bg-d8-purple px-6 py-3 font-body text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+                <motion.div
+                  ref={mag.ref as RefObject<HTMLDivElement>}
+                  className="inline-block"
+                  initial="rest"
+                  whileHover="hover"
+                  style={shouldReduceMotion ? {} : { x: mag.x, y: mag.y }}
+                  onMouseMove={shouldReduceMotion ? undefined : mag.handleMouseMove}
+                  onMouseLeave={shouldReduceMotion ? undefined : mag.handleMouseLeave}
                 >
-                  {status === "sending" ? (
-                    <span className="flex items-center gap-2">
-                      <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                      </svg>
-                      {tForm("sending")}
-                    </span>
-                  ) : status === "sent" ? (
-                    tForm("sent")
-                  ) : (
-                    tForm("submit")
-                  )}
-                </button>
+                  <button
+                    type="submit"
+                    disabled={status === "sending" || status === "sent"}
+                    className="inline-flex items-center gap-2 rounded-sm bg-d8-purple px-6 py-3 font-body text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    {status === "sending" ? (
+                      <span className="flex items-center gap-2">
+                        <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                        </svg>
+                        {tForm("sending")}
+                      </span>
+                    ) : status === "sent" ? (
+                      tForm("sent")
+                    ) : (
+                      <>
+                        {tForm("submit")}
+                        <motion.span variants={arrowNudge} className="relative inline-block">
+                          <span className="absolute right-full top-1/2 flex -translate-y-1/2 items-center gap-[2px] pr-px">
+                            {CRUMB_DELAYS.map((d, i) => (
+                              <motion.span
+                                key={i}
+                                custom={d}
+                                variants={crumb}
+                                className="h-0.5 w-0.5 bg-white"
+                              />
+                            ))}
+                          </span>
+                          <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <path d="M13.5 2.5l-12 5 5 1.5 1.5 5 5.5-11.5z" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M6.5 9l2.5-2.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+                          </svg>
+                        </motion.span>
+                      </>
+                    )}
+                  </button>
+                </motion.div>
 
                 {status === "sent" && (
                   <p role="status" className="font-body text-sm text-d8-purple-light">
