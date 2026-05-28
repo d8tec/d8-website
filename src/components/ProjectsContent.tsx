@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { sweepReveal, splitLineLine } from "@/lib/animations";
+import { sweepReveal } from "@/lib/animations";
 
 type ProcessStage = { num: string; name: string; desc: string };
 type Industry = {
@@ -11,6 +11,64 @@ type Industry = {
   stages: boolean[];
   description: string;
 };
+
+function JumpFlipHeading({ shouldReduceMotion }: { shouldReduceMotion: boolean | null }) {
+  const chars = "HOW WE BUILD".split("");
+
+  const container: Variants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: shouldReduceMotion ? 0 : 0.065,
+        delayChildren: shouldReduceMotion ? 0 : 0.05,
+      },
+    },
+  };
+
+  const letter: Variants = {
+    hidden: { y: 0, rotateX: 0 },
+    show: shouldReduceMotion
+      ? { y: 0, rotateX: 0 }
+      : {
+          y: [0, -90, 0],
+          rotateX: [0, 360],
+          transition: {
+            duration: 0.65,
+            y: {
+              times: [0, 0.42, 1],
+              ease: ["easeOut", "backOut"],
+            },
+            rotateX: { ease: "easeInOut" },
+          },
+        },
+  };
+
+  return (
+    <motion.h1
+      className="font-heading font-black leading-none tracking-tight text-d8-text-primary"
+      style={{ fontSize: "clamp(2.5rem, 12vw, 14rem)", perspective: "800px" }}
+      aria-label="How we build"
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: false, margin: "-80px" }}
+    >
+      {chars.map((char, i) =>
+        char === " " ? (
+          <span key={i} style={{ display: "inline-block", width: "0.28em" }} aria-hidden />
+        ) : (
+          <motion.span
+            key={i}
+            variants={letter}
+            style={{ display: "inline-block", transformOrigin: "center center" }}
+          >
+            {char}
+          </motion.span>
+        )
+      )}
+    </motion.h1>
+  );
+}
 
 export function ProjectsContent() {
   const t = useTranslations("industries");
@@ -44,9 +102,11 @@ export function ProjectsContent() {
   return (
     <>
       {/* Page header */}
-      <section className="px-6 pb-20 pt-40">
+      <section className="px-6 pb-28 pt-40">
         <div className="mx-auto max-w-7xl">
-          <div className="flex flex-col gap-5 max-w-4xl">
+          <JumpFlipHeading shouldReduceMotion={shouldReduceMotion} />
+
+          <div className="mt-16 flex flex-col gap-5 max-w-2xl">
             <motion.span
               variants={sweepReveal}
               initial={shouldReduceMotion ? false : "hidden"}
@@ -55,15 +115,6 @@ export function ProjectsContent() {
             >
               {t("overline")}
             </motion.span>
-            <motion.h1
-              variants={splitLineLine}
-              initial={shouldReduceMotion ? false : "hidden"}
-              animate="visible"
-              transition={shouldReduceMotion ? undefined : { duration: 0.7, delay: 0.15, ease: [0.85, 0.09, 0.15, 0.91] }}
-              className="font-heading text-4xl font-semibold leading-tight tracking-tight text-d8-text-primary text-balance sm:text-5xl"
-            >
-              {t("heading")}
-            </motion.h1>
             <motion.p
               variants={headerItem}
               initial="hidden"
@@ -76,36 +127,38 @@ export function ProjectsContent() {
         </div>
       </section>
 
-      {/* Process key */}
-      <section className="sticky top-16 z-10 border-t border-d8-border bg-d8-surface px-6 py-6">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-0 md:divide-x md:divide-d8-border">
-            {processStages.map(({ num, name, desc }, i) => (
-              <div
-                key={num}
-                className={`flex flex-col gap-2 ${i > 0 ? "md:pl-8" : ""} ${i < processStages.length - 1 ? "md:pr-8" : ""}`}
-              >
-                <span className="font-mono text-xs text-d8-purple-light">{num}</span>
-                <p className="font-heading text-base font-semibold tracking-tight text-d8-text-primary">
-                  {name}
-                </p>
-                <p className="font-body text-xs leading-relaxed text-d8-text-secondary">
-                  {desc}
-                </p>
-              </div>
-            ))}
+      {/* Sticky bar is contained here — unsticks when this div ends (= ContactCTA starts) */}
+      <div>
+        {/* Process key grid */}
+        <section className="sticky top-16 z-10 border-t border-d8-border bg-d8-surface px-6 py-6">
+          <div className="mx-auto max-w-7xl">
+            <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-0 md:divide-x md:divide-d8-border">
+              {processStages.map(({ num, name, desc }, i) => (
+                <div
+                  key={num}
+                  className={`flex flex-col gap-2 ${i > 0 ? "md:pl-8" : ""} ${i < processStages.length - 1 ? "md:pr-8" : ""}`}
+                >
+                  <span className="font-mono text-xs text-d8-purple-light">{num}</span>
+                  <p className="font-heading text-base font-semibold tracking-tight text-d8-text-primary">
+                    {name}
+                  </p>
+                  <p className="font-body text-xs leading-relaxed text-d8-text-secondary">
+                    {desc}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Industry rows */}
-      <section className="px-6 pb-32 pt-12">
+        {/* Industry rows */}
+        <section className="px-6 pb-32 pt-12">
         <div className="mx-auto max-w-7xl">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-60px" }}
+            viewport={{ once: false, margin: "-60px" }}
             className="divide-y divide-d8-border border-y border-d8-border"
           >
             {industries.map(({ tag, name, stages, description }) => (
@@ -151,7 +204,8 @@ export function ProjectsContent() {
             ))}
           </motion.div>
         </div>
-      </section>
+        </section>
+      </div>
     </>
   );
 }

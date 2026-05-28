@@ -143,7 +143,8 @@ export function ContactContent() {
           <motion.div
             variants={dropInStagger}
             initial={shouldReduceMotion ? false : "hidden"}
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: false, margin: "-60px" }}
             transition={shouldReduceMotion ? undefined : { delayChildren: 0.1, staggerChildren: 0.08 }}
             className="grid grid-cols-1 gap-3 md:grid-cols-3"
           >

@@ -194,7 +194,7 @@ export function CareersContent() {
             variants={sweepReveal}
             initial={shouldReduceMotion ? false : "hidden"}
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="mb-8 inline-block font-mono text-xs uppercase tracking-widest text-d8-purple-light"
           >
             {t("howWeWork")}
@@ -203,7 +203,7 @@ export function CareersContent() {
             variants={containerVariants}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-60px" }}
+            viewport={{ once: false, margin: "-60px" }}
             className="divide-y divide-d8-border border-y border-d8-border"
           >
             {principles.map(({ tag, name, desc }) => (

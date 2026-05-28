@@ -8,7 +8,7 @@ export function ScrollProgress() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 right-0 h-[2px] bg-d8-purple origin-left z-[100] pointer-events-none"
+      className="fixed top-0 left-0 right-0 h-[4px] bg-d8-purple origin-left z-[100] pointer-events-none"
       style={{ scaleX }}
       aria-hidden="true"
     />

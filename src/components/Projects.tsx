@@ -29,7 +29,7 @@ export function Projects() {
             variants={sweepReveal}
             initial={shouldReduceMotion ? false : "hidden"}
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="font-heading text-3xl font-semibold text-d8-text-primary tracking-tight"
           >
             {tAbout("selectedWork")}
@@ -46,7 +46,7 @@ export function Projects() {
           variants={floatingCardContainer}
           initial={shouldReduceMotion ? false : "hidden"}
           whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: false, margin: "-80px" }}
           className="flex flex-col divide-y divide-d8-border border-y border-d8-border"
         >
           {projects.map(({ title, description }, i) => (

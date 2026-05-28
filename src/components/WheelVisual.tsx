@@ -34,10 +34,6 @@ const mCarrier = new THREE.MeshStandardMaterial({
   color: "#8c9198", metalness: 0.78, roughness: 0.20,
   emissive: "#08090d", emissiveIntensity: 0.04,
 });
-const mHub = new THREE.MeshStandardMaterial({
-  color: "#6e7278", metalness: 0.84, roughness: 0.14,
-  emissive: "#040507", emissiveIntensity: 0.04,
-});
 const mDark = new THREE.MeshStandardMaterial({
   color: "#050607", metalness: 0.28, roughness: 0.84,
 });

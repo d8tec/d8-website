@@ -1,5 +1,5 @@
 # HANDOFF — d8tec.com
-Current state: Interactive 3D Mecanum wheel live on About Us hero (`feature/animation-experiments`). Real GLB model, Draco-compressed (673 KB), purple rollers + dark carrier, all drag/scroll/idle interaction intact. Build clean, not yet deployed.
+Current state: Animation polish complete — JumpFlipHeading on Projects, re-triggering animations on Careers/Contact, sticky process bar scoped to content section. All sessions 11–14 changes undeployed on `feature/animation-experiments`.
 
 ---
 
@@ -10,6 +10,8 @@ Current state: Interactive 3D Mecanum wheel live on About Us hero (`feature/anim
 - i18n: next-intl v4, `/en/` and `/es/` routes, full EN + ES translations
 - All animation effects from Sessions 11–12 intact (anime.js heartbeat/scramble, FM magnetic CTA, card tilt, marquee)
 - `playwright-screenshots/` folder in `.gitignore`; root workspace clean of loose PNGs
+- `ProjectsContent.tsx`: `JumpFlipHeading` subcomponent (letter jump+flip, `whileInView once: false`); sticky process bar contained to content section
+- `CareersContent.tsx` + `ContactContent.tsx`: all entrance animations re-trigger on scroll re-entry (`once: false`)
 
 ## About Us page — current state
 - `AboutHeader.tsx`: animated overline + h1 + 3 body paragraphs (left) + `WheelVisual` (right, hidden on mobile)
@@ -19,13 +21,14 @@ Current state: Interactive 3D Mecanum wheel live on About Us hero (`feature/anim
 ## What's missing
 - Deploy `feature/animation-experiments` to production — **all work since Session 9 is undeployed**
 - Remove uncompressed `public/models/2796N16_Omni-Directional_Wheel.glb` and `.gltf` before deploying
+- Move loose PNG screenshots in project root to `playwright-screenshots/` before committing
 - Fernando Montero portrait + full bio (M4.2 — content blocked)
 - Real LinkedIn/Instagram URLs (M3.2 — profiles not created)
 - Spanish copy review (M4.4)
 - Vercel Analytics (M5.1)
 
 ## Where to start next session
-Deploy `feature/animation-experiments` to production: first delete the uncompressed GLB and GLTF from `public/models/`, then run `vercel --prod` or push to trigger Vercel deploy.
+Deploy `feature/animation-experiments` to production: move root PNGs to `playwright-screenshots/`, delete uncompressed GLB/GLTF from `public/models/`, commit, then run `vercel --prod` or push to trigger Vercel deploy.
 
 ---
-Last updated: 2026-05-28  |  Session: 13
+Last updated: 2026-05-28  |  Session: 14

@@ -128,7 +128,12 @@ export function ServicePanels() {
   const shouldReduceMotion = useReducedMotion();
 
   const panelContainer: Variants = {
-    hidden: {},
+    hidden: {
+      transition: {
+        staggerChildren: shouldReduceMotion ? 0 : 0.05,
+        staggerDirection: -1,
+      },
+    },
     show: {
       transition: {
         delayChildren: shouldReduceMotion ? 0 : 0.2,
@@ -138,7 +143,11 @@ export function ServicePanels() {
   };
 
   const panelItem: Variants = {
-    hidden: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 14 },
+    hidden: {
+      opacity: shouldReduceMotion ? 1 : 0,
+      y: shouldReduceMotion ? 0 : 14,
+      transition: { duration: shouldReduceMotion ? 0 : 0.28, ease: "easeIn" as const },
+    },
     show: {
       opacity: 1,
       y: 0,
@@ -153,7 +162,7 @@ export function ServicePanels() {
           variants={panelContainer}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: false, margin: "-80px" }}
           className="w-full text-left"
         >
           <div className="divide-y divide-d8-border">

@@ -18,7 +18,7 @@ export function ContactCTA() {
           variants={pillMaterialise}
           initial={shouldReduceMotion ? false : "hidden"}
           whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: false, margin: "-80px" }}
           className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center"
         >
           <span className="font-mono text-xs uppercase tracking-widest text-d8-purple-light">

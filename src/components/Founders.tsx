@@ -82,7 +82,7 @@ export function Founders() {
             variants={sweepReveal}
             initial={shouldReduceMotion ? false : "hidden"}
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="inline-block font-mono text-xs uppercase tracking-widest text-d8-purple-light"
           >
             {t("overline")}
@@ -91,7 +91,7 @@ export function Founders() {
             variants={sweepReveal}
             initial={shouldReduceMotion ? false : "hidden"}
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={shouldReduceMotion ? undefined : { duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="mt-6 font-heading text-3xl font-semibold tracking-tight text-d8-text-primary"
           >
@@ -104,7 +104,7 @@ export function Founders() {
           variants={floatingCardContainer}
           initial={shouldReduceMotion ? false : "hidden"}
           whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
+          viewport={{ once: false, margin: "-60px" }}
         >
           {list.map((founder, i) => (
             <FounderCard key={i} founder={founder} index={i} />
