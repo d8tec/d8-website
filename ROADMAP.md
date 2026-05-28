@@ -93,6 +93,7 @@ Post-launch expansion, not required for initial outreach.
 | M5.3 | Core Web Vitals pass — LCP, CLS, INP targets | 💡 |
 | M5.4 | Spanish SEO strategy — `/es/` indexing, keyword targeting for CR market | 💡 |
 | M5.5 | Cookie / privacy notice — required if analytics added | 💡 |
+| M5.6 | 3D wheel — test loading as GLTF + .bin pair to evaluate whether granular mesh separation enables better per-piece material control (plates, rollers, fasteners individually) | 💡 |
 
 ---
 
