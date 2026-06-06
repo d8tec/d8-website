@@ -4,7 +4,7 @@ import { type RefObject } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
 import { motion, useReducedMotion } from "framer-motion";
-import { pillMaterialise, arrowNudge, useMagneticButton } from "@/lib/animations";
+import { pillMaterialise, sweepReveal, arrowNudge, useMagneticButton } from "@/lib/animations";
 
 export function ContactCTA() {
   const t = useTranslations("cta");
@@ -21,9 +21,15 @@ export function ContactCTA() {
           viewport={{ once: false, margin: "-80px" }}
           className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center"
         >
-          <span className="font-mono text-xs uppercase tracking-widest text-d8-purple-light">
+          <motion.span
+            variants={sweepReveal}
+            initial={shouldReduceMotion ? false : "hidden"}
+            whileInView="visible"
+            viewport={{ once: false }}
+            className="inline-block font-mono text-xs uppercase tracking-widest text-d8-purple-light"
+          >
             {t("overline")}
-          </span>
+          </motion.span>
           <h2 className="font-heading text-4xl font-semibold tracking-tight text-d8-text-primary sm:text-5xl">
             {t("heading")}
           </h2>

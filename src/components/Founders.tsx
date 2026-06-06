@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { motion, useReducedMotion } from "framer-motion";
+import { Link } from "@/navigation";
 import { sweepReveal, floatingCardContainer, floatingCardEntrance, useCardTilt } from "@/lib/animations";
 
 type Founder = {
@@ -26,7 +27,7 @@ function FounderCard({ founder, index }: { founder: Founder; index: number }) {
       }`}
     >
       <motion.div
-        className="relative w-full sm:w-52 aspect-[3/4] flex-shrink-0 overflow-hidden border border-d8-border bg-d8-bg"
+        className={`relative w-full sm:w-52 aspect-[3/4] flex-shrink-0 overflow-hidden border border-d8-border bg-d8-bg${founder.invite ? " cursor-pointer" : ""}`}
         style={shouldReduceMotion ? {} : { rotateX, rotateY, transformPerspective: 800 }}
         onMouseMove={shouldReduceMotion ? undefined : handleMouseMove}
         onMouseLeave={shouldReduceMotion ? undefined : handleMouseLeave}
@@ -39,25 +40,35 @@ function FounderCard({ founder, index }: { founder: Founder; index: number }) {
             className="object-cover object-top"
             sizes="(max-width: 640px) 100vw, 208px"
           />
+        ) : founder.invite ? (
+          <Link
+            href="/careers"
+            className="group/invite absolute inset-0 flex items-center justify-center"
+            aria-label="Join the team — view careers"
+          >
+            <span className="font-mono text-5xl font-light text-d8-purple-light opacity-30 select-none transition-opacity duration-300 group-hover/invite:opacity-100">
+              +
+            </span>
+          </Link>
         ) : (
           <div className="flex h-full items-center justify-center">
-            {founder.invite ? (
-              <span className="font-mono text-5xl font-light text-d8-purple-light opacity-30 select-none">
-                +
-              </span>
-            ) : (
-              <span className="font-mono text-xs uppercase tracking-widest text-d8-text-dim">
-                Photo soon
-              </span>
-            )}
+            <span className="font-mono text-xs uppercase tracking-widest text-d8-text-dim">
+              Photo soon
+            </span>
           </div>
         )}
       </motion.div>
 
       <div className="flex flex-col pt-1">
-        <span className="font-mono text-xs uppercase tracking-widest text-d8-purple-light">
+        <motion.span
+          variants={sweepReveal}
+          initial={shouldReduceMotion ? false : "hidden"}
+          whileInView="visible"
+          viewport={{ once: false }}
+          className="inline-block font-mono text-xs uppercase tracking-widest text-d8-purple-light"
+        >
           {founder.role}
-        </span>
+        </motion.span>
         <h3 className="mt-2 font-heading text-xl font-semibold text-d8-text-primary">
           {founder.name}
         </h3>

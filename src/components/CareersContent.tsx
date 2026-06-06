@@ -171,7 +171,8 @@ export function CareersContent() {
             <motion.span
               variants={sweepReveal}
               initial={shouldReduceMotion ? false : "hidden"}
-              animate="visible"
+              whileInView="visible"
+              viewport={{ once: false }}
               className="inline-block font-mono text-xs uppercase tracking-widest text-d8-purple-light"
             >
               {t("overline")}
@@ -246,9 +247,15 @@ export function CareersContent() {
           <div className="grid gap-12 md:grid-cols-[2fr_3fr] md:gap-16">
             {/* Left: context */}
             <div className="flex flex-col gap-4">
-              <p className="font-mono text-xs uppercase tracking-widest text-d8-purple-light">
+              <motion.p
+                variants={sweepReveal}
+                initial={shouldReduceMotion ? false : "hidden"}
+                whileInView="visible"
+                viewport={{ once: false }}
+                className="inline-block font-mono text-xs uppercase tracking-widest text-d8-purple-light"
+              >
                 {tForm("overline")}
-              </p>
+              </motion.p>
               <h2 className="font-heading text-2xl font-semibold leading-tight tracking-tight text-d8-text-primary">
                 {tForm("heading")}
               </h2>
@@ -265,7 +272,7 @@ export function CareersContent() {
               {/* Name + Email */}
               <div className="grid gap-5 sm:grid-cols-2">
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="name" className="font-mono text-[11px] uppercase tracking-wider text-d8-text-dim">
+                  <label htmlFor="name" className="font-mono text-[11px] uppercase tracking-wider text-d8-text-secondary">
                     {tForm("fields.name")}
                   </label>
                   <input
@@ -282,7 +289,7 @@ export function CareersContent() {
                   {errors.name && <p role="alert" className="font-mono text-[11px] text-red-400">Required</p>}
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="email" className="font-mono text-[11px] uppercase tracking-wider text-d8-text-dim">
+                  <label htmlFor="email" className="font-mono text-[11px] uppercase tracking-wider text-d8-text-secondary">
                     {tForm("fields.email")}
                   </label>
                   <input
@@ -306,7 +313,7 @@ export function CareersContent() {
 
               {/* Area */}
               <div className="flex flex-col gap-1.5">
-                <label htmlFor="area" className="font-mono text-[11px] uppercase tracking-wider text-d8-text-dim">
+                <label htmlFor="area" className="font-mono text-[11px] uppercase tracking-wider text-d8-text-secondary">
                   {tForm("fields.area")}
                 </label>
                 <div className="relative">
@@ -341,7 +348,7 @@ export function CareersContent() {
 
               {/* Intro */}
               <div className="flex flex-col gap-1.5">
-                <label htmlFor="intro" className="font-mono text-[11px] uppercase tracking-wider text-d8-text-dim">
+                <label htmlFor="intro" className="font-mono text-[11px] uppercase tracking-wider text-d8-text-secondary">
                   {tForm("fields.intro")}
                 </label>
                 <textarea
@@ -363,7 +370,7 @@ export function CareersContent() {
 
               {/* Link */}
               <div className="flex flex-col gap-1.5">
-                <label htmlFor="link" className="font-mono text-[11px] uppercase tracking-wider text-d8-text-dim">
+                <label htmlFor="link" className="font-mono text-[11px] uppercase tracking-wider text-d8-text-secondary">
                   {tForm("fields.link")}{" "}
                   <span className="normal-case tracking-normal text-d8-text-dim opacity-60">
                     {tForm("fields.linkOptional")}
@@ -380,7 +387,7 @@ export function CareersContent() {
 
               {/* File attachment — drag & drop zone */}
               <div className="flex flex-col gap-1.5">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-d8-text-dim">
+                <span className="font-mono text-[11px] uppercase tracking-wider text-d8-text-secondary">
                   {tForm("fields.file")}{" "}
                   <span className="normal-case tracking-normal opacity-60">
                     {tForm("fields.fileOptional")}

@@ -19,7 +19,8 @@ export function AboutHeader() {
             <motion.span
               variants={sweepReveal}
               initial={shouldReduceMotion ? false : "hidden"}
-              animate="visible"
+              whileInView="visible"
+              viewport={{ once: false }}
               className="inline-block font-mono text-xs uppercase tracking-widest text-d8-purple-light"
             >
               {t("overline")}

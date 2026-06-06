@@ -49,7 +49,7 @@ export function Hero() {
           animate="show"
           variants={fade}
           onAnimationComplete={shouldReduceMotion ? undefined : () => scramble.trigger()}
-          className="relative mb-6 inline-flex items-center gap-2 overflow-hidden rounded-full border border-d8-purple bg-d8-surface px-5 py-2"
+          className="relative mb-6 inline-flex items-center gap-3 overflow-hidden rounded-full border border-d8-purple bg-d8-surface px-8 py-3.5"
         >
           {!shouldReduceMotion && (
             <motion.span
@@ -60,8 +60,8 @@ export function Hero() {
               transition={{ duration: 1.5, ease: "easeInOut", repeat: Infinity, delay: 0.6 }}
             />
           )}
-          <span ref={shouldReduceMotion ? undefined : heartbeat} className="relative z-10 h-1.5 w-1.5 rounded-full bg-d8-purple" />
-          <span ref={shouldReduceMotion ? undefined : scramble.ref} className="relative z-10 font-mono text-xs tracking-widest uppercase text-d8-purple-light">
+          <span ref={shouldReduceMotion ? undefined : heartbeat} className="relative z-10 h-2.5 w-2.5 rounded-full bg-d8-purple" />
+          <span ref={shouldReduceMotion ? undefined : scramble.ref} className="relative z-10 font-mono text-base tracking-widest uppercase text-d8-purple-light">
             {t("badge")}
           </span>
         </motion.div>
