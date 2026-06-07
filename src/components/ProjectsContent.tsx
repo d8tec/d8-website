@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence, useReducedMotion, type Variants } from "framer-motion";
-import { sweepReveal } from "@/lib/animations";
+import { sweepReveal, floatingCardEntrance, floatingCardContainer, slideUp } from "@/lib/animations";
 
 type ProcessStage = { num: string; name: string; desc: string };
 type Industry = {
@@ -87,29 +87,6 @@ export function ProjectsContent() {
 
   const [expandedTag, setExpandedTag] = useState<string | null>(null);
 
-  const headerItem: Variants = {
-    hidden: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 12 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: shouldReduceMotion ? 0 : 0.45, ease: "easeOut" as const },
-    },
-  };
-
-  const containerVariants: Variants = {
-    hidden: {},
-    show: { transition: { staggerChildren: shouldReduceMotion ? 0 : 0.1 } },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 16 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: shouldReduceMotion ? 0 : 0.5, ease: "easeOut" as const },
-    },
-  };
-
   return (
     <>
       {/* Page header */}
@@ -128,9 +105,10 @@ export function ProjectsContent() {
               {t("overline")}
             </motion.span>
             <motion.p
-              variants={headerItem}
-              initial="hidden"
-              animate="show"
+              variants={slideUp}
+              initial={shouldReduceMotion ? false : "hidden"}
+              animate="visible"
+              transition={shouldReduceMotion ? undefined : { duration: 0.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="max-w-2xl font-body text-base leading-relaxed text-d8-text-secondary"
             >
               {t("body")}
@@ -167,16 +145,16 @@ export function ProjectsContent() {
         <section className="px-6 pb-32 pt-12">
           <div className="mx-auto max-w-7xl">
             <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="show"
+              variants={floatingCardContainer}
+              initial={shouldReduceMotion ? false : "hidden"}
+              whileInView="visible"
               viewport={{ once: false, margin: "-60px" }}
               className="border-t border-d8-border"
             >
               {industries.map(({ tag, name, description }) => {
                 const isExpanded = expandedTag === tag;
                 return (
-                  <motion.div key={tag} variants={itemVariants} className="border-b border-d8-border">
+                  <motion.div key={tag} variants={floatingCardEntrance} className="border-b border-d8-border">
                     {/* Row */}
                     <motion.div
                       whileHover={{ scale: 1.016, transition: { duration: 0.3, ease: [0, 0, 0.5, 1] } }}

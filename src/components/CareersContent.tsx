@@ -4,7 +4,7 @@ import { useState, useRef, type RefObject } from "react";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { sweepReveal, splitLineLine, arrowNudge, useMagneticButton } from "@/lib/animations";
+import { sweepReveal, splitLineLine, arrowNudge, useMagneticButton, floatingCardEntrance, floatingCardContainer, slideUp } from "@/lib/animations";
 
 type FormValues = {
   name: string;
@@ -50,29 +50,6 @@ export function CareersContent() {
     formState: { errors },
     reset,
   } = useForm<FormValues>();
-
-  const headerItem: Variants = {
-    hidden: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 12 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: shouldReduceMotion ? 0 : 0.45, ease: "easeOut" as const },
-    },
-  };
-
-  const containerVariants: Variants = {
-    hidden: {},
-    show: { transition: { staggerChildren: shouldReduceMotion ? 0 : 0.08 } },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 16 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: shouldReduceMotion ? 0 : 0.5, ease: "easeOut" as const },
-    },
-  };
 
   const crumb: Variants = {
     rest: { opacity: 0, scale: 0 },
@@ -189,9 +166,10 @@ export function CareersContent() {
               {t("heading2")}
             </motion.h1>
             <motion.p
-              variants={headerItem}
-              initial="hidden"
-              animate="show"
+              variants={slideUp}
+              initial={shouldReduceMotion ? false : "hidden"}
+              animate="visible"
+              transition={shouldReduceMotion ? undefined : { duration: 0.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="max-w-2xl font-body text-base leading-relaxed text-d8-text-secondary"
             >
               {t("body")}
@@ -213,16 +191,16 @@ export function CareersContent() {
             {t("howWeWork")}
           </motion.p>
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="show"
+            variants={floatingCardContainer}
+            initial={shouldReduceMotion ? false : "hidden"}
+            whileInView="visible"
             viewport={{ once: false, margin: "-60px" }}
             className="divide-y divide-d8-border border-y border-d8-border"
           >
             {principles.map(({ tag, name, desc }) => (
               <motion.div
                 key={tag}
-                variants={itemVariants}
+                variants={floatingCardEntrance}
                 whileHover={{ scale: 1.016, transition: { duration: 0.3, ease: [0, 0, 0.5, 1] } }}
                 className="group -mx-4 grid cursor-default grid-cols-[3rem_1fr] gap-x-6 gap-y-3 px-4 py-8 transition-colors duration-200 hover:bg-d8-bg md:-mx-6 md:grid-cols-[3rem_2fr_3fr] md:items-start md:gap-x-14 md:gap-y-0 md:px-6"
               >
@@ -252,19 +230,31 @@ export function CareersContent() {
                 initial={shouldReduceMotion ? false : "hidden"}
                 whileInView="visible"
                 viewport={{ once: false }}
+                transition={shouldReduceMotion ? undefined : { duration: 1.0, ease: [0.0, 0.0, 0.4, 1.0] }}
                 className="inline-block font-mono text-xs uppercase tracking-widest text-d8-purple-light"
               >
                 {tForm("overline")}
               </motion.p>
-              <h2 className="font-heading text-2xl font-semibold leading-tight tracking-tight text-d8-text-primary">
-                {tForm("heading")}
-              </h2>
-              <p className="font-body text-sm leading-relaxed text-d8-text-secondary">
-                {tForm("body1")}
-              </p>
-              <p className="font-body text-sm leading-relaxed text-d8-text-secondary">
-                {tForm("body2")}
-              </p>
+              <motion.div
+                variants={floatingCardContainer}
+                initial={shouldReduceMotion ? false : "hidden"}
+                whileInView="visible"
+                viewport={{ once: false, margin: "-60px" }}
+                className="flex flex-col gap-4"
+              >
+                <motion.h2
+                  variants={floatingCardEntrance}
+                  className="font-heading text-2xl font-semibold leading-tight tracking-tight text-d8-text-primary"
+                >
+                  {tForm("heading")}
+                </motion.h2>
+                <motion.p variants={floatingCardEntrance} className="font-body text-sm leading-relaxed text-d8-text-secondary">
+                  {tForm("body1")}
+                </motion.p>
+                <motion.p variants={floatingCardEntrance} className="font-body text-sm leading-relaxed text-d8-text-secondary">
+                  {tForm("body2")}
+                </motion.p>
+              </motion.div>
             </div>
 
             {/* Right: form */}
