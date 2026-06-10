@@ -79,6 +79,7 @@ Real content replacing placeholder copy.
 | M4.2 | About Us — final approved copy (no placeholder sections) | ⏳ |
 | M4.3 | Careers — publish open roles when hiring begins | 💡 |
 | M4.4 | Spanish copy review by a native speaker | 💡 |
+| M4.5 | Projects page — replace picsum.photos placeholders with real images matching each project | ⏳ |
 
 ---
 
