@@ -32,24 +32,24 @@ export function generateMetadata({
 }): Metadata {
   const isEs = locale === "es";
   return {
-    title: isEs ? "D8 | Ingeniería y Desarrollo" : "D8 | Engineering and Development",
+    title: isEs ? "D8 | Ingeniería y Desarrollo" : "D8 | Engineering & Development",
     description: isEs
       ? "D8 es una empresa de ingeniería y desarrollo. R&D, integración hardware/software, desarrollo web y app, IA y soluciones de datos."
-      : "D8 is an engineering and development company. R&D, hardware/software integration, web and app development, AI and data solutions.",
+      : "D8 builds engineering solutions — Research & Development, hardware/software integration, web and app development, and AI & data systems. Real engineering, delivered.",
     openGraph: {
       type: "website",
-      url: `/${locale}`,
-      title: isEs ? "D8 | Ingeniería y Desarrollo" : "D8 | Engineering and Development",
+      url: "https://d8tec.com",
+      title: isEs ? "D8 | Ingeniería y Desarrollo" : "D8 | Engineering & Development",
       description: isEs
         ? "R&D, integración hardware/software, desarrollo web y app, IA y soluciones de datos."
-        : "R&D, hardware/software integration, web and app development, AI and data solutions.",
+        : "We build real engineering solutions. Research & Development, hardware/software integration, web & app development, AI & data systems.",
       siteName: "D8",
       images: [
         {
           url: "/og-image.png",
           width: 1200,
           height: 630,
-          alt: isEs ? "D8 | Ingeniería y Desarrollo" : "D8 | Engineering and Development",
+          alt: isEs ? "D8 | Ingeniería y Desarrollo" : "D8 | Engineering & Development",
         },
       ],
     },
