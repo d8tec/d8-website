@@ -85,6 +85,7 @@ export function FooterCanvas() {
     }
 
     function resize() {
+      if (!cv) return;
       const dpr = window.devicePixelRatio || 1;
       W = cv.offsetWidth;
       H = cv.offsetHeight;
