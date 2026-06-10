@@ -257,7 +257,8 @@
     "cta": "Get in touch"
   },
   "footer": {
-    "tagline": "Functional Engineering Solutions. No handoffs, no shortcuts.",
+    "tagline": "Functional Engineering Solutions.",
+    "taglineSub": "No handoffs, no shortcuts.",
     "copyright": "All rights reserved."
   }
 }

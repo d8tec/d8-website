@@ -257,7 +257,8 @@
     "cta": "Escríbenos"
   },
   "footer": {
-    "tagline": "Soluciones de Ingeniería Funcionales. Sin transferencias, sin atajos.",
+    "tagline": "Soluciones de Ingeniería Funcionales.",
+    "taglineSub": "Sin transferencias, sin atajos.",
     "copyright": "Todos los derechos reservados."
   }
 }
