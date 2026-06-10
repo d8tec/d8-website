@@ -85,7 +85,7 @@ export function FooterCanvas() {
     }
 
     function resize() {
-      if (!cv) return;
+      if (!cv || !ctx) return;
       const dpr = window.devicePixelRatio || 1;
       W = cv.offsetWidth;
       H = cv.offsetHeight;
@@ -108,6 +108,7 @@ export function FooterCanvas() {
     }
 
     function drawDot(d: Dot) {
+      if (!ctx) return;
       const h = d.hist, n = h.length;
       const [cx, cy] = h[n - 1];
       const px = (cx + d.dx * d.t) * CELL;
@@ -147,6 +148,7 @@ export function FooterCanvas() {
     }
 
     function frame(now: number) {
+      if (!ctx) return;
       const dt = Math.min((now - last) / 1000, 0.1);
       last = now;
 
